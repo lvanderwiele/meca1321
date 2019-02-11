@@ -1,9 +1,12 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,11pt]{report}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage[french]{babel}
+\usepackage{physics}
+\usepackage[margin = 2cm]{geometry}
+
 
 \title{LMECA1321 - Mécanique des fluides et transferts\\Synthèse}
 \author{Loïc Van der Wielen}
@@ -12,5 +15,39 @@
 
 \maketitle
 \tableofcontents
+
+\chapter{Les fluides dans la mécanique des milieux continus}
+  En mécanique des milieux continus, le modèle se décrit grâce à des équations de continuité, valables pour tous les milieux et des équation de comportement dépendante du matériau considéré.
+
+  \section{Lois de conservation}
+    Les lois de conservation exprime qu'une certaine propriété d'un système physique reste constante au fil de l'évolution du système. Elles ont une forme globale et une forme locale, obtnue à partir de la précédente via l'utilisation de conditions de continuité, et s'expriment différement suivant que l'on examine un volume matériel ou un volume de contrôle.
+
+    Par ailleurs, si une loi de conservation est satisfaite pour une certaine classe de systèmes (tous les volumes matériaux ou tous les volumes de contrôle), sa forme locale est satisfaite en tout point à tout instant.
+
+    \subsection{Formes globales des lois de conservation pour les volumes matériels}
+      Un volume matériel $V(t)$ est défini comme un ensemble de points matériels en mouvement, possédant une vitesse macroscopique
+      \begin{equation}
+        \vb{v}(\vb{x}, t) = v_i(x_j, t)\vb{e}_i
+      \end{equation}
+      définie par rapport au repère $(0, \vb{e}_i)$ (représentation eulérienne).
+
+      Les lois de conservation globales sont données par
+
+      \begin{align}
+        \dv{\mathcal{M}}{t} &= 0 & \forall \; V(t),\nonumber\\
+        \dv{\boldsymbol{\mathcal{P}}}{t}(t) &= \boldsymbol{\mathcal{F}}_d(t) + \boldsymbol{\mathcal{F}}_c(t) & \forall \; V(t), \nonumber\\
+        & & \forall \; \textrm{repère inertiel},\nonumber\\
+        \dv{\boldsymbol{\mathcal{N}}}{t}(t) &= \boldsymbol{\mathcal{M}}_d(t) + \boldsymbol{\mathcal{M}}_c(t), & \forall \; V(t), \label{eq:conservationGlobale}\\
+        & & \forall \; \textrm{repère inertiel}, \nonumber\\
+        \dv{\mathcal{K} + \mathcal{U}}{t}(t) &= \mathcal{P}_d(t) + \mathcal{P}_c(t) + \mathcal{Q}_d(t) + \mathcal{Q}_c(t) & \forall \; V(t), \nonumber\\
+        & & \forall \; \textrm{repère inertiel}, \nonumber
+      \end{align}
+
+      Il est important de noter que, à l'exception de la conservation de la masse, ces lois ne s'appliquent que pour un repère inertiel. Cependant, lorsque toutes les lois sont satisfaites pour un certain repère inertiel, elles le sont pour tout autre.
+
+    \subsection{Formes locales des lois de conservation}
+      
+
+
 
 \end{document}
