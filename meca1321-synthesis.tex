@@ -5,8 +5,10 @@
 \usepackage{amsmath}
 \usepackage[french]{babel}
 \usepackage{physics}
-\usepackage[margin = 2cm]{geometry}
+\usepackage{fullpage}
+\usepackage{multicol}
 
+\newcommand{\dvm}[2]{\frac{D #1}{D #2}}
 
 \title{LMECA1321 - Mécanique des fluides et transferts\\Synthèse}
 \author{Loïc Van der Wielen}
@@ -37,7 +39,7 @@
         \dv{\mathcal{M}}{t} &= 0 & \forall \; V(t),\nonumber\\
         \dv{\boldsymbol{\mathcal{P}}}{t}(t) &= \boldsymbol{\mathcal{F}}_d(t) + \boldsymbol{\mathcal{F}}_c(t) & \forall \; V(t), \nonumber\\
         & & \forall \; \textrm{repère inertiel},\nonumber\\
-        \dv{\boldsymbol{\mathcal{N}}}{t}(t) &= \boldsymbol{\mathcal{M}}_d(t) + \boldsymbol{\mathcal{M}}_c(t), & \forall \; V(t), \label{eq:conservationGlobale}\\
+        \dv{\boldsymbol{\mathcal{N}}}{t}(t) &= \boldsymbol{\mathcal{M}}_d(t) + \boldsymbol{\mathcal{M}}_c(t), & \forall \; V(t), \\
         & & \forall \; \textrm{repère inertiel}, \nonumber\\
         \dv{\mathcal{K} + \mathcal{U}}{t}(t) &= \mathcal{P}_d(t) + \mathcal{P}_c(t) + \mathcal{Q}_d(t) + \mathcal{Q}_c(t) & \forall \; V(t), \nonumber\\
         & & \forall \; \textrm{repère inertiel}, \nonumber
@@ -46,7 +48,23 @@
       Il est important de noter que, à l'exception de la conservation de la masse, ces lois ne s'appliquent que pour un repère inertiel. Cependant, lorsque toutes les lois sont satisfaites pour un certain repère inertiel, elles le sont pour tout autre.
 
     \subsection{Formes locales des lois de conservation}
-      
+      En utilisant la notation de la dérivé matricielle et du tenseur de déformation $\vb{d}$, les formes locales s'expriment comme
+      \begin{multicols}{2}
+        \center{\textit{forme non-conservative}}
+        \begin{align}
+          \dvm{\rho}{t} + \rho \div \vb{v} &= 0, \nonumber\\
+          \rho \dvm{\vb{v}}{t} &= \div \sigma + \rho \vb{g},\nonumber\\
+          \rho \dvm{U}{t} &= \vb{\sigma} : \vb{d} + r - \div \vb{q} \nonumber
+        \end{align}
+
+        \center{\textit{forme conservative}}
+        \begin{align}
+          \pdv{\rho}{t} + \div (\rho \vb{v}) &= 0, \nonumber \\
+          \pdv{\rho}{t} + \div {\rho \vb{v} \vb{v}} &= \div \vb{\sigma} + \rho \vb{g}, \\
+          \pdv{\rho U}{t} + \div (\rho \vb{v} U) &= \vb{\sigma} : \vb{d} + r - \div \vb{q} \nonumber
+        \end{align}
+
+      \end{multicols}
 
 
 
