@@ -1,0 +1,31 @@
+\chapter{Glossaire}
+  Voici un petit glossaire de l'ensemble des symboles utilisés dans le cours, triés par ordre alphabétique (les symboles grecs sont placés à la fin).
+  \begingroup
+  \allowdisplaybreaks
+  \begin{align*}
+    \vb{d} &= \frac{1}{2}(\grad\vb{v}^T + \grad\vb{v}) & \textrm{tenseur taux de déformation},\\
+    \vb{f} &= \rho \vb{g} & \textrm{densité de forces à distance } \Big[\si{\frac{N}{m^3}}\Big], \\
+    \mathcal{\vb{F}}_c (t) &= \int_{\partial V(t)} \vb{t}(\vb{n}) dS, & \textrm{forces de contact} [\si{N}],\\
+    \mathcal{\vb{F}}_d (t) &= \int_{V(t)} \vb{f} dV = \int_{V(t)} \rho \vb{g} dV & \textrm{forces à distance } [\si{N}],\\
+    \vb{g} & & \textrm {densité des forces de masse } \Big[\si{\frac{N}{kg}}\Big]\\
+    \mathcal{K}(t) &= \int_{V(t)} \rho \frac{\vb{v}\cdot\vb{v}}{2} dV & \textrm{énergie cinétique } [\si{J}],\\
+    \mathcal{M} & = \int_{V(t)} \rho dV  & \textrm{masse [\si{kg}],}\\
+    \mathcal{\vb{M}}_c (t) &= \int_{\partial V(t)} \vb{x} \times \vb{t}(\vb{n}) dV & \textrm{moment des forces de contact } [\si{N.m}],\\
+    \mathcal{\vb{M}}_d (t) &= \int_{V(t)} \vb{x} \times \rho \vb{g} dV & \textrm{moment des forces à distance } [\si{N.m}],\\
+    \mathcal{\vb{N}}(t) &= \int_{V(t)} \vb{x} \times \rho \vb{v} dV & \textrm{moment de la quantité de mouvement } \Big[\si{\frac{kg.m^2}{s}}\Big],\\
+    \mathcal{\vb{P}}(t) &= \int_{V(t)} \rho \vb{v} dV & \textrm{quantité de mouvement } \Big[\si{\frac{kg.m}{s}}\Big],\\
+    \mathcal{P}_c(t) &= \int_{\partial V(t)} \vb{v} \cdot \vb{t}(\vb{n}) dV & \textrm{puissance des forces de contact } [\si{W}], \\
+    \mathcal{P}_d(t) &= \int_{V(t)} \vb{v} \cdot \rho \vb{g} dV & \textrm{puissance des forces à distance } [\si{W}], \\
+    \vb{q} & & \textrm{vecteur flux de chaleur } \Big[\si{\frac{W}{m^2}}], \\
+    q(\vb{n}) &= - \vb{q} \cdot \vb{n} & \textrm{flux de puissance calorifique fourni par conduction } \Big[\si{\frac{J}{m^2}}\Big]\\
+    \mathcal{Q}_d(t) &= \int_{V(t)} r dV & \textrm{puissance calorifique fournie à distance } [\si{W}], \\
+    \mathcal{Q}_c(t) &= \int{\partial V(t)} q(\vb{n}) dS & \textrm{puissance calorifique fournie par conduction} [\si{W}], \\
+    r & & \textrm{densité de puissance calorifique fournie à distance } \Big[\si{\frac{J}{m^3}}\Big],\\
+    \vb{t}(\vb{n}) &= \boldsymbol{\sigma}^T \cdot \vb{n} & \textrm{densité des forces de contact exercées à la frontière} \Big[\si{\frac{N}{m^2}}\Big],\\
+    U & & \textrm{énergie interne massique } \Big[\si{\frac{J}{kg}}\Big],\\
+    \mathcal{U}(t) &= \int_{V(t)} \rho U dV & \textrm{énergie interne } [\si{J}],\\
+    \vb{v} & & \textrm{vitesse } \Big[\si{\frac{m}{s}}\Big],\\
+    \rho & & \textrm{masse volumique } \Big[\si{\frac{kg}{m^3}}\Big],\\
+    \boldsymbol{\sigma} & & \textrm{tenseur de contraintes }
+  \end{align*}
+  \endgroup
