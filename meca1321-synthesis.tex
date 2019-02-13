@@ -86,7 +86,22 @@
         \rho \dvm{}{t}(\frac{\vb{v}\cdot \vb{v}}{2}) = \div (\boldsymbol{\sigma} \cdot \vb{v}) + \rho \vb{g} \cdot \vb{v} - \boldsymbol{\sigma} : \vb{d}
       \end{align}
 
+      \subsection{Concept d'énergie potentielle}
+        La loi de conservation de l'énergie potentielle peut s'écrire comme
+        \begin{align}
+          \dv{t}\int_{V(t)} \rho W dV = \int_{V(t)} \rho \dvm{W}{t} dV = - \int_{V(t)} \rho \vb{v} \cdot \vb{g} dV
+        \end{align}
 
+        On obtient alors les lois de conservation de l'énergie et la somme de l'énergie potentielle et cinétique suivantes, sous forme globale
+        \begin{align}
+            \dv{\mathcal{W}}{t} {}(t) &= -\mathcal{P}_d(t)\\
+            \dv{\mathcal{W} + \mathcal{K}}{t} &= \mathcal{P}_c(t) - \mathcal{P}_i(t) \nonumber
+        \end{align}
+        et sous forme locale
+        \begin{align}
+            \rho \dvm{W}{t} &= -\rho \vb{g} \cdot \vb{v}\\
+            \rho \dvm{}{t}(W + \frac{\vb{v} \cdot\vb{v}}{2}) &= \div (\boldsymbol{\sigma} : \vb{v}) - \boldsymbol{\sigma} : \boldsymbol{d}\nonumber
+        \end{align}
 
 \begin{appendix}
 \input{glossaire.tex}
