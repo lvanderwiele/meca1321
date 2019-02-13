@@ -73,7 +73,20 @@
         \dv{()\mathcal{K}^c + \mathcal{U}^c)}{t} {}(t) &= \dot{\mathcal{K}}^c (t) + \dot{\mathcal{U}}^c(t) + \mathcal{P}^c_d(t) + \mathcal{P}^c_c(t) + \mathcal{Q}^c_d (t) + \mathcal{Q}^c_c (t) &  \forall \; V^c, \textrm{repère inertiel} \nonumber
       \end{align}
 
-      Il est également possible d'obtenir les lois de conservation pour un volume de contrôle à partir de celles du volume matériel. Il faut simplement considérer un volume matériel $V(t)$ occupant un volume matériel $V^c$ à l'instant $t$\footnote{Développement en page $9$ du syllabus.}
+      Il est également possible d'obtenir les lois de conservation pour un volume de contrôle à partir de celles du volume matériel. Il faut simplement considérer un volume matériel $V(t)$ occupant un volume matériel $V^c$ à l'instant $t$\footnote{Développement en page $9$ du syllabus.}.
+
+    \subsection{Concept de puissance des efforts internes}
+      Il est possible d'établir des équations alternatives de l'équation de conservation de l'énergie, spécifiquement de l'énergie interne et de l'énergie cinétique
+      \begin{align}
+        \dv{\mathcal{K}} {}(t) &= \mathcal{P}_d(t) + \mathcal{P}_c(t) - \mathcal{P}_i(t) & \forall V(t), \textrm{repère inertiel},\\
+        \dv{\mathcal{U}} {}(t) &= \mathcal{Q}_d(t) + \mathcal{Q}_c(t) + \mathcal{P}_i(t) & \forall V(t), \nonumber
+      \end{align}
+      La forme locale de la conservation de l'énergie cinétique est alors
+      \begin{align}
+        \rho \dvm{}{t}(\frac{\vb{v}\cdot \vb{v}}{2}) = \div (\boldsymbol{\sigma} \cdot \vb{v}) + \rho \vb{g} \cdot \vb{v} - \boldsymbol{\sigma} : \vb{d}
+      \end{align}
+
+
 
 \begin{appendix}
 \input{glossaire.tex}
