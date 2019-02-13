@@ -37,12 +37,9 @@
 
       \begin{align}
         \dv{\mathcal{M}}{t} &= 0 & \forall \; V(t),\nonumber\\
-        \dv{\boldsymbol{\mathcal{P}}}{t}(t) &= \boldsymbol{\mathcal{F}}_d(t) + \boldsymbol{\mathcal{F}}_c(t) & \forall \; V(t), \nonumber\\
-        & & \forall \; \textrm{repère inertiel},\nonumber\\
-        \dv{\boldsymbol{\mathcal{N}}}{t}(t) &= \boldsymbol{\mathcal{M}}_d(t) + \boldsymbol{\mathcal{M}}_c(t), & \forall \; V(t), \\
-        & & \forall \; \textrm{repère inertiel}, \nonumber\\
-        \dv{\mathcal{K} + \mathcal{U}}{t}(t) &= \mathcal{P}_d(t) + \mathcal{P}_c(t) + \mathcal{Q}_d(t) + \mathcal{Q}_c(t) & \forall \; V(t), \nonumber\\
-        & & \forall \; \textrm{repère inertiel}, \nonumber
+        \dv{\boldsymbol{\mathcal{P}}}{t} {}(t) &= \boldsymbol{\mathcal{F}}_d(t) + \boldsymbol{\mathcal{F}}_c(t) & \forall \; V(t), \textrm{repère inertiel},\\
+        \dv{\boldsymbol{\mathcal{N}}}{t} {}(t) &= \boldsymbol{\mathcal{M}}_d(t) + \boldsymbol{\mathcal{M}}_c(t), & \forall \; V(t), \textrm{repère inertiel}, \nonumber\\
+        \dv{\mathcal{K} + \mathcal{U}}{t} {}(t) &= \mathcal{P}_d(t) + \mathcal{P}_c(t) + \mathcal{Q}_d(t) + \mathcal{Q}_c(t) & \forall \; V(t), \textrm{repère inertiel}, \nonumber
       \end{align}
 
       Il est important de noter que, à l'exception de la conservation de la masse, ces lois ne s'appliquent que pour un repère inertiel. Cependant, lorsque toutes les lois sont satisfaites pour un certain repère inertiel, elles le sont pour tout autre.
@@ -66,6 +63,15 @@
 
       \end{multicols}
 
+    \subsection{Formes globales des lois conservation pour les volumes de contrôle}
+      Sur un volume de contrôle $V^c$, les lois s'écrivent, en tenant compte des apport convectifs, comme suit
+      \begin{align}
+        \dv{\mathcal{M}^c}{t} {} (t) &= \mathcal{M}^c(t) & \forall \; V^c, \nonumber\\
+        \dv{\boldsymbol{\mathcal{P}}^c}{t} {} (t) &= \boldsymbol{\mathcal{P}}^c + \boldsymbol{\mathcal{F}}^c_d(t) + \boldsymbol{\mathcal{F}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
+        \dv{\boldsymbol{\mathcal{N}}^c}{t} {} (t) &= \boldsymbol{\mathcal{N}}^c(t) + \boldsymbol{\mathcal{M}}^c_d(t) + \boldsymbol{\mathcal{M}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \nonumber\\
+        \dv{()\mathcal{K}^c + \mathcal{U}^c)}{t} {}(t) &= \dot{\mathcal{K}}^c (t) + \dot{\mathcal{U}}^c(t) + \mathcal{P}^c_d(t) + \mathcal{P}^c_c(t) + \mathcal{Q}^c_d (t) + \mathcal{Q}^c_c (t) &  \forall \; V^c, \textrm{repère inertiel} \nonumber
+      \end{align}
 
+      Il est également possible d'obtenir les lois de conservation pour un volume de contrôle à partir de celles du volume matériel. Il faut simplement considérer un volume matériel $V(t)$ occupant un volume matériel $V^c$ à l'instant $t$\footnote{Développement en page $9$ du syllabus.}
 
 \end{document}
