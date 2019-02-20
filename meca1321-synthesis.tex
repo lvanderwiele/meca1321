@@ -99,8 +99,25 @@
         \end{align}
         et sous forme locale
         \begin{align}
-            \rho \dvm{W}{t} &= -\rho \vb{g} \cdot \vb{v}\\
-            \rho \dvm{}{t}(W + \frac{\vb{v} \cdot\vb{v}}{2}) &= \div (\boldsymbol{\sigma} : \vb{v}) - \boldsymbol{\sigma} : \boldsymbol{d}\nonumber
+          \rho \dvm{W}{t} &= -\rho \vb{g} \cdot \vb{v}\\
+          \rho \dvm{}{t}(W + \frac{\vb{v} \cdot\vb{v}}{2}) &= \div (\boldsymbol{\sigma} : \vb{v}) - \boldsymbol{\sigma} : \boldsymbol{d}\nonumber
+        \end{align}
+
+      \subsection{Concepts de pression, d'extra-tensions et d'enthalpie}
+        Le tenseur des contraintes peut $\boldsymbol{\sigma}$ se réécrire $\boldsymbol{\sigma} = -p \boldsymbol{\delta} + \boldsymbol{\tau}$. On définit également l'enthalpie d'un volume matériel comme étant
+        \begin{equation}
+          \mathcal{H}(t) = \int_{V(t)} \rho H dV \textrm{ avec } H = U + \frac{p}{\rho}\textrm{, l'enthalpie massique}
+        \end{equation}
+        En utilisant $H$, $p$ et $\boldsymbol{\tau}$, on peut alors écrire la conservation de l'énergie massique comme
+        \begin{align}
+          \rho \dvm{H}{t} &= \boldsymbol{\sigma} : \vb{d} + r - \div \vb{q} +  \dvm{p}{t} - \frac{p}{\rho}\dvm{\rho}{t}\nonumber\\
+          &= \boldsymbol{\tau} : \vb{d} + r - \div \vb{q} + \dvm{p}{t} - \frac{p}{\rho} \underbrace{\left(\dvm{\rho}{t} + \rho \div \vb{v} \right)}_{=0}
+        \end{align}
+        A partir de là, on peut écrire les énoncés suivants
+        \begin{align}
+          \rho \dvm{H}{t} &= \dvm{p}{t} + \boldsymbol{\tau} : \vb{d} + r - \div \vb{q}\nonumber\\
+          \rho \dvm{}{t}\left(W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \div (\boldsymbol{\tau} \cdot \vb{v}) - \vb{v} \cdot \grad p - \boldsymbol{\tau} : \vb{d} \\
+          \rho \dvm{}{t}\left(H + W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \pdv{p}{t} + \div (\boldsymbol{\tau} \cdot \vb{v}) + r - \div \vb{q} \nonumber
         \end{align}
 
 \begin{appendix}
