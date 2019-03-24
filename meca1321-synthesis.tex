@@ -194,7 +194,7 @@
       \end{equation}
       En utilisant le coefficient de dilatation $\beta$, on peut alors réécrire l'identité précédente comme\footnote{Voir syllabus page 20}
       \begin{equation}
-        \pdv{\hat{H}}{p} = \recip{\rho}(1-T\beta)\label{eq:dHdp=beta}
+        \pdv{\hat{H}}{p} = \recip{\rho}(1-T\beta)\label{eq:dHdpbeta}
       \end{equation}
 
       \subsubsection{Interprétation physique du fluide visqueux newtonien}
@@ -235,7 +235,7 @@
       \begin{equation}
         \hat{\rho}(p, T) = \frac{p}{RT} \quad \textrm{où } R = \mathcal{R}/m \textrm{ est la constante du gaz idéal considéré}\footnote{Dans le cours LFSAB1302 -- Chimie et Chimie Physique 2, $R$ était noté $R^*$ et $\mathcal{R}$ représente le produit des gaz parfait et du nombre de môles $nR$ ($R$ étant dans ce dernier cas la constante universelle des gaz parfaits).}
       \end{equation}
-      Dans ce cas, la condition \ref{eq:dHdp=beta} devient
+      Dans ce cas, la condition \ref{eq:dHdpbeta} devient
       \begin{equation}
         \pdv{\hat{H}}{p} = \recip{rho}(1-\underbrace{\frac{p}{\rho RT}}_{=1}) = 0
       \end{equation}
@@ -251,6 +251,40 @@
       \begin{equation}
         c_v = \hat{c}_v(T) = \pdv{\hat{U}}{T}
       \end{equation}
+
+    \subsection{Ecoulement incompressible d'un fluide d'un fluide visqueux newtonien}
+      Grâce à l'hypothèse d'imcompressabilité et d'indilatabilité, on obtient le modèle de l'écoulement icompressible pour un fluide visqueux newtonien
+      \begin{equation}
+        \begin{aligned}
+          \bs{\sigma} &= -p \delta + 2 \hat{\mu}(p, T) \vb{d}\\
+          \vb{q} &= -\hat{k}(p, T) \grad T\\
+          U &= \hat{U}(T)\\
+          S &= \hat{S}(T)
+        \end{aligned}
+      \end{equation}
+      Il faut de nouveau satisfaire à Clausius-Duhem et donc
+      \begin{equation}
+        \rho T dS = \rho dH -dp \quad \textrm{avec } k,\mu \geq 0
+      \end{equation}
+      En particulier, l'équation \ref{eq:dHdpbeta} devient alors
+      \begin{equation}
+        \pdv{\hat{H}}{p} = \recip{p}
+      \end{equation}
+      impliquant que l'énergie interne ne dépende que de la température. La chaleur spécifique n'est plus distinguée à pression ou volume constant et est dans le cas d'un écoulement incompressible
+      \begin{equation}
+        c = \hat{c}(T) = \pdv{\hat{U}}{T} = \pdv{\hat{H}}{T}
+      \end{equation}
+
+      \subsubsection{Formulation en pression, vitesse et température}
+        Le système peut de nouveau être simplifié
+        \begin{equation}
+          \begin{aligned}
+            \div \vb{v} &= 0 \\
+            \rho \dvm{\vb{v}}{t} &= - \grad p + \div (2 \mu \vb{d}) + \rho \vb{g}\\
+            \rho c \dvm{T}{t} &= 2 \mu (\vb{d}:\vb{d}) + r + \div (k \grad T)
+          \end{aligned}
+        \end{equation}
+
 
 
 \begin{appendix}
