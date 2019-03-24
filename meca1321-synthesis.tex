@@ -92,143 +92,165 @@
         \rho \dvm{}{t}(\frac{\vb{v}\cdot \vb{v}}{2}) = \div (\bs{\sigma} \cdot \vb{v}) + \rho \vb{g} \cdot \vb{v} - \bs{\sigma} : \vb{d}
       \end{equation}
 
-      \subsection{Concept d'énergie potentielle}
-        La loi de conservation de l'énergie potentielle peut s'écrire comme
+    \subsection{Concept d'énergie potentielle}
+      La loi de conservation de l'énergie potentielle peut s'écrire comme
+      \begin{equation}
+        \dv{t}\int_{V(t)} \rho W dV = \int_{V(t)} \rho \dvm{W}{t} dV = - \int_{V(t)} \rho \vb{v} \cdot \vb{g} dV
+      \end{equation}
+
+      On obtient alors les lois de conservation de l'énergie et la somme de l'énergie potentielle et cinétique suivantes, sous forme globale
+      \begin{equation}\begin{aligned}
+          \dv{\mathcal{W}}{t} {}(t) &= -\mathcal{P}_d(t)\\
+          \dv{\mathcal{W} + \mathcal{K}}{t} &= \mathcal{P}_c(t) - \mathcal{P}_i(t)
+      \end{aligned}\end{equation}
+      et sous forme locale
+      \begin{align}
+        \rho \dvm{W}{t} &= -\rho \vb{g} \cdot \vb{v}\\
+        \rho \dvm{}{t}(W + \frac{\vb{v} \cdot\vb{v}}{2}) &= \div (\bs{\sigma} : \vb{v}) - \bs{\sigma} : \bs{d}\nonumber
+      \end{align}
+
+    \subsection{Concepts de pression, d'extra-tensions et d'enthalpie}
+      Le tenseur des contraintes peut $\bs{\sigma}$ se réécrire $\bs{\sigma} = -p \bs{\delta} + \bs{\tau}$. On définit également l'enthalpie d'un volume matériel comme étant
+      \begin{equation}
+        \mathcal{H}(t) = \int_{V(t)} \rho H dV \textrm{ avec } H = U + \frac{p}{\rho}\textrm{, l'enthalpie massique}
+      \end{equation}
+      En utilisant $H$, $p$ et $\bs{\tau}$, on peut alors écrire la conservation de l'énergie massique comme
+      \begin{align}
+        \rho \dvm{H}{t} &= \bs{\sigma} : \vb{d} + r - \div \vb{q} +  \dvm{p}{t} - \frac{p}{\rho}\dvm{\rho}{t}\nonumber\\
+        &= \bs{\tau} : \vb{d} + r - \div \vb{q} + \dvm{p}{t} - \frac{p}{\rho} \underbrace{\left(\dvm{\rho}{t} + \rho \div \vb{v} \right)}_{=0}
+      \end{align}
+      A partir de là, on peut écrire les énoncés suivants
+      \begin{equation}\begin{aligned}
+        \rho \dvm{H}{t} &= \dvm{p}{t} + \bs{\tau} : \vb{d} + r - \div \vb{q}\\
+        \rho \dvm{}{t}\left(W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \div (\bs{\tau} \cdot \vb{v}) - \vb{v} \cdot \grad p - \bs{\tau} : \vb{d} \\
+        \rho \dvm{}{t}\left(H + W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \pdv{p}{t} + \div (\bs{\tau} \cdot \vb{v}) + r - \div \vb{q}
+      \end{aligned}\end{equation}
+
+  \section{Lois de comportement}
+    Les lois de comportement sont l'ensemble des lois du modèle de l'évolution du fluide qui caractérise le fluide considéré. Ces lois doivent être écrites pour satisfaire le second principe de la thermodynamique.
+
+    \subsection{Concept d'entropie et de température absolue}
+      Les concepts d'entropie et de températue absolue permettent d'énoncer le second principe de la thermodynamique:
+      \begin{equation}
+        \dv{S}{t} \geq \mathcal{R}_d(t) + \mathcal{R}_c(t),~\forall~V(t),
+      \end{equation}
+     où les apports d'entropie sont définis comme
+     \begin{align*}
+       \mathcal{R}_d &= \int_{V(t)} \frac{r}{T} dV, & \textrm{apport externe ratiatif d'entropie par unité de temps,}\\
+       \mathcal{R}_c &= \int_{\partial V(t)} \frac{q(\vb{n})}{T}dS, & \textrm{apport externe conductif d'entropie par unité de temps}
+     \end{align*}
+
+     Il est également possible, par Reynolds et Green d'en exprimer une forme locale
+     \begin{equation}
+       \rho \dvm{S}{t} \geq \frac{r}{T} - \recip{T}\div \vb{q} + \frac{\vb{q}}{T^2} \cdot \grad T
+     \end{equation}
+     qui permet d'obtenir l'inégalité de Clausius-Duhem
+     \begin{equation}
+       \begin{aligned}
+         \rho T \dvm{S}{t} - \rho \dvm{U}{t} &\geq - \bs{\sigma} : \vb{d} + \frac{\vb{q}}{T} \cdot \grad T,\\
+         \rho T \dvm{S}{t} - \rho \dvm{H}{t} + \dvm{p}{t} &\geq - \bs{\tau} : \vb{d} + \frac{\vb{q}}{T} \cdot \grad T
+       \end{aligned}
+     \end{equation}
+     Cette inégalité doit être en tout point et à tout moment. Si il y a égalité, il y a alors réversibilité locale de la transformation\footnote{On notera cepedendant que la formulation précédente du second principe n'est valable que dans les transformations "proches" de l'équilibre thermodynamique où on accepte l'hypothèse d'équilibre local. Cette hypothèse permet de définir en fonction de l'espace et du temps, l'entropie massique comme mesure du désordre énergétique local et la température absolue d'une manière que deux corps à l'équilibre et en contact échangent immédiatement de la chaleur du corps le plus chaud au plus froid. Les transformation fortement irréversible demandent une formulation différentielle plus complexe sortant du cadre du cours.}.
+
+    \subsection{Modèle du fluide visqueux newtonien}
+      Le tenseur des taux de déformation peut être décomposé en deux parties, spérique $\vb{d}^s$ et déviatoire $\vb{d}^d$ comme
+      \begin{equation}
+        \vb{d} = \underbrace{(\bs{\delta} : \vb{d}) \frac{\delta}{3}}_{\vb{d}^s} + \underbrace{(\vb{d} - (\bs{\delta}:\vb{d})\frac{\bs{\delta}}{3})}_{\vb{d}^d}
+      \end{equation}
+      où $\bs{\delta} : \vb{d}$ est la trace du tenseur des taux de déformation et peut aussi être notée $tr(d)$ ou $d_{mm}$.
+
+      On écrit alors les équations de constitutions des fluides visqueux
+      \begin{equation}
+        \begin{aligned}
+          \bs{\sigma} &= -p\bs{\delta} + 3 \hat{\kappa}(p,T) \vb{d}^s + 2 \hat{\mu}(p,T) \vb{d}^d,\\
+          \vb{q} &= - \hat{k}(p, T) \grad T,\\
+          \rho &= \hat{\rho}(p,T)\grad T,\\
+          H &= \hat{H}(p,T),\\
+          S &= \hat{S}(p,T)
+        \end{aligned}
+      \end{equation}
+      Les variables cinématiques sont donc la température (et son gradient), la pression, et le tenseur des taux de déformation.
+
+      On obtient alors un modèle de 17 équations comprenant les lois locales de conservation et les équations de comportement où inconnues et équations s'équilibrent.
+
+      Pour satisfaire à Clausius-Duhem, on peut montrer que les conditions nécessaires et suffisantes sont
+      \begin{equation}
+        TdS = dH - \frac{dp}{\rho} = dU - \frac{pd\rho}{\rho^2}\quad \textrm{et} \quad k, \kappa, \mu \geq 0
+      \end{equation}
+      La relation $\rho T dS = \rho dH - dp$ peut être réécrite sous la forme\footnote{On peut aussi voir que $dS$ est une différentielle exacte sur $p$ et $T$}
+      \begin{equation}
+        \left\{
+          \begin{array}{ll}
+            T \pdv{\hat{S}}{p}(p,T) &= \pdv{\hat{H}}{p}(p, T) - \recip{\hat{\rho}(p,T)},\\
+            T \pdv{\hat{S}}{T}(p,T) &= \pdv{\hat{H}}{T}(p,T)
+          \end{array}
+        \right.
+      \end{equation}
+
+      On constate donc que le second principe interivent en milieux continus. Même si l'entropie ne joue pas de rôle dans le système, le modèle doit quand même satisfaire aux conditions de Clausius-Duhem. Cela veut aussi dire qu'on peut intégrer $dS$ de manière indépendante du chemin d'intégration, soit
+      \begin{equation}
+        \pdv{}{T}\left(\recip{T}\pdv{\hat{H}}{p} - \recip{\hat{\rho}T}\right) = \pdv{}{p}\left(\recip{T}\pdv{\hat{H}}{T}\right)
+      \end{equation}
+      En utilisant le coefficient de dilatation $\beta$, on peut alors réécrire l'identité précédente comme\footnote{Voir syllabus page 20}
+      \begin{equation}
+        \pdv{\hat{H}}{p} = \recip{\rho}(1-T\beta)\label{eq:dHdp=beta}
+      \end{equation}
+
+      \subsubsection{Interprétation physique du fluide visqueux newtonien}
+        Les contraintes se composent d'un terme de pression et de deux termes de viscosité, dépendant d'un coefficient de viscosité et d'un facteur prortionnel à la vitesse de déformation qui mesure la vitesse de dilatation/compression ou celle de cisaillement. Ainsi, les contraintes visqueuses disparaîssent lorsque la déformation cesse d'évoluer, à l'inverse des fluides élastiques dont les contraintes sont proportionnelles aux déformations\footnote{Aucun de ces deux modèles ne décrit correctement la plupart des matériaux. Des modèles non-newtonien ou viscoélastiques incluant des effets de mémoire sont alors utilisés. Un fluide newtonien n'a, à l'inverse, pour toute histoire que les valeurs présentes de pression et température}.
+
+        Le taux de déformation est quantifié par le taux de cisaillement $\dot{\gamma} = \sqrt{2\vb{d}^d:\vb{d}^d}$. Il s'agit d'une norme du tenseur des taux de déformation.
+
+        Par ailleurs, il faut observer que le flux de chaleur est gouverné par la Loi de Fourier\footnote{Dans un matériau isotrope, la chaleur va du chaux au froid et est opposée au gradient de température.}. De plus, il est intéressant de réécrire Clausius-Duhem pour un fluide visqueux newtonien
         \begin{equation}
-          \dv{t}\int_{V(t)} \rho W dV = \int_{V(t)} \rho \dvm{W}{t} dV = - \int_{V(t)} \rho \vb{v} \cdot \vb{g} dV
+          \kappa (\bs{\delta}:\vb{d})^2 + 2 \mu \vb{d}^d : \vb{d}^d + \frac{k}{T}\grad T \cdot \grad T \geq 0
         \end{equation}
+        qui montre alors que toutes les irréversibilités proviennent des effets visqueux et dees transferts de chaleur conductifs.
 
-        On obtient alors les lois de conservation de l'énergie et la somme de l'énergie potentielle et cinétique suivantes, sous forme globale
-        \begin{equation}\begin{aligned}
-            \dv{\mathcal{W}}{t} {}(t) &= -\mathcal{P}_d(t)\\
-            \dv{\mathcal{W} + \mathcal{K}}{t} &= \mathcal{P}_c(t) - \mathcal{P}_i(t)
-        \end{aligned}\end{equation}
-        et sous forme locale
-        \begin{align}
-          \rho \dvm{W}{t} &= -\rho \vb{g} \cdot \vb{v}\\
-          \rho \dvm{}{t}(W + \frac{\vb{v} \cdot\vb{v}}{2}) &= \div (\bs{\sigma} : \vb{v}) - \bs{\sigma} : \bs{d}\nonumber
-        \end{align}
+      \subsubsection{Formulation en pression,vitesse et température}
+        Le système de 17 équations que nous obtenons peut être réduit à ce qu'on appelle une formulation dite pression-vitesse-température en ne se préoccupant pas de l'entropie et en injectant les équations de constitutions dans les lois de conservation.
 
-      \subsection{Concepts de pression, d'extra-tensions et d'enthalpie}
-        Le tenseur des contraintes peut $\bs{\sigma}$ se réécrire $\bs{\sigma} = -p \bs{\delta} + \bs{\tau}$. On définit également l'enthalpie d'un volume matériel comme étant
-        \begin{equation}
-          \mathcal{H}(t) = \int_{V(t)} \rho H dV \textrm{ avec } H = U + \frac{p}{\rho}\textrm{, l'enthalpie massique}
-        \end{equation}
-        En utilisant $H$, $p$ et $\bs{\tau}$, on peut alors écrire la conservation de l'énergie massique comme
-        \begin{align}
-          \rho \dvm{H}{t} &= \bs{\sigma} : \vb{d} + r - \div \vb{q} +  \dvm{p}{t} - \frac{p}{\rho}\dvm{\rho}{t}\nonumber\\
-          &= \bs{\tau} : \vb{d} + r - \div \vb{q} + \dvm{p}{t} - \frac{p}{\rho} \underbrace{\left(\dvm{\rho}{t} + \rho \div \vb{v} \right)}_{=0}
-        \end{align}
-        A partir de là, on peut écrire les énoncés suivants
-        \begin{equation}\begin{aligned}
-          \rho \dvm{H}{t} &= \dvm{p}{t} + \bs{\tau} : \vb{d} + r - \div \vb{q}\\
-          \rho \dvm{}{t}\left(W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \div (\bs{\tau} \cdot \vb{v}) - \vb{v} \cdot \grad p - \bs{\tau} : \vb{d} \\
-          \rho \dvm{}{t}\left(H + W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \pdv{p}{t} + \div (\bs{\tau} \cdot \vb{v}) + r - \div \vb{q}
-        \end{aligned}\end{equation}
-
-    \section{Lois de comportement}
-      Les lois de comportement sont l'ensemble des lois du modèle de l'évolution du fluide qui caractérise le fluide considéré. Ces lois doivent être écrites pour satisfaire le second principe de la thermodynamique.
-
-      \subsection{Concept d'entropie et de température absolue}
-        Les concepts d'entropie et de températue absolue permettent d'énoncer le second principe de la thermodynamique:
-        \begin{equation}
-          \dv{S}{t} \geq \mathcal{R}_d(t) + \mathcal{R}_c(t),~\forall~V(t),
-        \end{equation}
-       où les apports d'entropie sont définis comme
-       \begin{align*}
-         \mathcal{R}_d &= \int_{V(t)} \frac{r}{T} dV, & \textrm{apport externe ratiatif d'entropie par unité de temps,}\\
-         \mathcal{R}_c &= \int_{\partial V(t)} \frac{q(\vb{n})}{T}dS, & \textrm{apport externe conductif d'entropie par unité de temps}
-       \end{align*}
-
-       Il est également possible, par Reynolds et Green d'en exprimer une forme locale
-       \begin{equation}
-         \rho \dvm{S}{t} \geq \frac{r}{T} - \recip{T}\div \vb{q} + \frac{\vb{q}}{T^2} \cdot \grad T
-       \end{equation}
-       qui permet d'obtenir l'inégalité de Clausius-Duhem
-       \begin{equation}
-         \begin{aligned}
-           \rho T \dvm{S}{t} - \rho \dvm{U}{t} &\geq - \bs{\sigma} : \vb{d} + \frac{\vb{q}}{T} \cdot \grad T,\\
-           \rho T \dvm{S}{t} - \rho \dvm{H}{t} + \dvm{p}{t} &\geq - \bs{\tau} : \vb{d} + \frac{\vb{q}}{T} \cdot \grad T
-         \end{aligned}
-       \end{equation}
-       Cette inégalité doit être en tout point et à tout moment. Si il y a égalité, il y a alors réversibilité locale de la transformation\footnote{On notera cepedendant que la formulation précédente du second principe n'est valable que dans les transformations "proches" de l'équilibre thermodynamique où on accepte l'hypothèse d'équilibre local. Cette hypothèse permet de définir en fonction de l'espace et du temps, l'entropie massique comme mesure du désordre énergétique local et la température absolue d'une manière que deux corps à l'équilibre et en contact échangent immédiatement de la chaleur du corps le plus chaud au plus froid. Les transformation fortement irréversible demandent une formulation différentielle plus complexe sortant du cadre du cours.}.
-
-      \subsection{Modèle du fluide visqueux newtonien}
-        Le tenseur des taux de déformation peut être décomposé en deux parties, spérique $\vb{d}^s$ et déviatoire $\vb{d}^d$ comme
-        \begin{equation}
-          \vb{d} = \underbrace{(\bs{\delta} : \vb{d}) \frac{\delta}{3}}_{\vb{d}^s} + \underbrace{(\vb{d} - (\bs{\delta}:\vb{d})\frac{\bs{\delta}}{3})}_{\vb{d}^d}
-        \end{equation}
-        où $\bs{\delta} : \vb{d}$ est la trace du tenseur des taux de déformation et peut aussi être notée $tr(d)$ ou $d_{mm}$.
-
-        On écrit alors les équations de constitutions des fluides visqueux
+        Après calculs, les équations de masse, de mouvement et d'énergie prennent la forme:
         \begin{equation}
           \begin{aligned}
-            \bs{\sigma} &= -p\bs{\delta} + 3 \hat{\kappa}(p,T) \vb{d}^s + 2 \hat{\mu}(p,T) \vb{d}^d,\\
-            \vb{q} &= - \hat{k}(p, T) \grad T,\\
-            \rho &= \hat{\rho}(p,T)\grad T,\\
-            H &= \hat{H}(p,T),\\
-            S &= \hat{S}(p,T)
+            \gamma\dvm{p}{t} - \beta\dvm{T}{t} + \div \vb{v} &= 0 \\
+            \rho\dvm{\vb{v}}{t} &= - \grad p + \grad (\kappa \bs{\delta} : \vb{d}) + \div (2\mu \vb{d}^d) + \rho \vb{g}\\
+            \rho c_p \dvm{p}{t} - \beta T \dvm{p}{t} &= \kappa (\bs{\delta}:\vb{d})^2 + 2 \mu (\vb{d}^d : \vb{d}^d) + r + \div (k \grad T)
           \end{aligned}
         \end{equation}
-        Les variables cinématiques sont donc la température (et son gradient), la pression, et le tenseur des taux de déformation.
 
-        On obtient alors un modèle de 17 équations comprenant les lois locales de conservation et les équations de comportement où inconnues et équations s'équilibrent.
+        De nombreuses simplifications peuvent additionnellement être introduite. Si ces simplifications sont généralement des approximations, elles permettent cependant un degré de liberté correct.
+        \begin{itemize}
+          \item fluide incompressible: $\gamma = 0$,
+          \item fluide indilatable: $\beta = 0$,
+          \item écoulement incompressible: $\div \vb{v} = 0, \quad \curl \vb{v} = 0$,
+          \item transformation adiabatique: $q = r = 0$
+        \end{itemize}
 
-        Pour satisfaire à Clausius-Duhem, on peut montrer que les conditions nécessaires et suffisantes sont
-        \begin{equation}
-          TdS = dH - \frac{dp}{\rho} = dU - \frac{pd\rho}{\rho^2}\quad \textrm{et} \quad k, \kappa, \mu \geq 0
-        \end{equation}
-        La relation $\rho T dS = \rho dH - dp$ peut être réécrite sous la forme\footnote{On peut aussi voir que $dS$ est une différentielle exacte sur $p$ et $T$}
-        \begin{equation}
-          \left\{
-            \begin{array}{ll}
-              T \pdv{\hat{S}}{p}(p,T) &= \pdv{\hat{H}}{p}(p, T) - \recip{\hat{\rho}(p,T)},\\
-              T \pdv{\hat{S}}{T}(p,T) &= \pdv{\hat{H}}{T}(p,T)
-            \end{array}
-          \right.
-        \end{equation}
+        {\footnotesize \textbf{Remarque:} Dans la pratique, \textit{fluide incompressible} désigne souvent un fluide incompressible et indilatable tandis que \textit{écoulement incompressible désigne un problème à divergence de champ de vitesse nulle.}}
 
-        On constate donc que le second principe interivent en milieux continus. Même si l'entropie ne joue pas de rôle dans le système, le modèle doit quand même satisfaire aux conditions de Clausius-Duhem. Cela veut aussi dire qu'on peut intégrer $dS$ de manière indépendante du chemin d'intégration, soit
-        \begin{equation}
-          \pdv{}{T}\left(\recip{T}\pdv{\hat{H}}{p} - \recip{\hat{\rho}T}\right) = \pdv{}{p}\left(\recip{T}\pdv{\hat{H}}{T}\right)
-        \end{equation}
-        En utilisant le coefficient de dilatation $\beta$, on peut alors réécrire l'identité précédente comme\footnote{Voir syllabus page 20}
-        \begin{equation}
-          \pdv{\hat{H}}{p} = \recip{\rho}(1-T\beta)
-        \end{equation}
-
-        \subsubsection{Interprétation physique du fluide visqueux newtonien}
-          Les contraintes se composent d'un terme de pression et de deux termes de viscosité, dépendant d'un coefficient de viscosité et d'un facteur prortionnel à la vitesse de déformation qui mesure la vitesse de dilatation/compression ou celle de cisaillement. Ainsi, les contraintes visqueuses disparaîssent lorsque la déformation cesse d'évoluer, à l'inverse des fluides élastiques dont les contraintes sont proportionnelles aux déformations\footnote{Aucun de ces deux modèles ne décrit correctement la plupart des matériaux. Des modèles non-newtonien ou viscoélastiques incluant des effets de mémoire sont alors utilisés. Un fluide newtonien n'a, à l'inverse, pour toute histoire que les valeurs présentes de pression et température}.
-
-          Le taux de déformation est quantifié par le taux de cisaillement $\dot{\gamma} = \sqrt{2\vb{d}^d:\vb{d}^d}$. Il s'agit d'une norme du tenseur des taux de déformation.
-
-          Par ailleurs, il faut observer que le flux de chaleur est gouverné par la Loi de Fourier\footnote{Dans un matériau isotrope, la chaleur va du chaux au froid et est opposée au gradient de température.}. De plus, il est intéressant de réécrire Clausius-Duhem pour un fluide visqueux newtonien
-          \begin{equation}
-            \kappa (\bs{\delta}:\vb{d})^2 + 2 \mu \vb{d}^d : \vb{d}^d + \frac{k}{T}\grad T \cdot \grad T \geq 0
-          \end{equation}
-          qui montre alors que toutes les irréversibilités proviennent des effets visqueux et dees transferts de chaleur conductifs.
-
-        \subsubsection{Formulation en pression,vitesse et température}
-          Le système de 17 équations que nous obtenons peut être réduit à ce qu'on appelle une formulation dite pression-vitesse-température en ne se préoccupant pas de l'entropie et en injectant les équations de constitutions dans les lois de conservation.
-
-          Après calculs, les équations de masse, de mouvement et d'énergie prennent la forme:
-          \begin{equation}
-            \begin{aligned}
-              \gamma\dvm{p}{t} - \beta\dvm{T}{t} + \div \vb{v} &= 0 \\
-              \rho\dvm{\vb{v}}{t} &= - \grad p + \grad (\kappa \bs{\delta} : \vb{d}) + \div (2\mu \vb{d}^d) + \rho \vb{g}\\
-              \rho c_p \dvm{p}{t} - \beta T \dvm{p}{t} &= \kappa (\bs{\delta}:\vb{d})^2 + 2 \mu (\vb{d}^d : \vb{d}^d) + r + \div (k \grad T)
-            \end{aligned}
-          \end{equation}
-
-          De nombreuses simplifications peuvent additionnellement être introduite. Si ces simplifications sont généralement des approximations, elles permettent cependant un degré de liberté correct.
-          \begin{itemize}
-            \item fluide incompressible: $\gamma = 0$,
-            \item fluide indilatable: $\beta = 0$,
-            \item écoulement incompressible: $\div \vb{v} = 0, \quad \curl \vb{v} = 0$,
-            \item transformation adiabatique: $q = r = 0$
-          \end{itemize}
-
-          {\footnotesize \textbf{Remarque:} Dans la pratique, \textit{fluide incompressible} désigne souvent un fluide incompressible et indilatable tandis que \textit{écoulement incompressible désigne un problème à divergence de champ de vitesse nulle.}}
+    \subsection{Modèle du gaz idéal}
+      Dans le modèle du fluide visqueux newtonien, l'équation la masse volumique peut être celle du gaz idéal/parfait
+      \begin{equation}
+        \hat{\rho}(p, T) = \frac{p}{RT} \quad \textrm{où } R = \mathcal{R}/m \textrm{ est la constante du gaz idéal considéré}\footnote{Dans le cours LFSAB1302 -- Chimie et Chimie Physique 2, $R$ était noté $R^*$ et $\mathcal{R}$ représente le produit des gaz parfait et du nombre de môles $nR$ ($R$ étant dans ce dernier cas la constante universelle des gaz parfaits).}
+      \end{equation}
+      Dans ce cas, la condition \ref{eq:dHdp=beta} devient
+      \begin{equation}
+        \pdv{\hat{H}}{p} = \recip{rho}(1-\underbrace{\frac{p}{\rho RT}}_{=1}) = 0
+      \end{equation}
+      impliquant que l'enthalpie massique et la chaleur massique ne dépendent que de la température. Il en est de même pour l'énergie interne massique et la chaleur massique. On obtient alors les propriétés suivantes
+      \begin{equation}
+        \begin{aligned}
+          dU &= \hat{c}_v(T) dT\\
+          dH &= \hat{c}_p(T) dT\\
+          R &= \hat{c}_p(T) - \hat{c}_v(T)
+        \end{aligned}
+      \end{equation}
+      où la chaleur spécifique à volume constant est définie par
+      \begin{equation}
+        c_v = \hat{c}_v(T) = \pdv{\hat{U}}{T}
+      \end{equation}
 
 
 \begin{appendix}
