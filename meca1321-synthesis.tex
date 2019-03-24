@@ -42,12 +42,12 @@
 
       Les lois de conservation globales sont données par
 
-      \begin{gather}\begin{aligned}
+      \begin{equation}\begin{aligned}
         \dv{\mathcal{M}}{t} &= 0 & \forall \; V(t),\\
-        \dv{\boldsymbol{\mathcal{P}}}{t} {}(t) &= \boldsymbol{\mathcal{F}}_d(t) + \boldsymbol{\mathcal{F}}_c(t) & \forall \; V(t), \textrm{repère inertiel},\\
-        \dv{\boldsymbol{\mathcal{N}}}{t} {}(t) &= \boldsymbol{\mathcal{M}}_d(t) + \boldsymbol{\mathcal{M}}_c(t), & \forall \; V(t), \textrm{repère inertiel}, \\
+        \dv{\bs{\mathcal{P}}}{t} {}(t) &= \bs{\mathcal{F}}_d(t) + \bs{\mathcal{F}}_c(t) & \forall \; V(t), \textrm{repère inertiel},\\
+        \dv{\bs{\mathcal{N}}}{t} {}(t) &= \bs{\mathcal{M}}_d(t) + \bs{\mathcal{M}}_c(t), & \forall \; V(t), \textrm{repère inertiel}, \\
         \dv{\mathcal{K} + \mathcal{U}}{t} {}(t) &= \mathcal{P}_d(t) + \mathcal{P}_c(t) + \mathcal{Q}_d(t) + \mathcal{Q}_c(t) & \forall \; V(t), \textrm{repère inertiel},
-      \end{aligned}\end{gather}
+      \end{aligned}\end{equation}
 
       Il est important de noter que, à l'exception de la conservation de la masse, ces lois ne s'appliquent que pour un repère inertiel. Cependant, lorsque toutes les lois sont satisfaites pour un certain repère inertiel, elles le sont pour tout autre.
 
@@ -72,24 +72,24 @@
 
     \subsection{Formes globales des lois conservation pour les volumes de contrôle}
       Sur un volume de contrôle $V^c$, les lois s'écrivent, en tenant compte des apport convectifs, comme suit
-      \begin{gather}\begin{aligned}
+      \begin{equation}\begin{aligned}
         \dv{\mathcal{M}^c}{t} {} (t) &= \mathcal{M}^c(t) & \forall \; V^c, \\
-        \dv{\boldsymbol{\mathcal{P}}^c}{t} {} (t) &= \boldsymbol{\mathcal{P}}^c + \boldsymbol{\mathcal{F}}^c_d(t) + \boldsymbol{\mathcal{F}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
-        \dv{\boldsymbol{\mathcal{N}}^c}{t} {} (t) &= \boldsymbol{\mathcal{N}}^c(t) + \boldsymbol{\mathcal{M}}^c_d(t) + \boldsymbol{\mathcal{M}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
+        \dv{\bs{\mathcal{P}}^c}{t} {} (t) &= \bs{\mathcal{P}}^c + \bs{\mathcal{F}}^c_d(t) + \bs{\mathcal{F}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
+        \dv{\bs{\mathcal{N}}^c}{t} {} (t) &= \bs{\mathcal{N}}^c(t) + \bs{\mathcal{M}}^c_d(t) + \bs{\mathcal{M}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
         \dv{()\mathcal{K}^c + \mathcal{U}^c)}{t} {}(t) &= \dot{\mathcal{K}}^c (t) + \dot{\mathcal{U}}^c(t) + \mathcal{P}^c_d(t) + \mathcal{P}^c_c(t) + \mathcal{Q}^c_d (t) + \mathcal{Q}^c_c (t) &  \forall \; V^c, \textrm{repère inertiel}
-      \end{aligned}\end{gather}
+      \end{aligned}\end{equation}
 
       Il est également possible d'obtenir les lois de conservation pour un volume de contrôle à partir de celles du volume matériel. Il faut simplement considérer un volume matériel $V(t)$ occupant un volume matériel $V^c$ à l'instant $t$\footnote{Développement en page $9$ du syllabus.}.
 
     \subsection{Concept de puissance des efforts internes}
       Il est possible d'établir des équations alternatives de l'équation de conservation de l'énergie, spécifiquement de l'énergie interne et de l'énergie cinétique
-      \begin{gather}\begin{aligned}
+      \begin{equation}\begin{aligned}
         \dv{\mathcal{K}} {}(t) &= \mathcal{P}_d(t) + \mathcal{P}_c(t) - \mathcal{P}_i(t) & \forall V(t), \textrm{repère inertiel},\\
         \dv{\mathcal{U}} {}(t) &= \mathcal{Q}_d(t) + \mathcal{Q}_c(t) + \mathcal{P}_i(t) & \forall V(t),
-      \end{aligned}\end{gather}
+      \end{aligned}\end{equation}
       La forme locale de la conservation de l'énergie cinétique est alors
       \begin{equation}
-        \rho \dvm{}{t}(\frac{\vb{v}\cdot \vb{v}}{2}) = \div (\boldsymbol{\sigma} \cdot \vb{v}) + \rho \vb{g} \cdot \vb{v} - \boldsymbol{\sigma} : \vb{d}
+        \rho \dvm{}{t}(\frac{\vb{v}\cdot \vb{v}}{2}) = \div (\bs{\sigma} \cdot \vb{v}) + \rho \vb{g} \cdot \vb{v} - \bs{\sigma} : \vb{d}
       \end{equation}
 
       \subsection{Concept d'énergie potentielle}
@@ -99,32 +99,32 @@
         \end{equation}
 
         On obtient alors les lois de conservation de l'énergie et la somme de l'énergie potentielle et cinétique suivantes, sous forme globale
-        \begin{gather}\begin{aligned}
+        \begin{equation}\begin{aligned}
             \dv{\mathcal{W}}{t} {}(t) &= -\mathcal{P}_d(t)\\
             \dv{\mathcal{W} + \mathcal{K}}{t} &= \mathcal{P}_c(t) - \mathcal{P}_i(t)
-        \end{aligned}\end{gather}
+        \end{aligned}\end{equation}
         et sous forme locale
         \begin{align}
           \rho \dvm{W}{t} &= -\rho \vb{g} \cdot \vb{v}\\
-          \rho \dvm{}{t}(W + \frac{\vb{v} \cdot\vb{v}}{2}) &= \div (\boldsymbol{\sigma} : \vb{v}) - \boldsymbol{\sigma} : \boldsymbol{d}\nonumber
+          \rho \dvm{}{t}(W + \frac{\vb{v} \cdot\vb{v}}{2}) &= \div (\bs{\sigma} : \vb{v}) - \bs{\sigma} : \bs{d}\nonumber
         \end{align}
 
       \subsection{Concepts de pression, d'extra-tensions et d'enthalpie}
-        Le tenseur des contraintes peut $\boldsymbol{\sigma}$ se réécrire $\boldsymbol{\sigma} = -p \boldsymbol{\delta} + \boldsymbol{\tau}$. On définit également l'enthalpie d'un volume matériel comme étant
+        Le tenseur des contraintes peut $\bs{\sigma}$ se réécrire $\bs{\sigma} = -p \bs{\delta} + \bs{\tau}$. On définit également l'enthalpie d'un volume matériel comme étant
         \begin{equation}
           \mathcal{H}(t) = \int_{V(t)} \rho H dV \textrm{ avec } H = U + \frac{p}{\rho}\textrm{, l'enthalpie massique}
         \end{equation}
-        En utilisant $H$, $p$ et $\boldsymbol{\tau}$, on peut alors écrire la conservation de l'énergie massique comme
+        En utilisant $H$, $p$ et $\bs{\tau}$, on peut alors écrire la conservation de l'énergie massique comme
         \begin{align}
-          \rho \dvm{H}{t} &= \boldsymbol{\sigma} : \vb{d} + r - \div \vb{q} +  \dvm{p}{t} - \frac{p}{\rho}\dvm{\rho}{t}\nonumber\\
-          &= \boldsymbol{\tau} : \vb{d} + r - \div \vb{q} + \dvm{p}{t} - \frac{p}{\rho} \underbrace{\left(\dvm{\rho}{t} + \rho \div \vb{v} \right)}_{=0}
+          \rho \dvm{H}{t} &= \bs{\sigma} : \vb{d} + r - \div \vb{q} +  \dvm{p}{t} - \frac{p}{\rho}\dvm{\rho}{t}\nonumber\\
+          &= \bs{\tau} : \vb{d} + r - \div \vb{q} + \dvm{p}{t} - \frac{p}{\rho} \underbrace{\left(\dvm{\rho}{t} + \rho \div \vb{v} \right)}_{=0}
         \end{align}
         A partir de là, on peut écrire les énoncés suivants
-        \begin{gather}\begin{aligned}
-          \rho \dvm{H}{t} &= \dvm{p}{t} + \boldsymbol{\tau} : \vb{d} + r - \div \vb{q}\\
-          \rho \dvm{}{t}\left(W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \div (\boldsymbol{\tau} \cdot \vb{v}) - \vb{v} \cdot \grad p - \boldsymbol{\tau} : \vb{d} \\
-          \rho \dvm{}{t}\left(H + W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \pdv{p}{t} + \div (\boldsymbol{\tau} \cdot \vb{v}) + r - \div \vb{q}
-        \end{aligned}\end{gather}
+        \begin{equation}\begin{aligned}
+          \rho \dvm{H}{t} &= \dvm{p}{t} + \bs{\tau} : \vb{d} + r - \div \vb{q}\\
+          \rho \dvm{}{t}\left(W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \div (\bs{\tau} \cdot \vb{v}) - \vb{v} \cdot \grad p - \bs{\tau} : \vb{d} \\
+          \rho \dvm{}{t}\left(H + W + \frac{\vb{v}\cdot\vb{v}}{2}\right) &= \pdv{p}{t} + \div (\bs{\tau} \cdot \vb{v}) + r - \div \vb{q}
+        \end{aligned}\end{equation}
 
     \section{Lois de comportement}
       Les lois de comportement sont l'ensemble des lois du modèle de l'évolution du fluide qui caractérise le fluide considéré. Ces lois doivent être écrites pour satisfaire le second principe de la thermodynamique.
@@ -142,15 +142,15 @@
 
        Il est également possible, par Reynolds et Green d'en exprimer une forme locale
        \begin{equation}
-         \rho \dvm{S}{t} \geq \frac{r}{T} - \frac{1}{T}\div \vb{q} + \frac{\vb{q}}{T^2} \cdot \grad T
+         \rho \dvm{S}{t} \geq \frac{r}{T} - \recip{T}\div \vb{q} + \frac{\vb{q}}{T^2} \cdot \grad T
        \end{equation}
        qui permet d'obtenir l'inégalité de Clausius-Duhem
-       \begin{gather}
+       \begin{equation}
          \begin{aligned}
            \rho T \dvm{S}{t} - \rho \dvm{U}{t} &\geq - \bs{\sigma} : \vb{d} + \frac{\vb{q}}{T} \cdot \grad T,\\
            \rho T \dvm{S}{t} - \rho \dvm{H}{t} + \dvm{p}{t} &\geq - \bs{\tau} : \vb{d} + \frac{\vb{q}}{T} \cdot \grad T
          \end{aligned}
-       \end{gather}
+       \end{equation}
        Cette inégalité doit être en tout point et à tout moment. Si il y a égalité, il y a alors réversibilité locale de la transformation\footnote{On notera cepedendant que la formulation précédente du second principe n'est valable que dans les transformations "proches" de l'équilibre thermodynamique où on accepte l'hypothèse d'équilibre local. Cette hypothèse permet de définir en fonction de l'espace et du temps, l'entropie massique comme mesure du désordre énergétique local et la température absolue d'une manière que deux corps à l'équilibre et en contact échangent immédiatement de la chaleur du corps le plus chaud au plus froid. Les transformation fortement irréversible demandent une formulation différentielle plus complexe sortant du cadre du cours.}.
 
       \subsection{Modèle du fluide visqueux newtonien}
@@ -161,7 +161,7 @@
         où $\bs{\delta} : \vb{d}$ est la trace du tenseur des taux de déformation et peut aussi être notée $tr(d)$ ou $d_{mm}$.
 
         On écrit alors les équations de constitutions des fluides visqueux
-        \begin{gather}
+        \begin{equation}
           \begin{aligned}
             \bs{\sigma} &= -p\bs{\delta} + 3 \hat{\kappa}(p,T) \vb{d}^s + 2 \hat{\mu}(p,T) \vb{d}^d,\\
             \vb{q} &= - \hat{k}(p, T) \grad T,\\
@@ -169,7 +169,7 @@
             H &= \hat{H}(p,T),\\
             S &= \hat{S}(p,T)
           \end{aligned}
-        \end{gather}
+        \end{equation}
         Les variables cinématiques sont donc la température (et son gradient), la pression, et le tenseur des taux de déformation.
 
         On obtient alors un modèle de 17 équations comprenant les lois locales de conservation et les équations de comportement où inconnues et équations s'équilibrent.
@@ -182,7 +182,7 @@
         \begin{equation}
           \left\{
             \begin{array}{ll}
-              T \pdv{\hat{S}}{p}(p,T) &= \pdv{\hat{H}}{p}(p, T) - \frac{1}{\hat{\rho}(p,T)},\\
+              T \pdv{\hat{S}}{p}(p,T) &= \pdv{\hat{H}}{p}(p, T) - \recip{\hat{\rho}(p,T)},\\
               T \pdv{\hat{S}}{T}(p,T) &= \pdv{\hat{H}}{T}(p,T)
             \end{array}
           \right.
@@ -190,7 +190,7 @@
 
         On constate donc que le second principe interivent en milieux continus. Même si l'entropie ne joue pas de rôle dans le système, le modèle doit quand même satisfaire aux conditions de Clausius-Duhem. Cela veut aussi dire qu'on peut intégrer $dS$ de manière indépendante du chemin d'intégration, soit
         \begin{equation}
-          \pdv{}{T}\left(\frac{1}{T}\pdv{\hat{H}}{p} - \frac{1}{\hat{\rho}T}\right) = \pdv{}{p}\left(\frac{1}{T}\pdv{\hat{H}}{T}\right)
+          \pdv{}{T}\left(\recip{T}\pdv{\hat{H}}{p} - \recip{\hat{\rho}T}\right) = \pdv{}{p}\left(\recip{T}\pdv{\hat{H}}{T}\right)
         \end{equation}
         En utilisant le coefficient de dilatation $\beta$, on peut alors réécrire l'identité précédente comme\footnote{Voir syllabus page 20}
         \begin{equation}
