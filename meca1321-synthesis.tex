@@ -52,7 +52,7 @@
       Il est important de noter que, à l'exception de la conservation de la masse, ces lois ne s'appliquent que pour un repère inertiel. Cependant, lorsque toutes les lois sont satisfaites pour un certain repère inertiel, elles le sont pour tout autre.
 
     \subsection{Formes locales des lois de conservation}
-      En utilisant la notation de la dérivé matricielle et du tenseur de déformation $\vb{d}$, les formes locales s'expriment comme
+      En utilisant la notation de la dérivée matérielle et du tenseur de déformation $\vb{d}$, les formes locales s'expriment comme
       \begin{multicols}{2}
         \center{\textit{forme non-conservative}}
         \begin{align}
@@ -208,7 +208,7 @@
         \end{equation}
         qui montre alors que toutes les irréversibilités proviennent des effets visqueux et dees transferts de chaleur conductifs.
 
-      \subsubsection{Formulation en pression,vitesse et température}
+      \subsubsection{Formulation en pression,vitesse et température} \label{pvt}
         Le système de 17 équations que nous obtenons peut être réduit à ce qu'on appelle une formulation dite pression-vitesse-température en ne se préoccupant pas de l'entropie et en injectant les équations de constitutions dans les lois de conservation.
 
         Après calculs, les équations de masse, de mouvement et d'énergie prennent la forme:
@@ -284,6 +284,28 @@
             \rho c \dvm{T}{t} &= 2 \mu (\vb{d}:\vb{d}) + r + \div (k \grad T)
           \end{aligned}
         \end{equation}
+
+  \section{Conditions aux limites}
+    La mécanique des fluids consiste en la prédiction de champs inconnus, en général la pression, les vitesses et la température, sur un volume de contrôle. Pour définir correctemet un problème, il faut alors préciser un modèle (fluide visqueux newtonien, par exemple) mais aussi les apports extérieurs qui comprennent les effets à distance (forces de masse ($\vb{g}$) et puissance radiative ($r$)) et les conditions limites.
+
+    {\footnotesize \textbf{Remarque:} La matière ne s'arrête pas aux frontières et et le temps ne commence à pas au temps initial. Cependant, on choisi des frontières telles que certaines données y sont considérées approximativement correctes.}
+
+    \subsection{Conditions initiales}
+      Pour un fluide visqueux newtonien, les conditions initiales sont les champs de pression, vitesse et température au temps initial. Lorsque l'écoulement est supposé incompressible, il n'est pas nécessaire de préciser la pression.
+
+    \subsection{Conditions aux frontières}
+      Trois ou quatres conditions mécaniques et une thermique doivent être précisées le long des frontières. Le long des parois, le fluide colle et on impose une vitesse égale à la vitesse de la paroi. On ajoute une condition thermique via la température à la paroi ou le flux de chaleur la traversant. À l'entrée, on impose la pression, le profil de vitesse et la température. À la sortie, en revanche, on impose en général uniquement la normale de la force de contact (en plaçant les composantes tangentielles de la vitesse à $0$). Il en va de même pour le flux de chaleur.
+
+      Ces conditions changent cependant complètement lors des simplifications evoquées à la fin de la section \ref{pvt}. Par exemple:
+      \begin{itemize}
+        \item Écoulement incompressible et irrotationnel ou fluide parfait: le fluide glisse sur les parois
+        \item Incompressible: Pas de pression aux sections d'entrées
+        \item Adiabatique: Pas de conditions à spécifier sur les parois et les section de sortie
+      \end{itemize}
+
+    \subsection{Conditions d'interface}
+      Dans de nombreux cas, des frontières libres (des interfaces de forme inconnues\footnote{Entre fluides ou entre fluide et solide}) doivent être considérées. En général, on y impose la continuité de la vitesse, de la température, de la pression et du flux de chaleur. 
+
 
 
 
