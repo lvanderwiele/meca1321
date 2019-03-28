@@ -4,9 +4,9 @@
   En mécanique des milieux continus, le modèle se décrit grâce à des équations de continuité, valables pour tous les milieux et des équation de comportement dépendante du matériau considéré.
 
   \section{Lois de conservation}
-    Les lois de conservation exprime qu'une certaine propriété d'un système physique reste constante au fil de l'évolution du système. Elles ont une forme globale et une forme locale, obtnue à partir de la précédente via l'utilisation de conditions de continuité, et s'expriment différement suivant que l'on examine un volume matériel ou un volume de contrôle.
+    Les lois de conservation exprime la constance d'une certaine propriété d'un système physique au fil de l'évolution du système. Elles ont une forme globale et une forme locale, obtenue à partir de la précédente via l'utilisation de conditions de continuité, et s'expriment différement suivant que l'on examine un volume matériel ou un volume de contrôle.
 
-    Par ailleurs, si une loi de conservation est satisfaite pour une certaine classe de systèmes (tous les volumes matériaux ou tous les volumes de contrôle), sa forme locale est satisfaite en tout point à tout instant.
+    Par ailleurs, si une loi de conservation est satisfaite pour une certaine classe de systèmes\footnote{Tous les volumes matériaux ou tous les volumes de contrôle}, sa forme locale est satisfaite en tout point à tout instant.
 
     \subsection{Formes globales des lois de conservation pour les volumes matériels}
       Un volume matériel $V(t)$ est défini comme un ensemble de points matériels en mouvement, possédant une vitesse macroscopique
@@ -49,10 +49,10 @@
     \subsection{Formes globales des lois conservation pour les volumes de contrôle}
       Sur un volume de contrôle $V^c$, les lois s'écrivent, en tenant compte des apport convectifs, comme suit
       \begin{equation}\begin{aligned}
-        \dv{\mathcal{M}^c}{t} {} (t) &= \mathcal{M}^c(t) & \forall \; V^c, \\
-        \dv{\bs{\mathcal{P}}^c}{t} {} (t) &= \bs{\mathcal{P}}^c + \bs{\mathcal{F}}^c_d(t) + \bs{\mathcal{F}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
-        \dv{\bs{\mathcal{N}}^c}{t} {} (t) &= \bs{\mathcal{N}}^c(t) + \bs{\mathcal{M}}^c_d(t) + \bs{\mathcal{M}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
-        \dv{()\mathcal{K}^c + \mathcal{U}^c)}{t} {}(t) &= \dot{\mathcal{K}}^c (t) + \dot{\mathcal{U}}^c(t) + \mathcal{P}^c_d(t) + \mathcal{P}^c_c(t) + \mathcal{Q}^c_d (t) + \mathcal{Q}^c_c (t) &  \forall \; V^c, \textrm{repère inertiel}
+        \dv{\mathcal{M}^c}{t} {} (t) &= \dot{\mathcal{M}}^c(t) & \forall \; V^c, \\
+        \dv{\bs{\mathcal{P}}^c}{t} {} (t) &= \dot{\bs{\mathcal{P}}}^c + \bs{\mathcal{F}}^c_d(t) + \bs{\mathcal{F}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
+        \dv{\bs{\mathcal{N}}^c}{t} {} (t) &= \dot{\bs{\mathcal{N}}}^c(t) + \bs{\mathcal{M}}^c_d(t) + \bs{\mathcal{M}}^c_c(t) & \forall \; V^c, \textrm{repère inertiel} \\
+        \dv{(\mathcal{K}^c + \mathcal{U}^c)}{t} {}(t) &= \dot{\mathcal{K}}^c (t) + \dot{\mathcal{U}}^c(t) + \mathcal{P}^c_d(t) + \mathcal{P}^c_c(t) + \mathcal{Q}^c_d (t) + \mathcal{Q}^c_c (t) &  \forall \; V^c, \textrm{repère inertiel}
       \end{aligned}\end{equation}
 
       Il est également possible d'obtenir les lois de conservation pour un volume de contrôle à partir de celles du volume matériel. Il faut simplement considérer un volume matériel $V(t)$ occupant un volume matériel $V^c$ à l'instant $t$\footnote{Développement en page $9$ du syllabus.}.
