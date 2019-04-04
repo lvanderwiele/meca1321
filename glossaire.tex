@@ -5,6 +5,7 @@
   \begingroup
     \allowdisplaybreaks
     \begin{align*}
+      C_f &= \frac{2\tau_w}{\rho u_m^2} & \textrm{coefficient de frottement } [],\\
       c_p &= \hat{c}_p(p,T) = \pdv{\hat{H}}{T} & \textrm{chaleur spécifique à pression constante } \Big[\si{\frac{J}{K \cdot kg}}\Big],\\
       c_v &= \hat{c}_v (T) = \pdv{\hat{U}}{T} & \textrm{chaleur spécifique à volume constant } \Big[\si{\frac{J}{K \cdot kg}}\Big],\\
       \vb{d} &= \recip{2}(\grad\vb{v}^T + \grad\vb{v}) & \textrm{tenseur taux de déformation},\\
@@ -25,10 +26,12 @@
       \bs{\mathcal{M}}_d (t) &= \int_{V(t)} \vb{x} \times \rho \vb{g} dV & \textrm{moment des forces à distance } [\si{N \cdot m}],\\
       \bs{\mathcal{N}}(t) &= \int_{V(t)} \vb{x} \times \rho \vb{v} dV & \textrm{moment de la quantité de mouvement } \Big[\si{\frac{kg \cdot  m^2}{s}}\Big],\\
       \bs{\mathcal{P}}(t) &= \int_{V(t)} \rho \vb{v} dV & \textrm{quantité de mouvement } \Big[\si{\frac{kg \cdot m}{s}}\Big],\\
+      P &= \frac{p}{\rho} & \Big[\si{\frac{m^2}{s^2}}\Big],\\
       p & & \textrm{pression } [\si{Pa}],\\
       \mathcal{P}_c(t) &= \int_{\partial V(t)} \vb{v} \cdot \vb{t}(\vb{n}) dV & \textrm{puissance des forces de contact } [\si{W}], \\
       \mathcal{P}_d(t) &= \int_{V(t)} \vb{v} \cdot \rho \vb{g} dV & \textrm{puissance des forces à distance } [\si{W}], \\
       \mathcal{P}_i(t) &= \int_{V(t)} \bs{\sigma} : \vb{d} dV & \textrm{puissance des efforts internes } [\si{W}],\\
+      Q &= \int_A u(r) dA & \textrm{débit } \Big[\si{\frac{m^3}{s}}\Big],\\
       \vb{q} & & \textrm{vecteur flux de chaleur } \Big[\si{\frac{W}{m^2}}], \\
       q(\vb{n}) &= - \vb{q} \cdot \vb{n} & \textrm{flux de puissance calorifique fourni par conduction } \Big[\si{\frac{J}{m^2}}\Big]\\
       \mathcal{Q}_c(t) &= \int_{\partial V(t)} q(\vb{n}) dS & \textrm{puissance calorifique fournie par conduction } [\si{W}], \\
@@ -40,10 +43,11 @@
       \mathcal{S}(t) &= \int_{V(t)} \rho S dV & \textrm{entropie } \Big[\si{\frac{J}{K}}\Big],\\
       S & & \textrm{entropie massique } \Big[\si{\frac{J}{K \cdot kg}}\Big],\\
       T & & \textrm{température absolue } [\si{K}],\\
-      \vb{t}(\vb{n}) &= \bs{\sigma}^T \cdot \vb{n} & \textrm{densité des forces de contact exercées à la frontière} \Big[\si{\frac{N}{m^2}}\Big],\\
+      \vb{t}(\vb{n}) &= \bs{\sigma}^T \cdot \vb{n} & \textrm{densité des forces de contact exercées à la frontière} [\si{Pa}],\\
       \mathcal{U}(t) &= \int_{V(t)} \rho U dV & \textrm{énergie interne } [\si{J}],\\
       U & & \textrm{énergie interne massique } \Big[\si{\frac{J}{kg}}\Big],\\
       u & & \textrm{(profil de) vitesse axiale } \Big[\si{\frac{m}{s}}\Big],\\
+      u_m &= \frac{Q}{A} & \textrm{vitesse de débit} \Big[\si{\frac{m}{s}}\Big],\\
       \vb{v} & & \textrm{vitesse } \Big[\si{\frac{m}{s}}\Big],\\
       v & & \textrm{vitesse transversale } \Big[\si{\frac{m}{s}}\Big],\\
       \mathcal{W}(t) &= \int_{V(t)} \rho W dV & \textrm{énergie potentielle } [\si{J}],\\
@@ -53,10 +57,12 @@
       \gamma &= \hat{\gamma}(p,T) = \recip{\hat{\rho}} \pdv{\rho}{p} & \textrm{coefficient de compressibilité } \Big[\si{\recip{Pa}}\Big],\\
       \bs{\delta} & & \textrm{tenseur identité},\\
       \kappa &= \hat{\kappa}(p, T) & \textrm{coefficient de viscosité de volume } [\si{Pa \cdot s}],\\
+      \lambda &= -\frac{2D}{\rho u_m^2} \dv{p}{x} & \textrm{coefficient de perte de charge } [],\\
       \mu &= \hat{\mu}(p,T) & \textrm{coefficent de viscosité de cisaillement/viscosité dynamique} [\si{Pa \cdot s}],\\
       \nu &= \frac{\mu}{\rho} & \textrm{coefficent de viscosité cinématique } \Big[\si{\frac{m^2}{s}} \Big], \\
       \rho & & \textrm{masse volumique } \Big[\si{\frac{kg}{m^3}}\Big],\\
       \bs{\sigma} & & \textrm{tenseur de contraintes } [\si{Pa} ],\\
-      \bs{\tau} &= \bs{\sigma} + p \bs{\delta} & \textrm{tenseur des extra-contraintes } [\si{Pa}],
+      \bs{\tau} &= \bs{\sigma} + p \bs{\delta} & \textrm{tenseur des extra-contraintes } [\si{Pa}],\\
+      \tau_w &= -\mu \dv{u}{r}\eval_{r=R} & \textrm{contrainte de frottement à la paroi } [\si{Pa}]
     \end{align*}
   \endgroup
