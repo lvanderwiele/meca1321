@@ -1,5 +1,7 @@
 % !TEX root = meca1321-synthesis.tex
 
+% !TEX root = meca1321-synthesis.tex
+
 \begin{tikzpicture}[scale=0.8]
   \draw (-4,-3) -- (3,-3);
   \draw (-4,3) -- (3,3);
@@ -15,6 +17,6 @@
   \draw (-4,-3) node [left] {$-1$};
   \draw (-4,3) node [left] {$1$};
   \draw (1.5,-3.1) node [below] {$u/u_m$};
-  \draw (-3.1, 1.5) node [left] {$y/h$};
-  \draw [domain=-1:1] plot ({(3/2)*(1-(\x)^(2))*3-3},{\x*3});
+  \draw (-3.1, 1.5) node [left] {$r/R$};
+  \draw [domain=-1:1] plot ({2*(1-(\x)^(2))*3-3},{\x*3});
 \end{tikzpicture}
