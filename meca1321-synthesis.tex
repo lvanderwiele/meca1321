@@ -303,7 +303,40 @@
         = e^{-\frac{\eta}{\sqrt{2}}}\cos\left(\omega t-\frac{\eta}{\sqrt{2}}\right)
         = e^{-y \sqrt{\frac{\omega}{2\nu}}} \cos\left(\omega t - y\frac{\omega}{2\nu}\right)
       \end{equation}
+      L'amplitude de la vitesse décroit de manière exponentielle. De plus, elle est déphasée par rapport à la plaque proportionnellement à la distance à la plaque $\phi = y\frac{\omega}{2\nu}$
 
+  \section{Zone d'entrée et longueur d'établissement}
+    Un écoulement entrant dans une conduite de diamètre invariable ne s'établit pas immédiatement. À l'entrée, on a un écoulement bouchon qui devient progressivement un écoulement Poiseuille. On considère qu'il faut au moins une longueur d'établissement $x_c$ importante pour voir un ce dernier apparaître.
+
+    Les équations qui régissent le problème d'établissement sont celles de la couche limite
+    \begin{equation}
+      \begin{aligned}
+        \pdv{u}{x} + \recip{r} \pdv{}{r}(rv) &= 0\\
+        u\pdv{u}{x} + v \pdv{u}{r} &= -\dv{P}{x} + \nu \recip{r} \pdv{}{r}\left(r\pdv{u}{r}\right)
+      \end{aligned}
+    \end{equation}
+    Dans ce cas, la pression n'est fonction que de $x$ est négligeable par rapport à $r$. Une couche limite se développe ici le long de la paroi et son épaisseur $\delta(x)$ grandit selon $x$ jusqu'à atteindre le centre en $x = x_c$. A partir de là, on un profil de Poiseuille\footnote{D'un point de vue mathématique, l'évolution de $\delta(x)$ est asymptotique. On utilise donc $x_{c,0.95}$ ou $x_{c,0.99}$ qui représente le $x$ où la vitesse au centre est à $95\%$ ou $99\%$ de la vitesse maximale}.
+
+    La pression $P(x) = p(x)/\rho$ est déterminée par la vitesse d'écoulement hors de la couche limite. Dans cette partie irrotationnelle, l'équation de Bernoulli dit
+    \begin{equation}
+      \begin{aligned}
+        P(x) +\recip{2} u_c^2(x) &= cste = P(0) + \recip{2}u_m^2\\
+        \dv{P}{x} + u_c \dv{u_c}{x} &=0
+      \end{aligned}
+    \end{equation}
+    Ce qui nous donne
+    \begin{equation}
+      \begin{aligned}
+        \pdv{u}{x} + \recip{r} \pdv{}{r}(rv) &= 0\\
+        u\pdv{u}{x} + v \pdv{u}{r} &= u_c \dv{u_c}{x} + \nu \recip{r} \pdv{}{r}\left(r\pdv{u}{r}\right)
+      \end{aligned}
+    \end{equation}
+    avec $u(0, r) = u_m$ et $u(x, R)= 0$.
+
+    \textit{In fine}, le problème ci-dessus n'a pas de solution analytique, seulement numérique. Cependant, on peut établir que la loi régissant la longueur d'établissement est de la forme
+    \begin{equation}
+      \frac{x_c}{D} = f\left(\frac{u_m D}{\nu}\right) = f(Re_D)
+    \end{equation}
 
 
 \begin{appendix}
