@@ -1,0 +1,47 @@
+% !TEX root=meca1321-synthesis.tex
+
+\begin{tikzpicture}[scale=0.75]
+  \draw (-4,-3) -- (4,-3);
+  \draw (-4,3) -- (4,3);
+  \draw (-3,-3) -- (-3,3);
+  \draw [dash pattern=on 3pt off 4pt on \the\pgflinewidth off 4pt] (-4, 0) -- (4, 0);
+  \foreach \i in {0,0.25}
+  {
+    \pgfmathsetmacro{\x}{(\i*6*4-3)};
+    \draw (\x,-3) -- ++(0,-0.2);
+    \draw (\x,-3.2) node [below] {$\i$};
+  }
+  \draw (-4,0) node [left] {$0$};
+  \draw (-4,-3) node [left] {$-1$};
+  \draw (-4,3) node [left] {$1$};
+  \draw (1.5,-3.1) node [below] {$u/u_c$};
+  \draw (-4.1, 1.5) node [left] {$\eta$};
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\bold{\b},%
+                after line=\xdef\aold{\a}\xdef\bold{\b}]%
+                {forcageRapide.csv}{}{%
+    \draw (\bold*6*4-3, \aold*3) -- (\b*6*4-3,\a*3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\cold{\c},%
+                after line=\xdef\aold{\a}\xdef\cold{\c}]%
+                {forcageRapide.csv}{}{%
+    \draw (\cold*6*4-3, \aold*3) -- (\c*6*4-3,\a*3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\dold{\d},%
+                after line=\xdef\aold{\a}\xdef\dold{\d}]%
+                {forcageRapide.csv}{}{%
+    \draw (\dold*6*4-3, \aold*3) -- (\d*6*4-3,\a*3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\eold{\e},%
+                after line=\xdef\aold{\a}\xdef\eold{\e}]%
+                {forcageRapide.csv}{}{%
+                \draw (\eold*6*4-3, \aold*3) -- (\e*6*4-3,\a*3);
+  }
+  \draw (-1.5, 0.5) node  {\footnotesize $\zeta\omega^\ast = 0$};
+  \draw (0, 1.7) node {\footnotesize $3\pi/4$};
+  \draw (2.5, 0.4) node [left] {\footnotesize $\pi/4$};
+  \draw (2.5, 1.2) node [right] {\footnotesize $\pi/2$};
+\end{tikzpicture}

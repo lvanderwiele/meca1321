@@ -9,13 +9,19 @@
 \usepackage{multicol}
 \usepackage{siunitx}
 \usepackage{hyperref}
-\usepackage{tikz}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{csvsimple}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
 
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\dvm}[2]{\frac{D #1}{D #2}}
 \newcommand{\recip}[1]{\frac{1}{#1}}
+\newcommand{\Ber}[0]{\textrm{Ber}}
+\newcommand{\Bei}[0]{\textrm{Bei}}
+\newcommand{\erfc}[0]{\textrm{erfc}}
 
 \title{LMECA1321 - Mécanique des fluides et transferts\\Synthèse}
 \author{Loïc Van der Wielen}
@@ -45,7 +51,7 @@
         En utilisant la quantité de mouvement (Équation \ref{eq:ConspvT})\footnote{$\rho \vb{g}$ est négligé}, on établit l'équation en $x$ qui donne une équation parabolique après intégration et application des CL en $\pm h$
         \begin{equation}
           \begin{aligned}
-            0 &= -\dv{P}{x} + \nu\dv[2]{u}{y} \\
+            0 &= -\dv{P}{x} + \nu\dv[2]{u}{y} \\ \label{eq:Poiseuille}
             u(y) &= -\dv{P}{x}\frac{h^2}{2\nu} \left(1 - \left(\frac{y}{h}\right)^2\right)
           \end{aligned}
         \end{equation}
@@ -79,7 +85,7 @@
           \begin{minipage}[c]{0.45\textwidth}
             \input{CouetteProfile.tex}
             \caption{Profil de vitesse pour l'écoulement de Couette entre 2 plaques}
-            \label{fig:CouettePrfile}
+            \label{fig:CouetteProfile}
           \end{minipage}
         \end{figure}
 
@@ -171,6 +177,134 @@
           \label{fig:HagenProfile}
           \caption{Profil de vitesse pour l'écoulement de Hagen entre 2 plaques}
         \end{figure}
+
+  \section{Écoulements instationnaires}
+    \subsection{Démarrage brusque de l'écoulement dans une conduite}
+      Pour un écoulent instationnaire en conduite, il faut tenir compte du temps:
+      \begin{equation}
+        \pdv{u} = -\dv{P}{x} + \nu \frac{1}{r} \pdv{}{r} \left(r\pdv{u}{r}\right) \label{eq:instat}
+      \end{equation}
+      On considère qu'en $t<0$, il n'y a pas de gradient de pression et donc $u(r, t<0) = 0$. Un gradient de pression est imposé à la conduit à partir de $t=0_+$, démarrant l'écoulement qui tend vers l'écoulement de Poiseuille en $t \rightarrow \infty$. On est donc face à un problème aux conditionx limites et initiales. On peut alors obtenir l' équation de la différence entre $u(r, t)$ et $u(r, t\rightarrow\infty)$, appelée $\tilde{u}(r,t)$, en soustrayant les équations \ref{eq:instat} et \ref{eq:Poiseuille}.
+      \begin{equation}
+        \pdv{\tilde{u}} = \nu \frac{1}{r} \pdv{}{r} \left(r\pdv{\tilde{u}}{r}\right)
+      \end{equation}
+      avec comme condition initiale $\tilde{u}(r,0)=u_c\left(1-\left(\frac{r}{R}\right)^2\right)$ et comme condition limite $\tilde{u}(R,t)=0$. On adimensionnalise de la façon suivante
+      \begin{equation}
+        \begin{aligned}
+          \tilde{u}^\ast = \frac{\tilde{u}}{u_c}, \quad \eta = \frac{r}{R}, \quad \zeta = \frac{\nu t}{R^2}\\
+          \pdv{\tilde{u}^\ast}{\zeta} = \recip{\eta}\pdv{}{\eta}\left(\eta\pdv{\tilde{u}^\ast}{\eta}\right)
+        \end{aligned}
+      \end{equation}
+      avec $\tilde{u}^\ast(\eta,0) = 1-\eta^2$ et $\tilde{u}^\ast(1, \zeta) = 0$. Le problème est séparable $\tilde{u}^\ast = f(\eta)g(\zeta)$. Le développement complet se trouve en page $38-39$ du syllabus mais la solution
+      \begin{equation}
+        \begin{aligned}
+          \frac{u}{u_c} &= (1-\eta^2) - 8 \sum^\infty_{n=1} \frac{J_0(\lambda{n}\eta)}{\lambda_n^3 J_1(\lambda_n)}e^{-\lambda_n^2 \zeta}\\
+          &= \left(1- \left(\frac{r}{R}\right)^2\right) - 8 \sum^\infty_{n=1} \frac{J_0\left(\lambda_n \frac{r}{R}\right)}{\lambda_n^3 J_1(\lambda_n)} \exp(-\lambda_n^2 \frac{\nu t}{R^2})
+        \end{aligned}
+      \end{equation}
+      où $\lambda_n$ est la n\up{e} racine de la fonction de Bessel $J_0$
+      \begin{figure}[!h]
+        \centering
+        \input{instatio.tex}
+      \end{figure}
+      Le temps d'établissement d'un écoulement est donné par le terme exponentielle décroissant le moins rapidement ($\exp(-\lambda_1^2 \zeta)$). On peut donc utiliser comme temps caractéristique de développement\footnote{Temps pour passer de $1$ à $e^{-1}$} $\zeta_c \approx 1/\lambda^2_1$ (adimensionnel). Sur le long terme ($\zeta > \zeta_c$), on peut alors établir une estimation de $u$ au centre de la conduite
+      \begin{equation}
+        \frac{u}{u_c}(0, \zeta>\zeta_c) \approx 1 - \frac{8}{\lambda_1^3 J_1(\lambda_1)}e^{-\lambda_1\zeta}
+      \end{equation}
+      De là, les temps pour que la vitesse au centre soit égale à $95$ ou $99\%$ peuvent être obtenus.
+
+      Il est possible d'établir un parallèle entre le démarrage brusque en conduite et la zone d'entrée d'un écoulement en conduite en considérant que celui-ci passe de $u(r)= u_m$ à l'écoulement de Poiseuille et en "remplaçant" $t_c$ par $x_c/u_m$. Cette analogie est cependant imparfaite et ne sera pas développée ici.
+
+    \subsection{Écoulement cyclique avec gradient de pression oscillant}
+      Considérons un gradient de pression oscillant à une fréquence circulaire $\omega$.
+      \begin{equation}
+        -\dv{P}{x} = -\dv{P}{x}\eval_0 \cos{\omega t} = -\dv{P}{x}\eval_0 e^{i\omega t}
+      \end{equation}
+      Bien entendu, on ne considère que la partie réelle. L'équation \ref{eq:Poiseuille}
+      \begin{equation}
+        \pdv{u} = \frac{4\nu}{R^2} u_c e^{i\omega t} + \nu \recip{r}\pdv{}{r} \left(r\pdv{u}{r}\right)
+      \end{equation}
+      Les adimensionalisation à faire sont les suivantes
+      \begin{equation}
+        u^\ast = \frac{u}{u_c}, \quad \eta = \frac{r}{R}, \quad \omega^\ast = \frac{\omega R^2}{\nu}, \quad \zeta = \frac{t\nu}{R^2}
+      \end{equation}
+      La solution est de la forme
+      \begin{equation}
+        u^\ast = f(\eta) e^{i\omega^ast \zeta}
+      \end{equation}
+      Après résolution\footnote{Celle-ci se trouve page 43 du syllabus pour les plus curieux}, on obtient une solution générale
+      \begin{equation}
+        \frac{u}{u_c} = \real \left( \frac{4}{i\omega^\ast} \left( 1 - \frac{\Ber_0(\sqrt{\omega^\ast} \eta) + i \Bei_0(\sqrt{\omega^\ast} \eta)}{\Ber_0(\sqrt{\omega^\ast}) + i \Bei_0(\sqrt{\omega^\ast})} \right) e^{i\omega^\ast \zeta}\right)
+      \end{equation}
+      où $\Ber_0(s)$ et $\Bei_0(s)$ sont les parties réelles et imaginaires de la fonction de Bessel $J_0(e^{i3\pi/4}s)$. Cette solution est valable pour toutes les fréquences d'excitation. On distingue cependant deux cas particullier, les cas de forçages lent ($\sqrt{\omega^\ast}\eta$ est petit) et rapide ($\sqrt{\omega^\ast}\eta$ est grand).
+
+      Dans le premier cas, on peut approximer $J_0(e^{i3\pi/4}s)$ via Taylor et obtenir
+      \begin{equation}
+        \begin{aligned}
+          \frac{u}{u_c} &= \real \left(\left((1-\eta^2) - i \frac{\omega^\ast}{16} (\eta^4 - 4 \eta^2 +3) \right)e^{i\omega^\ast \zeta}\right)\\
+          &= (1- \eta^2) \cos(\omega^\ast \zeta) + \frac{\omega^\ast}{16} (\eta^4 - 4 \eta^2 +3) \sin (\omega^\ast \zeta) + \mathcal{O}(\omega^{\ast2})
+        \end{aligned}
+      \end{equation}
+
+      Dans le second, on utilise l'expansion asymptotique de $J_0(z)$ valable pour de grand $z$ pour obtenir
+      \begin{equation}
+        \begin{aligned}
+          \frac{u}{u_c} &= \real \left(\frac{4}{i\omega^\ast}\left( \recip{\sqrt{\eta}}e^{-\sqrt{\frac{\omega^\ast}{2}}(1-\eta)} e^{-i \sqrt{\frac{\omega^\ast}{2}}(1-\eta)}\right)
+          e^{i\omega^\ast \zeta}\right)\\
+          &= \frac{4}{\omega^\ast} \left(\sin(\omega^\ast \zeta) - \recip{\sqrt{\eta}}e^{-\sqrt{\frac{\omega^\ast}{2}}(1-\eta)}\sin\left(\omega^\ast \zeta -\sqrt{\frac{\omega^\ast}{2}}(1-\eta) \right)
+          \right) + \mathcal{O}\left(\recip{\omega^{\ast 2}}\right)
+        \end{aligned}
+      \end{equation}
+      \begin{figure}[h]
+        \centering
+        \begin{minipage}[c]{0.45\textwidth}
+          \input{forcageLent.tex}
+          \caption{Écoulement cyclique en cond-uite circulaire: cas d'un forçage lent ($\omega^\ast = 1/2$). Solution exacte.}
+          \label{fig:forcageLent}
+        \end{minipage}
+        \begin{minipage}[c]{0.45\textwidth}
+          \input{forcageRapide.tex}
+          \caption{Écoulement cyclique en cond-uite circulaire: cas d'un forçage rapide ($\omega^\ast = 20$). Solution exacte.}
+          \label{fig:forcageRapide}
+        \end{minipage}
+      \end{figure}
+
+    \subsection{Démarrage brusque d'une plaque}
+      Comme une plaque ne bloque l'écoulent d'un côté\footnote{L'autre côté est considéré infini}, il n'y a pas de gradient de pression latéral. On a donc
+      \begin{equation}
+        \pdv{u} = \nu \pdv[2]{u}{y}
+      \end{equation}
+      qui est l'équation de diffusion. La plaque démarre en $t=0_+$ à une vitesse $U$. On a $\eta = y/2\sqrt{\nu t}$ et
+      \begin{equation}
+        \frac{u}{U} = f\left(\frac{y}{2\sqrt{\nu t}}\right) = f(\eta)
+      \end{equation}
+      Après résolution,  on a
+      \begin{equation}
+        \frac{u}{U} = 1 - \frac{2}{\sqrt{\pi}}\int_0^\eta e^{\eta'^2} d\eta'  = 1-\erf(\eta) = \erfc(\eta)
+      \end{equation}
+      où $\erf$ est la fonction erreur et $\erfc$ est la fonction erreur complémentaire.
+      Le tourbillon est également obtenu via
+      \begin{equation}
+        \omega = -\pdv{u}{y} = U \frac{2}{\pi} e^{-\eta^2} \frac{1}{2\sqrt{\nu t}} = \frac{U}{\sqrt{\pi\nu t}}e^{-\frac{y^2}{4\nu t}}
+      \end{equation}
+
+    \subsection{Plaque oscillante}
+      Dans le cas d'une plaque oscillante, la vitesse est
+      \begin{equation}
+        U cos(\omega t) = \real(U e^{i\omega t})
+      \end{equation}
+      On utilise $\eta = y \sqrt{\frac{\omega}{\nu}}$, ce qui nous donne
+      \begin{equation}
+        \dv[2]{f}{\eta} - i f = 0
+      \end{equation}
+      et
+      \begin{equation}
+        \frac{u}{U} = \real\left(e^{-\recip{\sqrt{2}}(1+i)\eta}e^{i\omega t}\right)
+        = e^{-\frac{\eta}{\sqrt{2}}}\cos\left(\omega t-\frac{\eta}{\sqrt{2}}\right)
+        = e^{-y \sqrt{\frac{\omega}{2\nu}}} \cos\left(\omega t - y\frac{\omega}{2\nu}\right)
+      \end{equation}
+
+
 
 \begin{appendix}
   \input{glossaire.tex}
