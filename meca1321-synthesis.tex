@@ -32,7 +32,7 @@
 \tableofcontents
 
 \input{chapter1.tex}
-% \input{chapter2.tex}
+\input{chapter2.tex}
 
 \chapter{Transfert de chaleur}
   Un transfert de chaleur est un transfert d'énergie créé par un écart de température entre 2 points d'un milieu ou entre mileux distincs. Il existe 3 modes de transferts de chaleur: conduction, convection et rayonnement. Les deux premiers sont régis par des équations locaales (dérivées partielles) et le dernier par des équations globales (intégrales).
@@ -186,6 +186,52 @@
         %   \item en $r = r_i$, $\quad -k \dv{T}{r}\eval_{r_i} = h_i (T_{\infty i} - T_i)$
         %   \item en $r = r_e$, $\quad -k \dv{T}{r}\eval_{r_e} = h_e (T_e - T_{\infty e})$
         % \end{itemize}
+
+  \section{Transfert thermique établi}
+    On considère des "transferts thermiques établis" (défini plus loin) avec écoulement établi en conduite circulaire. Le profil de vitesse est donc $u(r) = 2 u_m \left(1 - \left(\frac{r}{R}\right)\right)$. On néglige la condition de chaleur dans la direction axiale car elle est faible par rapprot à la radiale ou nulle $\left(\pdv[2]{T}{x} \ll \recip{r}\pdv{r}\left(r\pdv{T}{r}\right)\right)$. L'équation de l'énergie est alors
+    \begin{equation}
+      \rho c u \pdv{T}{x} = k \recip{r}\pdv{r} \left(r\pdv{T}{r}\right) + \mu \left(\dv{u}{r}\right)^2 \quad \textrm{avec } \dv{u}{r} = -4\frac{u_mr}{R^2}
+    \end{equation}
+
+    La température moyenne\footnote{En anglais, \textit{cup mixing temperature}} $T_m$, représentative du flux de chaleur au sein de la conduite, est
+    \begin{equation}
+      cT_m = \frac{\int_A c T \rho u dA}{\int_A \rho u dA}
+    \end{equation}
+    Dans le cas d'un écoulement incompressible avec $c$ constant, on a
+    \begin{equation}
+      T_m = \frac{\int_A T u dA}{\int_A u dA} = \frac{\int_A T u dA}{u_m A}
+    \end{equation}
+    Le flux énergétique global au sein de la conduite est alors égal à $c T_m \rho u_m A$.
+
+    Le \textit{nombre de Nusselt} est le coefficient adimensionnel de transfert de chaleur défini comme
+    \begin{equation}
+      Nu = \frac{q_w D}{k (T_w - T_m)} = \frac{h D}{k}
+    \end{equation}
+    où $T_w$ est la température à la paroi, $q_w$ la densité de flux de chaleur à la paroi $q_w = k \frac{dT}{dr}\eval_r=R$ et $D$ la longueur caractéristique (dans le cas d'un conduit, le rayon $R$).
+
+    Il est aussi très utile de considérer le bilan d'énergie perdue/acquise par l'écoulement sur une longueur $dx$. On intègre d'abord le terme de dissipation visqueuse au travers de la section
+    \begin{equation}
+      \int_A \left(\dv{u}{r}\right)^2 dA = 16 \mu u_m^2 2\pi \int_0^R \left(\frac{r}{R}\right)^2 \frac{r}{R} \frac{dr}{R} = 32 \pi\mu u_m^2 \int_0^1 \eta^3 d\eta = 8 \pi \mu u_m^2
+    \end{equation}
+    On obtient alors le bilan suivant
+    \begin{equation}
+      \begin{aligned}
+        (q_w 2\pi R + 8 \pi \mu u_m^2) dx &= (\rho u_m \pi R^2)cdT_m\\
+        \rho u_m c \dv{T_m}{dx} &= \frac{4}{D} q_w + 32 \mu \left(\frac{u_m}{D}\right)^2
+      \end{aligned}
+    \end{equation}
+
+    Lorsque $T_w > T_m$, $q_w$ est positif et de la chaleur est transférée de la paroi vers l'écoulement ($T_m$ augmente avec x) et vice-versa. Dans les deux cas, le nombre de Nusselt est positif. Si $q_w$ est constant, alors $\dv{T_m}{x}$ l'est aussi.
+
+    Un transfert thermique est établii si le profil normalisé adimensionnel de différence de température $\frac{T - T_w}{T_m - T_w}$ ne dépend pas de $x$.
+    \begin{equation}
+      \begin{aligned}
+        0 &= \pdv{x} \left(\frac{T-T_w}{T_m - T_w}\right)\\
+        &= \recip{T_m - T_w} \left(\pdv{T}{x} - \dv{T_w}{x}\right) - \frac{T-T_w}{(T_m - T_w)^2} \left(\dv{T_m}{x} - \dv{T_w}{x}\right)
+      \end{aligned}
+    \end{equation}
+
+    Comme $\frac{T - T_w}{T_m - T_w}$ ne dépend que de $r$, c'est le cas aussi pour la dérivée. En $R$, celle-ci vaut $-Nu/D$: Nusselt est indépendant de $x$ pour le transfert thermique établi.
 
 
 \begin{appendix}
