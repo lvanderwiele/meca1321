@@ -19,8 +19,9 @@
       \vb{g} & & \textrm {densité des forces de masse } \Big[\si{\frac{m}{s^2}}\Big],\\
       \mathcal{H}(t) &= \int_{V(t)} \rho H dV & \textrm{enthalpie d'un volume matériel } [\si{J}],\\
       H &= U + \frac{p}{\rho} & \textrm{enthalpie massique } \Big[\si{\frac{J}{kg}}\Big],\\
+      h & & \textrm{coefficient de convection } \Big[\si{\frac{W}{m^2 \cdot K}}\Big], \\
       \mathcal{K}(t) &= \int_{V(t)} \rho \frac{\vb{v}\cdot\vb{v}}{2} dV & \textrm{énergie cinétique } [\si{J}],\\
-      k &= \hat{k}(p,T) & \textrm{coefficent de conduction/conductibilité thermique du fluide } \Big[\si{\frac{W}{m\cdot K}} \Big],\\
+      k &= \hat{k}(p,T) & \textrm{coefficient de conduction/conductibilité thermique du fluide } \Big[\si{\frac{W}{m\cdot K}} \Big],\\
       \mathcal{M} & = \int_{V(t)} \rho dV  & \textrm{masse [\si{kg}],}\\
       \bs{\mathcal{M}}_c (t) &= \int_{\partial V(t)} \vb{x} \times \vb{t}(\vb{n}) dV & \textrm{moment des forces de contact } [\si{N \cdot m}],\\
       \bs{\mathcal{M}}_d (t) &= \int_{V(t)} \vb{x} \times \rho \vb{g} dV & \textrm{moment des forces à distance } [\si{N \cdot m}],\\
@@ -52,14 +53,14 @@
       v & & \textrm{vitesse transversale } \Big[\si{\frac{m}{s}}\Big],\\
       \mathcal{W}(t) &= \int_{V(t)} \rho W dV & \textrm{énergie potentielle } [\si{J}],\\
       W(\vb{x}) & \textrm{ où } \vb{g} = -\grad W(\vb{x}) & \textrm{potentiel, }\Big[\si{\frac{m^2}{s^2}}\Big],\\
-      \alpha &= \hat{\alpha}(p,T) = \frac{\hat{k}}{\hat{\rho}\hat{c}_p} & \textrm{coefficent de diffusivité thermique } \Big[\si{\frac{m^2}{s}}\Big], \\
+      \alpha &= \hat{\alpha}(p,T) = \frac{\hat{k}}{\hat{\rho}\hat{c}_p} & \textrm{coefficient de diffusivité thermique } \Big[\si{\frac{m^2}{s}}\Big], \\
       \beta &= \hat{\beta}(p,T) = -\recip{\hat{\rho}} \pdv{\hat{\rho}}{T} & \textrm{coefficient de dilatation thermique } \Big[\si{\frac{m^3}{K}}\Big],\\
       \gamma &= \hat{\gamma}(p,T) = \recip{\hat{\rho}} \pdv{\rho}{p} & \textrm{coefficient de compressibilité } \Big[\si{\recip{Pa}}\Big],\\
       \bs{\delta} & & \textrm{tenseur identité},\\
       \kappa &= \hat{\kappa}(p, T) & \textrm{coefficient de viscosité de volume } [\si{Pa \cdot s}],\\
       \lambda &= -\frac{2D}{\rho u_m^2} \dv{p}{x} & \textrm{coefficient de perte de charge } [],\\
-      \mu &= \hat{\mu}(p,T) & \textrm{coefficent de viscosité de cisaillement/viscosité dynamique} [\si{Pa \cdot s}],\\
-      \nu &= \frac{\mu}{\rho} & \textrm{coefficent de viscosité cinématique } \Big[\si{\frac{m^2}{s}} \Big], \\
+      \mu &= \hat{\mu}(p,T) & \textrm{coefficient de viscosité de cisaillement/viscosité dynamique} [\si{Pa \cdot s}],\\
+      \nu &= \frac{\mu}{\rho} & \textrm{coefficient de viscosité cinématique } \Big[\si{\frac{m^2}{s}} \Big], \\
       \rho & & \textrm{masse volumique } \Big[\si{\frac{kg}{m^3}}\Big],\\
       \bs{\sigma} & & \textrm{tenseur de contraintes } [\si{Pa} ],\\
       \bs{\tau} &= \bs{\sigma} + p \bs{\delta} & \textrm{tenseur des extra-contraintes } [\si{Pa}],\\

@@ -94,10 +94,10 @@
           \caption{Écoulement établi en conduite}
           \label{fig:Hagen}
         \end{figure}
-        Comme pour les écoulements plans, on a $u = u(r)$, $\pdv{u}{x} = 0$, $\pdv{}{r}(rv) = 0$ et $v = 0$. En reprenant l'équation de quantité de mouvement,
+        Comme pour les écoulements plans, on a $u = u(r)$, $\pdv{u}{x} = 0$, $\pdv{r}(rv) = 0$ et $v = 0$. En reprenant l'équation de quantité de mouvement,
         \begin{equation}
           \begin{aligned}
-            0 &= -\dv{P}{x} + \frac{\nu}{r} \dv{}{r}\left(r\dv{u}{r}\right)\\
+            0 &= -\dv{P}{x} + \frac{\nu}{r} \dv{r}\left(r\dv{u}{r}\right)\\
             u(r) &= \dv{P}{x} \recip{\nu} \left(\frac{r^2}{4} + C_1 \log r + C_2 \right)\\
             u(r) &= - \dv{P}{x} \frac{R^2}{4\nu} \left(1 - \left(\frac{r}{R}\right)^2\right) = - \dv{p}{x} \frac{R^2}{4\mu} \left(1 - \left(\frac{r}{R}\right)^2\right)
           \end{aligned}
@@ -148,17 +148,17 @@
     \subsection{Démarrage brusque de l'écoulement dans une conduite}
       Pour un écoulent instationnaire en conduite, il faut tenir compte du temps:
       \begin{equation}
-        \pdv{u} = -\dv{P}{x} + \nu \frac{1}{r} \pdv{}{r} \left(r\pdv{u}{r}\right) \label{eq:instat}
+        \pdv{u}{t} = -\dv{P}{x} + \nu \frac{1}{r} \pdv{r} \left(r\pdv{u}{r}\right) \label{eq:instat}
       \end{equation}
       On considère qu'en $t<0$, il n'y a pas de gradient de pression et donc $u(r, t<0) = 0$. Un gradient de pression est imposé à la conduit à partir de $t=0_+$, démarrant l'écoulement qui tend vers l'écoulement de Poiseuille en $t \rightarrow \infty$. On est donc face à un problème aux conditionx limites et initiales. On peut alors obtenir l' équation de la différence entre $u(r, t)$ et $u(r, t\rightarrow\infty)$, appelée $\tilde{u}(r,t)$, en soustrayant les équations \ref{eq:instat} et \ref{eq:Poiseuille}.
       \begin{equation}
-        \pdv{\tilde{u}} = \nu \frac{1}{r} \pdv{}{r} \left(r\pdv{\tilde{u}}{r}\right)
+        \pdv{\tilde{u}}{t} = \nu \frac{1}{r} \pdv{r} \left(r\pdv{\tilde{u}}{r}\right)
       \end{equation}
       avec comme condition initiale $\tilde{u}(r,0)=u_c\left(1-\left(\frac{r}{R}\right)^2\right)$ et comme condition limite $\tilde{u}(R,t)=0$. On adimensionnalise de la façon suivante
       \begin{equation}
         \begin{aligned}
           \tilde{u}^\ast = \frac{\tilde{u}}{u_c}, \quad \eta = \frac{r}{R}, \quad \zeta = \frac{\nu t}{R^2}\\
-          \pdv{\tilde{u}^\ast}{\zeta} = \recip{\eta}\pdv{}{\eta}\left(\eta\pdv{\tilde{u}^\ast}{\eta}\right)
+          \pdv{\tilde{u}^\ast}{\zeta} = \recip{\eta}\pdv{\eta}\left(\eta\pdv{\tilde{u}^\ast}{\eta}\right)
         \end{aligned}
       \end{equation}
       avec $\tilde{u}^\ast(\eta,0) = 1-\eta^2$ et $\tilde{u}^\ast(1, \zeta) = 0$. Le problème est séparable $\tilde{u}^\ast = f(\eta)g(\zeta)$. Le développement complet se trouve en page $38-39$ du syllabus mais la solution
@@ -188,7 +188,7 @@
       \end{equation}
       Bien entendu, on ne considère que la partie réelle. L'équation \ref{eq:Poiseuille}
       \begin{equation}
-        \pdv{u} = \frac{4\nu}{R^2} u_c e^{i\omega t} + \nu \recip{r}\pdv{}{r} \left(r\pdv{u}{r}\right)
+        \pdv{u}{t} = \frac{4\nu}{R^2} u_c e^{i\omega t} + \nu \recip{r}\pdv{r} \left(r\pdv{u}{r}\right)
       \end{equation}
       Les adimensionalisation à faire sont les suivantes
       \begin{equation}
@@ -238,7 +238,7 @@
     \subsection{Démarrage brusque d'une plaque}
       Comme une plaque ne bloque l'écoulent d'un côté\footnote{L'autre côté est considéré infini}, il n'y a pas de gradient de pression latéral. On a donc
       \begin{equation}
-        \pdv{u} = \nu \pdv[2]{u}{y}
+        \pdv{u}{t} = \nu \pdv[2]{u}{y}
       \end{equation}
       qui est l'équation de diffusion. La plaque démarre en $t=0_+$ à une vitesse $U$. On a $\eta = y/2\sqrt{\nu t}$ et
       \begin{equation}
@@ -297,8 +297,8 @@
     Les équations qui régissent le problème d'établissement sont celles de la couche limite
     \begin{equation}
       \begin{aligned}
-        \pdv{u}{x} + \recip{r} \pdv{}{r}(rv) &= 0\\
-        u\pdv{u}{x} + v \pdv{u}{r} &= -\dv{P}{x} + \nu \recip{r} \pdv{}{r}\left(r\pdv{u}{r}\right)
+        \pdv{u}{x} + \recip{r} \pdv{r}(rv) &= 0\\
+        u\pdv{u}{x} + v \pdv{u}{r} &= -\dv{P}{x} + \nu \recip{r} \pdv{r}\left(r\pdv{u}{r}\right)
       \end{aligned}
     \end{equation}
     Dans ce cas, la pression n'est fonction que de $x$ est négligeable par rapport à $r$. Une couche limite se développe ici le long de la paroi et son épaisseur $\delta(x)$ grandit selon $x$ jusqu'à atteindre le centre en $x = x_c$. A partir de là, on un profil de Poiseuille\footnote{D'un point de vue mathématique, l'évolution de $\delta(x)$ est asymptotique. On utilise donc $x_{c,0.95}$ ou $x_{c,0.99}$ qui représente le $x$ où la vitesse au centre est à $95\%$ ou $99\%$ de la vitesse maximale}.
@@ -313,8 +313,8 @@
     Ce qui nous donne
     \begin{equation}
       \begin{aligned}
-        \pdv{u}{x} + \recip{r} \pdv{}{r}(rv) &= 0\\
-        u\pdv{u}{x} + v \pdv{u}{r} &= u_c \dv{u_c}{x} + \nu \recip{r} \pdv{}{r}\left(r\pdv{u}{r}\right)
+        \pdv{u}{x} + \recip{r} \pdv{r}(rv) &= 0\\
+        u\pdv{u}{x} + v \pdv{u}{r} &= u_c \dv{u_c}{x} + \nu \recip{r} \pdv{r}\left(r\pdv{u}{r}\right)
       \end{aligned}
     \end{equation}
     avec $u(0, r) = u_m$ et $u(x, R)= 0$.

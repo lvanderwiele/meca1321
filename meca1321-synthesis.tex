@@ -32,7 +32,161 @@
 \tableofcontents
 
 \input{chapter1.tex}
-\input{chapter2.tex}
+% \input{chapter2.tex}
+
+\chapter{Transfert de chaleur}
+  Un transfert de chaleur est un transfert d'énergie créé par un écart de température entre 2 points d'un milieu ou entre mileux distincs. Il existe 3 modes de transferts de chaleur: conduction, convection et rayonnement. Les deux premiers sont régis par des équations locaales (dérivées partielles) et le dernier par des équations globales (intégrales).
+  \begin{itemize}
+    \item La \textit{conduction} est la transmission d'énergie de proche en proche (via molécules, atomes, électrons, etc.). Elle dépend exclusivement des propriétés physiques du marériau.
+    \item La \textit{convection} est la transmission d'énergie par delà une interface (\textit{e.g.} fluide-solide). Elle dépend des propriétés de conduction des deux milieux au voisinage de l'interface et de l'écoulement dans un voisinage étendu de l'interface.
+    \item Le \textit{rayonnement thermique} est un rayonnement électromagnétique (spectre visible et infrarouge) pour lequel des interactions mécaniques sont possibles avec des éléments de la matière. Les solides qui absorbent les rayonnements sur une épaisseur (très) faible sont dit opaques. Les fluides, les solides restants (\textit{e.g.} verre) et certains gaz (\textit{e.g.}, $CO^2$, $H_2O$, etc.) absorbent le rayonnement partiellement et progressivement. Ils sont dits semi-transparents. Enfin, les gaz simples (\textit{e.g.} $Ar$, $O_2$, $N_2$) sont quasi-parfaitement transparents.
+  \end{itemize}
+
+  Les deux premiers transferts font appel à des lois linéaires\footnote{Dans leur formulation usuelle} tandis que la dernière ne le fait pas du tout. La loi de Stefan-Boltzman régissant le rayonnement est hautement non-linéaire, faisant intervenir $T^4$...
+
+  \section{Transfet de chaleur dans les solides}
+    \section{Conduction: loi de Fourier}
+      Pour un matériau homogène et isotrope, le transfert de chaleur est caractérisé par la densité de flux de chaleur
+      \begin{equation}
+        \vb{q} = - k \grad T
+      \end{equation}
+      Pour rappel, $k = \hat{k}(p, T)$ est la condinuité thermique propre au matériau. Contrairement à d'autres constantes de ce type, elle varie peu dans des intervales de température limités.
+
+      Le flux de chaleur à travers une surface $A$ avec une densité $q(\vb{n})$
+      \begin{equation}
+        \mathcal{Q} = \int_A q(\vb{n}) dA = \int_A \vb{q} \cdot \vb{n} dA
+      \end{equation}
+      L'équation de conservation de la chaleur est alors
+      \begin{equation}
+        \begin{aligned}
+          \rho \pdv{U}{t} &= r - \div \vb{q}\\
+          \rho c \pdv{T}{t} &= r +  \div (j \grad T)\\
+          \recip{\alpha} \pdv{T}{t} &= \frac{r}{k} + \grad^2 T
+        \end{aligned}
+      \end{equation}
+      La diffusivité thermique $\alpha$ représente la facilité avec laquelle le flux de chaleur transmis à un solide se transmet en relèvement de la température.
+
+      \subsubsection{Conduction à travers une plaque, en régime permanent}
+        Soit une plaque telle que l'épaisseur L est beaucoup plus petite que les autres dimensions. En négligeant les effets de bord, la recherche de la température est un problème 1-D.
+        \begin{equation}
+          \begin{aligned}
+            \dv[2]{T}{x} &= 0 \quad \textrm{avec } T(0) = T_0 \textrm{ et } T(L) = T_L\\
+            T(x) &= \frac{T_L - T_0}{L} x + T_0
+          \end{aligned}
+        \end{equation}
+        la densité de flux de chaleur et le flux de chaleur à travers une aire latérale A de la plaque vaut alors
+        \begin{equation}
+          q = -k \frac{T_L - T_0}{L} \quad \mathcal{Q} = Aq = -A k \frac{T_L - T_0}{L}
+        \end{equation}
+        Le problème ici présenté est trop partiel. En effet, la plaque considérée est environnée à ses deux surfaces par des fluides dont on connaît les températures et itensités d'échange. En revanche, la temparature des parois est généralement inconnue et très difficile à mesurer.
+
+    \subsection{Convection: Loi de Newton}
+      La loi de transfert de chaleur d'une paroi de température $T_p$ à un fluide de température moyenne $T_f$ est
+      \begin{equation}
+        \mathcal{Q} = Ah(T_p - T_f)
+      \end{equation}
+      où $A$ est l'aire d'échange et $h$ le coefficient de convection. Il faut faire attention au fait que $h$ n'est pas fixe: il dépend du profil de vitesse à la paroi, des propriétés du fluide (viscosité, $k$, $\rho$, $c$, etc.). Pour ce chapitre, il est cependant considéré constant.
+      \subsubsection{Plaque soumise à convection}
+        Soit une plaque soumise à convection. Le profil de température au long de la plaque est continu. Les températures des parois sont $T_0$ et $T_L$ et les températures loin des parois sont $T_{\infty 0}$ et $T_{\infty L}$. Les C.L. sécrivent via le fait que le flux conduit par la plaque est le même que celui qui en sort par convection.
+        \begin{equation}
+          \begin{aligned}
+            -k \dv{T}{x} \eval_0 &= h_0 (T_{\infty 0} - T_0) \quad \textrm{en } x = 0,\\
+            -k \dv{T}{x} \eval_L &= h_L (T_{L} - T_{\infty L}) \quad \textrm{en } x = L
+          \end{aligned}
+        \end{equation}
+        On a alors
+        \begin{equation}
+          T = \frac{(T_{\infty L} - T_{\infty 0})\left(\frac{x}{L} + \frac{k}{h_0 L}\right)}{1 + \frac{k}{h_0 L} + \frac{k}{h_L L}} + T_{\infty 0}
+          = \frac{(T_{\infty L} - T_{\infty 0})\left(\frac{x}{L} + \recip{Bi_0}\right)}{1 + \recip{Bi_0} + \recip{Bi_L}} + T_{\infty 0}
+        \end{equation}
+        où $Bi$ est le nombre de Biot estimé à une paroi: $Bi_0 = \frac{h_0 L}{k}$ et $Bi_L = \frac{h_L L}{k}$. Celui-ci quantifie le rapport entre effets convectifs et conductifs.
+
+      \subsubsection{Génération interne de chaleur dans un cylindre}
+        Soit un cylindre de rayon $R$ sous génération interne de chaleur via effet Joule par un courant éléctrique dans le cylindre. Le passage d'électricité est irréversible et la transformation électricité-chaleur est une dissipation électrique. En supposant le courant uniformément réparti, la densité de puissance calorifique fournie est
+        \begin{equation}
+          g = \frac{I^2}{\sigma}
+        \end{equation}
+        où $\sigma$ est la condcuctiblité électrique $[\Omega^{-1}]$ et I est la densité de courant $[Am^{-2}]$. En régime permanent, l'équation de la chaleur est
+        \begin{equation}
+          \frac{g}{k} + \recip{r}\dv{r}\left(r \dv{T}{r}\right) = 0
+        \end{equation}
+        En supposant la dissipation de chaleur par convection, les C.L.\footnote{La deuxième traduit impossibilité de discontinuité de la densité de flux en l'absence de source le long de l'axe du cylindre} sont
+        \begin{equation}
+          \begin{aligned}
+            -k \dv{T}{r} \eval_R &= h (T_R - T_\infty) \quad \textrm{en } r = R,\\
+            -k \dv{T}{r} \eval_0 &= 0 \quad \textrm{en } r = 0
+          \end{aligned}
+        \end{equation}
+        Le résultat est alors
+        \begin{equation}
+          T = \frac{gR^2}{4k}\left(1-\left(\frac{r}{R}\right)^2\right) + \frac{gR}{2h} + T_\infty
+        \end{equation}
+
+    \subsection{Notion de résistance thermique}
+      Le flux $\mathcal{Q}$ peut s'écrire sous trois formes
+      \begin{equation}
+        \begin{aligned}
+          \mathcal{Q} &= \frac{T_{\infty 0} - T_0}{\recip{Ah_0}} \quad \textrm{(convection)}\\
+          \mathcal{Q} &= \frac{T_0 - T_L}{\frac{T_0}{Ak}} \quad \textrm{(conduction)}\\
+          \mathcal{Q} &= \frac{T_L - T_{\infty L}}{\recip{Ah_L}} \quad \textrm{(convection)}
+        \end{aligned}
+      \end{equation}
+      Chacune de ces expression est analogue à la loi d'Ohm $I = \frac{\Delta U}{R}$ où on pourrait distinguer deux types de résistances thermiques: conductive ($\frac{L}{Ak}$) et convective ($\recip{Ah}$). Un écart de température est ainsi un écart de potentiel thermique et le nombre de Biot le rapport entre résistivité conductivité et conductive. L'analogie peut être étendue au cas tridimensionnel en comparant la loi de Fourier à la forme vectorielle de la loi d'Ohm
+      \begin{multicols}{2}
+        \begin{equation}
+          \vb{q} = - k  \grad T \nonumber
+        \end{equation}
+
+        \begin{equation}
+          \vb{j} = - \sigma \grad U
+        \end{equation}
+      \end{multicols}
+      où j est la densité de courant, $\sigma$ la conductance unitaire ($[\si{\Omega^{-1} m^{-2}}]$). On peut par ailleurs aussi établir que
+      \begin{equation}
+        \begin{aligned}
+          \mathcal{Q} &= \frac{T_{\infty 0} - T_0}{\recip{Ah_0}} = \frac{T_{0} - T_L}{\frac{L}{Ak}} = \frac{T_L - T_{\infty L}}{\recip{Ah_L}}\\
+          &= \frac{T_{\infty 0} - T_{\infty L}}{\recip{Ah_0} + \frac{L}{Ak} + \recip{Ah_L}}
+        \end{aligned}
+      \end{equation}
+
+      Il peut être utile de définir un paramètre unique pour le transfet de chaleur. U, le coefficient global de transfert de chaleur $[\si{W \cdot m^{-2} \cdot K}]$est alors défini par
+      \begin{equation}
+        \mathcal{Q} = AU(T_{\infty 0} - T_{\infty L})
+      \end{equation}
+      avec, pour plusieurs parois
+      \begin{equation}
+        \recip{AU} = R_{tot} = \recip{Ah_0} + \sum_i \frac{L_i}{Ak_i} + \recip{Ah_L}
+      \end{equation}
+
+      \subsubsection{Conduction dans un tube}
+        En appliquant le même raisonnement sur un tube, l'équation de Laplace s'écrit
+        \begin{equation}
+          \begin{aligned}
+            \recip{r}\dv{r}\left(r\dv{T}{r}\right) &= 0
+            T &= a log(r) + b
+          \end{aligned}
+        \end{equation}
+        On définit les températures intérieure $T(r_i)= T_i$ et extérieure $T(r_e) = T_e$ et on obtient la solution
+        \begin{equation}
+          T = \frac{(T_e - T_i) \log(r)}{\log\left(\frac{r_e}{r_i}\right)} - \frac{(T_e - T_i) \log(r_e)}{\log\left(\frac{r_e}{r_i}\right)} - T_e
+        \end{equation}
+        La densité de flux chaleur et le flux à travers une longueur L valent
+        \begin{multicols}{2}
+          \begin{equation}
+            q = -k \frac{T_e - T_i}{r\log\left(\frac{r_e}{r_i}\right)} \nonumber
+          \end{equation}
+
+          \begin{equation}
+            \mathcal{Q} = 2\pi Lrq = -2\pi L k \frac{T_e - T_i}{\log\left(\frac{r_e}{r_i}\right)}
+          \end{equation}
+        \end{multicols}
+
+        % Si on veut introduire les effets conductifs, on a
+        % \begin{itemize}
+        %   \item en $r = r_i$, $\quad -k \dv{T}{r}\eval_{r_i} = h_i (T_{\infty i} - T_i)$
+        %   \item en $r = r_e$, $\quad -k \dv{T}{r}\eval_{r_e} = h_e (T_e - T_{\infty e})$
+        % \end{itemize}
+
 
 \begin{appendix}
   \input{glossaire.tex}
