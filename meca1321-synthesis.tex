@@ -32,7 +32,7 @@
 \tableofcontents
 
 \input{chapter1.tex}
-\input{chapter2.tex}
+% \input{chapter2.tex}
 
 \chapter{Transfert de chaleur}
   Un transfert de chaleur est un transfert d'énergie créé par un écart de température entre 2 points d'un milieu ou entre mileux distincs. Il existe 3 modes de transferts de chaleur: conduction, convection et rayonnement. Les deux premiers sont régis par des équations locaales (dérivées partielles) et le dernier par des équations globales (intégrales).
@@ -207,7 +207,7 @@
     \begin{equation}
       Nu = \frac{q_w D}{k (T_w - T_m)} = \frac{h D}{k}
     \end{equation}
-    où $T_w$ est la température à la paroi, $q_w$ la densité de flux de chaleur à la paroi $q_w = k \frac{dT}{dr}\eval_r=R$ et $D$ la longueur caractéristique (dans le cas d'un conduit, le rayon $R$).
+    où $T_w$ est la température à la paroi, $q_w$ la densité de flux de chaleur à la paroi $q_w = k \frac{dT}{dr}\eval_r=R$ et $D$ le diamètre de la conduite.
 
     Il est aussi très utile de considérer le bilan d'énergie perdue/acquise par l'écoulement sur une longueur $dx$. On intègre d'abord le terme de dissipation visqueuse au travers de la section
     \begin{equation}
@@ -233,6 +233,101 @@
 
     Comme $\frac{T - T_w}{T_m - T_w}$ ne dépend que de $r$, c'est le cas aussi pour la dérivée. En $R$, celle-ci vaut $-Nu/D$: Nusselt est indépendant de $x$ pour le transfert thermique établi.
 
+    \subsection{Transfert thermique établi avec température de paroi constante}
+      À température de paroi constante, on a que $\dv{T_w}{x} = 0$ et donc
+      \begin{equation}
+        \pdv{T}{x} = \frac{T-T_w}{T_m - T_w} \dv{T_m}{x}
+      \end{equation}
+
+      \subsubsection{Cas à température moyenne d'écoulement constante}
+        Si la température moyenne d'écoulement est constante, on a
+        \begin{equation}
+          \pdv{T}{x} = 0
+        \end{equation}
+        La conduction de chaleur dans la direction axiale s'annule ici parfaitement. L'équation de l'énergie est alors
+        \begin{align}
+          0 &= k \recip{r} \dv{r}\left(r\dv{T}{r}\right) + \mu \left(\dv{u}{r}\right)^2\\
+          k \recip{r} \dv{r}\left(r\dv{r}(T-T_w)\right) &= - 16\mu \frac{u_m^2}{R^2} \left(\frac{r}{R}\right)^2 \\ \intertext{Par intégration}
+          T-T_w &= \frac{\mu u_m^2}{k} \left(1-\left(\frac{r}{R}\right)^4\right)
+        \end{align}
+        La température maximale est la rempérature au centre $T_c$
+        \begin{equation}
+          T_c - T_w = \mu \frac{\mu u_m^2}{k}
+        \end{equation}
+        Le transfert de chaleur à la paroi est
+        \begin{equation}
+          q_w = k \dv{T}{r}\eval_{r=R} = -4\mu \frac{u_m^2}{R} = -4k \frac{T_c - T_w}{R}
+        \end{equation}
+        On obtient aussi (avec $dA = rd\theta dr$ et $\eta = r/R$)
+        \begin{equation}
+          T_m - T_w = \recip{u_m \pi R^2} \frac{\mu}{k} u_m^2 2 u_m 2\pi R^2 \int_0^1(1-\eta^4)(1-\eta^2) \eta d\eta = \frac{5}{6} \frac{\mu}{k} u_m^2
+        \end{equation}
+        Et donc
+        \begin{multicols}{3}
+          \begin{equation}
+              \frac{T-T_w}{T_m - T_w} = \frac{6}{5} \left(1 - \left(\frac{r}{R}\right)^4\right) \nonumber
+          \end{equation}
+
+          \begin{equation}
+            q_w = -\frac{24}{5}k\frac{T_m - T_w}{R} \nonumber
+          \end{equation}
+
+          \begin{equation}
+            Nu = \frac{48}{5} = 9.60
+          \end{equation}
+        \end{multicols}
+
+      \subsubsection{Cas à température d'écoulement moyenne d'écoulement variable}
+        Dans ce cas, l'équation de l'énergie
+        \begin{equation}
+          \rho \frac{T-T_w}{T_m - T_w}\dv{T_m}{x} 2 u_m \left(1 - \left(\frac{r}{R}\right)^2\right) = k \dv{r}\left(r \dv{r}(T-T_w)\right)
+        \end{equation}
+        En répétant les étapes précédentes, on peut obtenir un nombe de Nusselt $Nu \simeq 3.66$. Ce nombre est constant selon $x$, malgré le fait que $q_w$ ne le soit pas.
+
+    \subsection{Transfert thermique établi avec température de paroi et température moyenne linéaires et de même pente}
+      \begin{equation}
+        \pdv{T}{x} = \dv{T_w}{x} = \dv{T_m}{x} = cste \quad \Longrightarrow \quad \pdv[2]{T}{x} = 0
+      \end{equation}
+      Il n'y a pas de conduction de chaleur dans la direction axiale. L'équation de bilan d'énergie implique un $q_w$ constant en $x$.
+      L'équation d'énergie devient alors
+      \begin{equation}
+        \rho c \dv{T}{x} 2 u_m \left(1 - \left(\frac{r}{R}\right)^2\right) &= k \recip{r} \dv{r}\left(r \dv{r}(T - T_w)\right) + 16 \mu \frac{u_m^2}{R^2} \left(\frac{r}{R}\right)^2
+      \end{equation}
+      Par intégration
+      \begin{equation}
+        T-T_w = \frac{\mu u_m^2}{k} \left(1-\left(\frac{r}{R}\right)^4\right) - \frac{\rho c}{8k} \dv{T_w}{x} u_m R^2 \left(3-4\left(\frac{r}{R}\right)^2 + \left(\frac{r}{R}\right)^4\right)
+      \end{equation}
+      Il s'agit de la solution exacte du problème. Définissons le paramètre adimensionnel $\beta$
+      \begin{equation}
+        \beta = \frac{\frac{\rho c}{k}\dv{T_w}{x} u_m R^2}{\frac{\mu}{k}{u_m^2}} = \rho c \dv{T_w}{x}\frac{R^2}{\mu u_m}
+      \end{equation}
+      On a alors
+      \begin{equation}
+        \begin{aligned}
+          T-T_w &= \frac{\mu u_m^2}{k} \left( \left(1-\left(\frac{r}{R}\right)^4\right) - \frac{\beta}{8} \left(3-4\left(\frac{r}{R}\right)^2 + \left(\frac{r}{R}\right)^4\right)\right)\\
+          T_m -T_w &= \frac{\mu u_m^2}{k} \left(\frac{5}{6} - \frac{11}{48}\beta\right)\\
+          \frac{q_w D}{k} &= - \frac{\mu}{k} u_m^2 (8-\beta)\\
+          \frac{T-T_w}{T_m - T_w} &= \frac{\left(1-\left(\frac{r}{R}\right)^4\right) - \frac{\beta}{8} \left(3-4\left(\frac{r}{R}\right)^2 + \left(\frac{r}{R}\right)^4\right)}{\frac{5}{6} - \frac{11}{48}\beta}\\
+          Nu &= \frac{q_w}{k(T_w - T_m)} = \frac{8-\beta}{\frac{5}{6} - \frac{11}{48}\beta}
+        \end{aligned}
+      \end{equation}
+
+      On constate que $\beta=0$ correspond au cas à température de paroi constante tandis que $\beta=8$ correspond à un cas adiabatique. $\beta=\frac{40}{11}$ correspond à un cas $Nu \rightarrow \infty$. On note aussi le cas $\beta \rightarrow \pm \infty$. On a alors
+      \begin{equation}
+        \begin{aligned}
+          T-T_w &= -\frac{\rho c}{8k} \dv{T_w}{x} u_m R^2 \left(3-4\left(\frac{r}{R}\right)^2 + \left(\frac{r}{R}\right)^4\right)\\
+          T_m -T_w &= - \frac{11}{48} \frac{\rho c}{k} \dv{T_w}{x} u_m R^2 \\
+          q_w &= -\recip{2} \rho c \dv{T_w}{x} u_m R\\
+          \frac{T-T_w}{T_m - T_w} &= \frac{6}{11}\left(3-4\left(\frac{r}{R}\right)^2 + \left(\frac{r}{R}\right)^4\right)\\
+          Nu &= \frac{q_w}{k(T_w - T_m)} = \frac{48}{11}
+        \end{aligned}
+      \end{equation}
+      On a aussi quel que soit $\beta$
+      \begin{equation}
+        \frac{T-T_w}{T_m-T_w} = \frac{9}{8} \quad \textrm{ en } \frac{r}{R} = \recip{2}
+      \end{equation}
+
+    
 
 \begin{appendix}
   \input{glossaire.tex}
