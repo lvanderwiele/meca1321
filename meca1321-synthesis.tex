@@ -18,6 +18,12 @@
 
 \usetikzlibrary{babel}
 
+\usetikzlibrary{external}
+\tikzexternalize
+\tikzset{%
+  external/prefix=tikz/,
+}
+
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\dvm}[2]{\frac{D #1}{D #2}}
 \newcommand{\recip}[1]{\frac{1}{#1}}
@@ -34,7 +40,7 @@
 \tableofcontents
 
 \input{chapter1.tex}
-% \input{chapter2.tex}
+\input{chapter2.tex}
 
 \chapter{Transfert de chaleur}
   Un transfert de chaleur est un transfert d'énergie créé par un écart de température entre 2 points d'un milieu ou entre mileux distincs. Il existe 3 modes de transferts de chaleur: conduction, convection et rayonnement. Les deux premiers sont régis par des équations locaales (dérivées partielles) et le dernier par des équations globales (intégrales).
