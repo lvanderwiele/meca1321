@@ -34,7 +34,7 @@
 \tableofcontents
 
 \input{chapter1.tex}
-\input{chapter2.tex}
+% \input{chapter2.tex}
 
 \chapter{Transfert de chaleur}
   Un transfert de chaleur est un transfert d'énergie créé par un écart de température entre 2 points d'un milieu ou entre mileux distincs. Il existe 3 modes de transferts de chaleur: conduction, convection et rayonnement. Les deux premiers sont régis par des équations locaales (dérivées partielles) et le dernier par des équations globales (intégrales).
@@ -371,6 +371,13 @@
         \label{fig:profilDiffTempPos}
       \end{figure}
 
+      \begin{figure}[!h]
+        \centering
+        \input{nusseltVar.tex}
+        \caption{Variation du nombre de Nusselt en fonction de $\beta$ pour le transfert thermique établi en conduite circulaire}
+        \label{fig:nusseltVar}
+      \end{figure}
+      
     \subsection{Entrée thermique: le problème de Grätz}
       Considérons le problème du développement d'un profil de température dans un écoulement établi suite à un changement brusque de température. Pour $x<0$, $T=T_0$ et, pour $x>0$, $T=T_w\neq T_0$.
 
@@ -458,10 +465,6 @@
       \end{equation}
       $\Delta T_m$ est ici la référence pour la différence globale de température, une "moyenne logarithmique".
 
-      \begin{figure}[!h]
-        \centering
-        \input{nusseltVar.tex}
-      \end{figure}
 
 
 
