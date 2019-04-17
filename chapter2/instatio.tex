@@ -1,4 +1,4 @@
-% !TEX root=meca1321-synthesis.tex
+% !TEX root = ../meca1321-synthesis.tex
 \tikzsetnextfilename{instatio}
 \begin{tikzpicture}
   \draw (-5,-3) -- (4,-3);
@@ -19,43 +19,43 @@
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\bold{\b},%
                 after line=\xdef\aold{\a}\xdef\bold{\b}]%
-                {instatio.csv}{}{%
+                {chapter2/instatio.csv}{}{%
     \draw (\bold*6-3, \aold*3) -- (\b*6-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\cold{\c},%
                 after line=\xdef\aold{\a}\xdef\cold{\c}]%
-                {instatio.csv}{}{%
+                {chapter2/instatio.csv}{}{%
     \draw (\cold*6-3, \aold*3) -- (\c*6-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\dold{\d},%
                 after line=\xdef\aold{\a}\xdef\dold{\d}]%
-                {instatio.csv}{}{%
+                {chapter2/instatio.csv}{}{%
     \draw (\dold*6-3, \aold*3) -- (\d*6-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\eold{\e},%
                 after line=\xdef\aold{\a}\xdef\eold{\e}]%
-                {instatio.csv}{}{%
+                {chapter2/instatio.csv}{}{%
     \draw (\eold*6-3, \aold*3) -- (\e*6-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\fold{\f},%
                 after line=\xdef\aold{\a}\xdef\fold{\f}]%
-                {instatio.csv}{}{%
+                {chapter2/instatio.csv}{}{%
     \draw (\fold*6-3, \aold*3) -- (\f*6-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\gold{\g},%
                 after line=\xdef\aold{\a}\xdef\gold{\g}]%
-                {instatio.csv}{}{%
+                {chapter2/instatio.csv}{}{%
     \draw (\gold*6-3, \aold*3) -- (\g*6-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\hold{\h},%
                 after line=\xdef\aold{\a}\xdef\hold{\h}]%
-                {instatio.csv}{}{%
+                {chapter2/instatio.csv}{}{%
     \draw (\hold*6-3, \aold*3) -- (\h*6-3,\a*3);
   }
   \draw (-3, 0) node [above left] {\footnotesize $\zeta=0$};

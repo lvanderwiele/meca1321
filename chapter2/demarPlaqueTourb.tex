@@ -1,4 +1,4 @@
-% !TEX root=meca1321-synthesis.tex
+% !TEX root = ../meca1321-synthesis.tex
 \tikzsetnextfilename{demarPlaqueTourb}
 \begin{tikzpicture}
     \draw (-2, -2.5) -- (2.5, -2.5);
@@ -17,25 +17,25 @@
     \csvreader[ head to column names,%
                   late after head=\xdef\aold{\a}\xdef\bold{\b},%
                   after line=\xdef\aold{\a}\xdef\bold{\b}]%
-                  {demarPlaqueTourb.csv}{}{%
+                  {chapter2/demarPlaqueTourb.csv}{}{%
       \draw (\bold*2-2, \aold/2-2.5) -- (\b*2-2,\a/2-2.5);
     }
     \csvreader[ head to column names,%
                   late after head=\xdef\aold{\a}\xdef\cold{\c},%
                   after line=\xdef\aold{\a}\xdef\cold{\c}]%
-                  {demarPlaqueTourb.csv}{}{%
+                  {chapter2/demarPlaqueTourb.csv}{}{%
       \draw (\cold*2-2, \aold/2-2.5) -- (\c*2-2,\a/2-2.5);
     }
     \csvreader[ head to column names,%
                   late after head=\xdef\aold{\a}\xdef\dold{\d},%
                   after line=\xdef\aold{\a}\xdef\dold{\d}]%
-                  {demarPlaqueTourb.csv}{}{%
+                  {chapter2/demarPlaqueTourb.csv}{}{%
       \draw (\dold*2-2, \aold/2-2.5) -- (\d*2-2,\a/2-2.5);
     }
     \csvreader[ head to column names,%
                   late after head=\xdef\aold{\a}\xdef\eold{\e},%
                   after line=\xdef\aold{\a}\xdef\eold{\e}]%
-                  {demarPlaqueTourb.csv}{}{%
+                  {chapter2/demarPlaqueTourb.csv}{}{%
       \draw (\eold*2-2, \aold/2-2.5) -- (\e*2-2,\a/2-2.5);
     }
     \draw (-0.7, -1.9) node {\footnotesize $1$};

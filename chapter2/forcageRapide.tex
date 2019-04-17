@@ -1,4 +1,4 @@
-% !TEX root=meca1321-synthesis.tex
+% !TEX root = ../meca1321-synthesis.tex
 \tikzsetnextfilename{forcageRapide}
 \begin{tikzpicture}[scale=0.75]
   \draw (-4,-3) -- (4,-3);
@@ -19,25 +19,25 @@
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\bold{\b},%
                 after line=\xdef\aold{\a}\xdef\bold{\b}]%
-                {forcageRapide.csv}{}{%
+                {chapter2/forcageRapide.csv}{}{%
     \draw (\bold*6*4-3, \aold*3) -- (\b*6*4-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\cold{\c},%
                 after line=\xdef\aold{\a}\xdef\cold{\c}]%
-                {forcageRapide.csv}{}{%
+                {chapter2/forcageRapide.csv}{}{%
     \draw (\cold*6*4-3, \aold*3) -- (\c*6*4-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\dold{\d},%
                 after line=\xdef\aold{\a}\xdef\dold{\d}]%
-                {forcageRapide.csv}{}{%
+                {chapter2/forcageRapide.csv}{}{%
     \draw (\dold*6*4-3, \aold*3) -- (\d*6*4-3,\a*3);
   }
   \csvreader[ head to column names,%
                 late after head=\xdef\aold{\a}\xdef\eold{\e},%
                 after line=\xdef\aold{\a}\xdef\eold{\e}]%
-                {forcageRapide.csv}{}{%
+                {chapter2/forcageRapide.csv}{}{%
                 \draw (\eold*6*4-3, \aold*3) -- (\e*6*4-3,\a*3);
   }
   \draw (-1.5, 0.5) node  {\footnotesize $\zeta\omega^\ast = 0$};
