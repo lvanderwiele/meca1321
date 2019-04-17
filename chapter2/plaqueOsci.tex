@@ -1,0 +1,66 @@
+% !TEX root=meca1321-synthesis.tex
+\tikzsetnextfilename{plaqueOsci}
+\begin{tikzpicture}
+  \draw (-3, 3) -- (-3, -3);
+  \draw (-3, -3) -- (3, -3);
+  \draw (3, 3) -- (3, -3);
+  \foreach \i in {0, 2,..., 6}
+  {
+    \draw (-3.2, \i-3) node [left] {$\i$};
+    \draw (-3, \i-3) -- ++(-0.2, 0);
+  }
+  \foreach \i in {-1,0,1}
+  {
+    \draw (\i*3, -3.2) node [below] {$\i$};
+    \draw (\i*3, -3) -- ++(0, -0.2);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\bold{\b},%
+                after line=\xdef\aold{\a}\xdef\bold{\b}]%
+                {plaqueOsci.csv}{}{%
+    \draw (\bold*3, \aold-3) -- (\b*3,\a-3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\cold{\c},%
+                after line=\xdef\aold{\a}\xdef\cold{\c}]%
+                {plaqueOsci.csv}{}{%
+    \draw (\cold*3, \aold-3) -- (\c*3,\a-3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\dold{\d},%
+                after line=\xdef\aold{\a}\xdef\dold{\d}]%
+                {plaqueOsci.csv}{}{%
+    \draw (\dold*3, \aold-3) -- (\d*3,\a-3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\eold{\e},%
+                after line=\xdef\aold{\a}\xdef\eold{\e}]%
+                {plaqueOsci.csv}{}{%
+    \draw (\eold*3, \aold-3) -- (\e*3,\a-3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\fold{\f},%
+                after line=\xdef\aold{\a}\xdef\fold{\f}]%
+                {plaqueOsci.csv}{}{%
+    \draw (\fold*3, \aold-3) -- (\f*3,\a-3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\gold{\g},%
+                after line=\xdef\aold{\a}\xdef\gold{\g}]%
+                {plaqueOsci.csv}{}{%
+    \draw (\gold*3, \aold-3) -- (\g*3,\a-3);
+  }
+  \csvreader[ head to column names,%
+                late after head=\xdef\aold{\a}\xdef\hold{\h},%
+                after line=\xdef\aold{\a}\xdef\hold{\h}]%
+                {plaqueOsci.csv}{}{%
+    \draw (\hold*3, \aold-3) -- (\h*3,\a-3);
+  }
+  \draw (2.8, -2.7) node {\footnotesize $0$};
+  \draw (2, -2.2) node {\footnotesize $\pi/6$};
+  \draw (1.3, -2.7) node {\footnotesize $\pi/3$};
+  \draw (0.6, -2.5) node {\footnotesize $\pi/2$};
+  \draw (-0.2, -2.8) node {\footnotesize $2\pi/3$};
+  \draw (-1.7, -2.9) node {\footnotesize $5\pi/6$};
+  \draw (-2, -2.3) node {\footnotesize $\omega t = \pi$};
+\end{tikzpicture}
