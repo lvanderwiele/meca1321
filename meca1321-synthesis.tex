@@ -7,14 +7,16 @@
 \usepackage{physics}
 \usepackage{fullpage}
 \usepackage{multicol}
-\usepackage{siunitx}
-\usepackage{hyperref}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{csvsimple}
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest}
+\usepackage{circuitikz}
+\usepackage{xstring}
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\usetikzlibrary{babel}
 
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\dvm}[2]{\frac{D #1}{D #2}}
@@ -32,7 +34,7 @@
 \tableofcontents
 
 \input{chapter1.tex}
-% \input{chapter2.tex}
+\input{chapter2.tex}
 
 \chapter{Transfert de chaleur}
   Un transfert de chaleur est un transfert d'énergie créé par un écart de température entre 2 points d'un milieu ou entre mileux distincs. Il existe 3 modes de transferts de chaleur: conduction, convection et rayonnement. Les deux premiers sont régis par des équations locaales (dérivées partielles) et le dernier par des équations globales (intégrales).
@@ -45,7 +47,7 @@
   Les deux premiers transferts font appel à des lois linéaires\footnote{Dans leur formulation usuelle} tandis que la dernière ne le fait pas du tout. La loi de Stefan-Boltzman régissant le rayonnement est hautement non-linéaire, faisant intervenir $T^4$...
 
   \section{Transfet de chaleur dans les solides}
-    \section{Conduction: loi de Fourier}
+    \subsection{Conduction: loi de Fourier}
       Pour un matériau homogène et isotrope, le transfert de chaleur est caractérisé par la densité de flux de chaleur
       \begin{equation}
         \vb{q} = - k \grad T
@@ -79,6 +81,13 @@
           q = -k \frac{T_L - T_0}{L} \quad \mathcal{Q} = Aq = -A k \frac{T_L - T_0}{L}
         \end{equation}
         Le problème ici présenté est trop partiel. En effet, la plaque considérée est environnée à ses deux surfaces par des fluides dont on connaît les températures et itensités d'échange. En revanche, la temparature des parois est généralement inconnue et très difficile à mesurer.
+
+        \begin{figure}[!h]
+          \centering
+          \input{profilTempConv.tex}
+          \caption{Profil de température dans une plaque plane avec conduction (dans la plaque) et convection (en dehors) représentées}
+          \label{fig:profilTempPlane}
+        \end{figure}
 
     \subsection{Convection: Loi de Newton}
       La loi de transfert de chaleur d'une paroi de température $T_p$ à un fluide de température moyenne $T_f$ est
@@ -149,6 +158,13 @@
         \end{aligned}
       \end{equation}
 
+      \begin{figure}[!h]
+        \centering
+        \input{profilTempRes.tex}
+        \caption{Circuit électrique équivalent au transfert de chaleur à travers une plaque}
+        \label{fig:profilTempRes}
+      \end{figure}
+
       Il peut être utile de définir un paramètre unique pour le transfet de chaleur. U, le coefficient global de transfert de chaleur $[\si{W \cdot m^{-2} \cdot K}]$est alors défini par
       \begin{equation}
         \mathcal{Q} = AU(T_{\infty 0} - T_{\infty L})
@@ -213,6 +229,13 @@
     \begin{equation}
       \int_A \left(\dv{u}{r}\right)^2 dA = 16 \mu u_m^2 2\pi \int_0^R \left(\frac{r}{R}\right)^2 \frac{r}{R} \frac{dr}{R} = 32 \pi\mu u_m^2 \int_0^1 \eta^3 d\eta = 8 \pi \mu u_m^2
     \end{equation}
+    \begin{figure}[!h]
+      \centering
+      \input{transThermCond.tex}
+      \caption{Transfert thermique établi en conduite circulaire}
+      \label{fig:transthermCond}
+    \end{figure}
+
     On obtient alors le bilan suivant
     \begin{equation}
       \begin{aligned}
@@ -232,6 +255,13 @@
     \end{equation}
 
     Comme $\frac{T - T_w}{T_m - T_w}$ ne dépend que de $r$, c'est le cas aussi pour la dérivée. En $R$, celle-ci vaut $-Nu/D$: Nusselt est indépendant de $x$ pour le transfert thermique établi.
+
+    \begin{figure}[!h]
+      \centering
+      \input{bilanEnerg.tex}
+      \caption{Bilan d'énergie thermique perdue (acquise) par l'écoulemeent établi sur un élément différentiel de longueur $dx$}
+      \label{bilanEnerg}
+    \end{figure}
 
     \subsection{Transfert thermique établi avec température de paroi constante}
       À température de paroi constante, on a que $\dv{T_w}{x} = 0$ et donc
@@ -291,7 +321,7 @@
       Il n'y a pas de conduction de chaleur dans la direction axiale. L'équation de bilan d'énergie implique un $q_w$ constant en $x$.
       L'équation d'énergie devient alors
       \begin{equation}
-        \rho c \dv{T}{x} 2 u_m \left(1 - \left(\frac{r}{R}\right)^2\right) &= k \recip{r} \dv{r}\left(r \dv{r}(T - T_w)\right) + 16 \mu \frac{u_m^2}{R^2} \left(\frac{r}{R}\right)^2
+        \rho c \dv{T}{x} 2 u_m \left(1 - \left(\frac{r}{R}\right)^2\right) = k \recip{r} \dv{r}\left(r \dv{r}(T - T_w)\right) + 16 \mu \frac{u_m^2}{R^2} \left(\frac{r}{R}\right)^2
       \end{equation}
       Par intégration
       \begin{equation}
@@ -327,7 +357,113 @@
         \frac{T-T_w}{T_m-T_w} = \frac{9}{8} \quad \textrm{ en } \frac{r}{R} = \recip{2}
       \end{equation}
 
-    
+      \begin{figure}[!h]
+        \centering
+        \input{profilDiffTempNeg.tex}
+        \caption{Profils adimensonnels de différence de température pour le transfert thermique établi en conduite circulaire: cas avec $\beta \geq 0$}
+        \label{fig:profilDiffTempNeg}
+      \end{figure}
+
+      \begin{figure}[!h]
+        \centering
+        \input{profilDiffTempPos.tex}
+        \caption{Profils adimensonnels de différence de température pour le transfert thermique établi en conduite circulaire: cas avec $\beta \leq 0$}
+        \label{fig:profilDiffTempPos}
+      \end{figure}
+
+    \subsection{Entrée thermique: le problème de Grätz}
+      Considérons le problème du développement d'un profil de température dans un écoulement établi suite à un changement brusque de température. Pour $x<0$, $T=T_0$ et, pour $x>0$, $T=T_w\neq T_0$.
+
+
+      En considérant le cas avec dissipatiton visqueuse négligeable, l'équation d'énergie est
+      \begin{equation}
+        \rho c u \pdv{T}{x} = k \recip{r} \pdv{r}\left(r\pdv{T}{r}\right)
+      \end{equation}
+      Avec la diffusivité thermique $\alpha = \frac{k}{\rho c} = \frac{\nu}{Pr}$
+      \begin{equation}
+        u \pdv{T}{x} = \alpha \recip{r} \pdv{r}\left(r\pdv{T}{r}\right)
+      \end{equation}
+
+      Dans le cas d'un écoulement de Poiseuille, $u = 2u_m \left(1 - \left(\frac{r}{R}\right)^2\right)$
+      \begin{equation}
+        2u_m \left(1 - \left(\frac{r}{R}\right)^2\right) \pdv{T}{x} = \alpha \recip{r} \pdv{r} \left(r\pdv{T}{r}\right)
+      \end{equation}
+      Les variables adimensionnel sont
+      \begin{equation}
+        T^\ast = \frac{T-T_w}{T_0 - T_w}, \quad \eta = \frac{r}{R}, \quad \zeta = \recip{Re_D Pr} \frac{x}{D} = \recip{Pe_D} \frac{x}{D}
+      \end{equation}
+      et $Pe_D = Re_D Pr$, le nombre de Peclet. L'équation devient
+      \begin{equation}
+        (1-\eta^2) \pdv{T^\ast}{\zeta} = \frac{2}{\eta} \pdv{\eta} \left(\eta \pdv{T^\ast}{\eta}\right), \quad T^\ast (\eta, 0) = 1, \quad T^\ast (1, \zeta) = 0
+      \end{equation}
+      L'équation est à variable séparable, de la forme
+      \begin{equation}
+        T^\ast (\eta, \zeta) = f(\eta)g(\zeta)
+      \end{equation}
+      Après résolution\footnote{Voir page 79}, on obtient
+      \begin{equation}
+        \begin{aligned}
+          T^\ast (\eta, \zeta) &= 2 \sum_{n=1}^\infty \frac{J_0 (\lambda_n \eta)}{\lambda_n J_1(\lambda_n)} e^{-4\lambda_n^2 \zeta}\\
+          \pdv{T^\ast}{\eta} &= -2 \sum_{n=1}^\infty \frac{J_1(\lambda_n \eta)}{J_1(\lambda_n)} e^{-4\lambda_n^2 \zeta}
+        \end{aligned}
+      \end{equation}
+
+      Le transfeert de chaleur à la paroi
+      \begin{equation}
+        q_w(\zeta) = k \pdv{T}{r}\eval_{r=R} = \frac{k}{R}(T_0 - T_w) \pdv{T^\ast}{\eta} \eval_{\eta = 1} = -\frac{k}{R} (T_0 - T_w) 2 \sum_{n=1}^\infty e^{-4 \lambda_n^2 \zeta}
+      \end{equation}
+      La température moyenne de référence utilisée pour définir le nombre de Nusselt est
+      \begin{equation}
+        \frac{T_m - T_w}{T_0 - T_w} = T_m^\ast(\zeta) = \frac{\int T^\ast u dA}{u_m A} = \frac{\int T^\ast dA}{A} = 2 \int_0^1 T^\ast(\eta, \zeta) \eta d\eta = 4 \sum_{n=1}^{\infty} \recip{\lambda_n^2}e^{-4 \lambda_n^2 \zeta}
+      \end{equation}
+      où on utilis $u=u_m$ dans un problème simplifié avec écoulement bouchon. Le nombre de Nusselt
+      \begin{equation}
+        Nu(\zeta) = \frac{q_w D}{k (T_w - T_m)} = \frac{\sum_{n=1}{\infty} e^{-4 \lambda_n^2 \zeta}}{\sum_{n=1}^\infty \recip{\lambda_n^2} e^{-4 \lambda_n^2 \zeta}}
+      \end{equation}
+
+      La longueur caractéristique est donnée par le terme exponentiel le plus petit: $\zeta_c \approx \recip{4 \lambda_1^2}$. Le transfert de chaleur asymptotique est obtenu
+      \begin{equation}
+        Nu(\zeta > \zeta_c) \approx \lambda_1^2 = 5.78
+      \end{equation}
+
+    \subsection{Nombre de Nusselt moyen}
+      Le flux de chaleur moyen sur une distance $x$ est
+      \begin{equation}
+        q_{w,m} (x) = \recip{x} \int_0^x q_w(x') dx'
+      \end{equation}
+      On peut établir le bilan d'énergie global
+      \begin{equation}
+        2\pi R x q_{w, m}(x) = \pi R^2 \rho u_m c (T_m(x) - T_m(0))
+      \end{equation}
+      qui permet d'établir l'énergie gagnée ou dissipée sur une distance $x$
+      \begin{equation}
+          x q(w, m) = - \frac{D}{4} \rho u_m c (T_m(x) - T_m(0)) = \recip{4}Re_D Pr k (T_m(x) - T_m(0))
+      \end{equation}
+      L'éuation différentielle de bilan peut aussi s'exprimer en terme du nombre de Nusselt
+      \begin{equation}
+        \begin{aligned}
+          d(x q_{w,m}(x)) = q_w(x) dx &= \frac{D}{4} \rho u_m c dT_m\\
+          Nu(x)dx = \frac{q_w(x) D}{k (T_w - T_m)} dx &= \frac{D^2}{4} \frac{\rho u_m c}{k} \frac{dT_m}{T_w - T_m}\\
+          &= \frac{D}{4} Re_D Pr \frac{dT_m}{T_w - T_m}
+        \end{aligned}
+      \end{equation}
+
+      Par conséquent, par intégration,
+      \begin{equation}
+        x Nu(x) = \frac{D}{4} Re_D Pr \log\frac{T_w - T_m(0)}{T_w - T_m(x)}
+      \end{equation}
+      Le nombre de Nusselt est alors le transfert de chaleur moyen normalisé
+      \begin{equation}
+        Nu_m(x) = \frac{q_{w,m}(x) D}{k \Delta T_m} \quad \textrm{avec } \Delta T_m = \frac{T_m(x) - T_m(0)}{\log \frac{T_w - T_m(0)}{T_w - T_m(x)}}
+      \end{equation}
+      $\Delta T_m$ est ici la référence pour la différence globale de température, une "moyenne logarithmique".
+
+      \begin{figure}[!h]
+        \centering
+        \input{nusseltVar.tex}
+      \end{figure}
+
+
 
 \begin{appendix}
   \input{glossaire.tex}
