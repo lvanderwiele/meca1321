@@ -1,0 +1,32 @@
+% !TEX root = ../meca1321-synthesis.tex
+
+\tikzsetnextfilename{gratz}
+\begin{tikzpicture}
+  % Tracé des parois
+  \draw [thick] (-4,1) -- (4,1);
+  \draw [domain=-pi:pi] plot ({sin(deg(\x))/8-3.875},{((\x+pi/2)/8+1});
+  \draw [domain=-pi:pi] plot ({sin(deg(\x))/8+4.125},{((\x+pi/2)/8+1});
+  \draw [thick] (-3.875,-1) -- (4.125,-1);
+  \draw [domain=-pi:pi] plot ({sin(deg(\x))/8-4},{((\x-pi/2)/8-1});
+  \draw [domain=-pi:pi] plot ({sin(deg(\x))/8+4},{((\x-pi/2)/8-1});
+  \foreach \i in {0,...,31}
+  {
+    \pgfmathsetmacro{\x}{(- 4 + \i/4)};
+    \draw (\x,1) -- ++(45:0.5);
+    \draw (\x+1/4,-1) -- ++(-135:0.5);
+  }
+  %Repères et autres flèches
+  \draw (-2,0) node {$\circ$} node [below left] {$0$};
+  \draw [>=latex,->] (-2,0.1) -- (-2,0.9);
+  \draw [>=latex,->] (-1.9,0) -- (-1.1,0);
+  \draw (-2.0,0.9) node [below left] {$\hat{\vb{e}}_y$};
+  \draw (-1.1,0) node [below] {$\hat{\vb{e}}_x$};
+  \draw [ultra thick,>=latex,->] (-0.5,0) -- (0.5,0);
+  \draw (0.5,0) node [right] {$u_m,~\rho,~\mu,~T_m,~k,~c$};
+  \draw [dash pattern= on 0.6cm off 0.2cm on 0.2cm off 0.2cm] (-2,-2) -- (-2,-0.2);
+  \draw [dash pattern= on 0.6cm off 0.2cm on 0.2cm off 0.2cm] (-2,0.2) -- (-2,2);
+  \fill (-0.5, 1.1) [white] rectangle (-1.5, 2);
+  \draw (-1, 1.1) node [above] {$T_w$};
+  \fill (-2.5, 1.1) [white] rectangle (-3.5, 2);
+  \draw (-3, 1.1) node [above] {$T_0$};
+\end{tikzpicture}
