@@ -1,0 +1,211 @@
+% !TEX root = ../meca1321-synthesis.tex
+
+\chapter{Écoulements rampants}
+  Les écoulements rampants, dits "de Stokes" sont les écoulements lents. Leurs termes non-linéaires d'inertie sont supposés négligeables par rapport aux autres termes. Pour les fluides à grandeurs invariables, ces écoulements sont régis par des équations linéaires
+  \begin{equation}
+    \begin{aligned}
+      \div \vb{v} &= 0\\
+      \grad p &= \mu \grad^2 \vb{v}
+    \end{aligned}
+  \end{equation}
+  Selon la divergence de l'équation de quantité de mouvement, la pression est harmonique
+  \begin{equation}
+    \grad^2 p = \div (\grad p) = \mu \div (\grad^2 \vb{v}) = \mu \grad^2(\div \vb{v}) = 0
+  \end{equation}
+  Selon le rotationnel de cette même équation, le tourbillon est également harmonique
+  \begin{equation}
+    0 = \curl(\grad p) = \mu \curl (\grad^2 \vb{v}) = \mu \grad^2 (\curl \vb{v}) = \mu \grad^2 \bs{\omega}
+  \end{equation}
+  De plus comme, $\grad^2 \bs{\psi} = -\bs{\omega}$, on a $\grad^2(\grad^2 \bs{\psi}) = \grad^4 \bs{\psi}= 0$. La fonction de courant est donc bi-harmonique.
+
+  \section{Écoulement rampant autour d'un cylindre de section circulaire}
+    Soit un écoulement bi-dimensionnel non-établi autour d'un cylindre de section circulaire de rayon $a$, le nombre de Reynolds le caractérisant est $Re_D = U_{\infty}D/\nu$, avec $U_{\infty}$, la vitesse en $r\rightarrow\infty$ et $D = 2a$, le diamètre du cylindre. On travaille ici en coordonnées polaires avec un repère fixé au cylindre.
+
+    Dans ce cadre-ci, il est impossible de trouver une solution exacte aux équations de conservation de la masse et de la quantité de mouvement pour tout nombre de Reynolds. On travaillera ici pour $Re_D \ll 1$ où les termes d'inertie sont considérés négligeables.
+
+    $U_\infty$ est positive et la surface du cylindre est une ligne de courant; $\psi$ y est constant ($u_r = 0$ qui demande $\dv{\psi}{\theta}\eval_{r=R}=0$). Comme $\phi$ n'est défini qu'à une constante arbitraire près, on peut prendre $\phi(r=a, \theta) = 0$. L'écoulement est symétrique par rapport à l'axe des $x$ tandis que le tourbillon est anti-symétrique.
+
+    La solution est alors obtenue en travaillant en terme de fonction de courant. Les conditions, loin du cylindre, sont les suivantes:
+    \begin{itemize}
+      \item $u = \dv{\psi}{y} \rightarrow U_\infty$
+      \item $v = -\dv{\psi}{x} \rightarrow 0$
+    \end{itemize}
+    Par conséquent, $\psi \rightarrow U_\infty y = U_\infty r \sin \theta$, $u_r \rightarrow U_\infty \cos \theta$ et $u_\theta \rightarrow -U_\infty \sin \theta$, ce qui nous permet d'établir que $\psi = f(r) \sin\theta$ et donc
+    \begin{align}
+      -\omega = \grad^2\psi &= \left(\dv[2]{r} + \recip{r}\dv{r} - \recip{r^2}\right) f(r)\sin\theta
+      \intertext{La fonction $f(r)$ est de la forme $a_p r^p$, ce qui donne}
+      -\omega &= a_p (p^2-1) r^{p-2} \sin\theta\\
+      0 = -\grad^2 \omega &= a_p \left((p-2)^2 - 1\right) (p^2-1) r^{p-4} \sin\theta
+    \end{align}
+    On déduit des solutions du polynôme caractéristiques $\left((p-2)^2 - 1\right) (p^2-1)$ que $f(r)$ est une combinaison linéaire de $r,~r^{-1},~r^3$ et $r\log r$\footnote{Cette dernière vient de la double racine en $p=1$}. Le terme en $r^3$ est à rejeter à cause des conditions à l'infini. On a alors le champs de vitesse
+    \begin{equation}
+      \begin{aligned}
+        u_r &= \recip{r}\dv{\psi}{\theta} = U_\infty \left( c_1 + c_2 \left(\frac{a}{r}\right)^2 + c_3 \log\left(\frac{r}{a}\right)\right) \cos \theta\\
+        u_\theta &= -\dv{\psi}{r} = -U_\infty \left( c_1 + c_2 \left(\frac{a}{r}\right)^2 + c_3 \left(\log\left(\frac{r}{a}\right) +1 \right)\right) \sin \theta
+      \end{aligned}
+    \end{equation}
+    En utilisant la condition de vitesse nulle à la surface du cylindre
+    \begin{equation}
+      \begin{aligned}
+        u_r &= U_\infty c_1 \left(1 - \left(\frac{a}{r}\right)^2 - 2 \log\frac{r}{a}\right)\cos \theta\\
+        u_\theta &= - U_\infty \left(-1 + \left(\frac{a}{r}\right)^2 - 2\log\frac{r}{a}\right) \sin \theta
+      \end{aligned}
+    \end{equation}
+    On devrait donc avoir $\psi \rightarrow U_\infty y = U_\infty r \sin \theta$, $u_r \rightarrow U_\infty \cos_\theta$ et $u_\theta \rightarrow -U_\infty \sin \theta$. Ce n'est cependant pas le cas. Il est impossible de satisfaire et la condition de la paroi et la condition de vitesse uniforme à l'infini. Ceci constitue le paradoxe de Stokes: pour tout $Re_D$, il n'y a pas de solution à un écoulement rampant autour d'un cylindre bidimensionnel. Le terme non-linéaire d'inertie est toujours significatif. Le mieux qui soit possible est ici utiliser une solution non-régulière
+    \begin{equation}
+      \begin{aligned}
+        \psi &= U_\infty a \left(\frac{r}{a} - \frac{a}{r} - 2 \frac{r}{a} \log \frac{r}{a}\right) \sin{\theta}\\
+        u_r &= U_\infty \left(1 - \left(\frac{a}{r}\right)^2 - 2 \log \frac{r}{a}\right) \cos{\theta}\\
+        u_\theta &= U_\infty \left(1 - \left(\frac{a}{r}\right)^2 + 2 \log \frac{r}{a}\right) \sin{\theta}
+      \end{aligned}
+    \end{equation}
+    Cette solution diverge logarithmiquement à l'infini.
+
+  \section{Écoulement rampant autour d'une sphère}
+    Soit l'écoulement rampant non-établi 3-D autour d'une sphère de rayon $a$. Le nombre de Reynolds est de nouveau $Re_D = U_\infty D / \nu$. On recherche la solution en coordonnées sphériques pour $Re_D \ll 1$ (termes non-linéaires d'inertie négligeables). À l'infini, $u \rightarrow U_\infty$ et $v \rightarrow 0$. Par conséquent, $U_r \rightarrow u_\infty \cos \theta$ et $u_\theta \rightarrow U_\infty \rightarrow \sin \theta$ et $\psi = f(r)\sin\theta$. Ainsi
+    \begin{equation}
+      \begin{aligned}
+        u_r &= \recip{r\sin\theta} \pdv{\theta}(\psi \sin\theta) = \frac{f}{r} \recip{\sin\theta} \dv{\theta}(\sin^2 \theta) = 2 \frac{f}{r} \cos{\theta}\\
+        u_\theta &= -\recip{r}\pdv{r}(r \psi) = -\recip{r} \dv{r}(rf) \sin \theta = - \left( \dv{f}{r} + \frac{f}{r} \right)\sin \theta
+      \end{aligned}
+    \end{equation}
+    Le tourbillon est alors
+    \begin{align}
+      -\omega &= -\recip{r} \pdv{r} (r u_\theta) + \recip{r} \pdv{u_r}{\theta}\\ &= \grad^2 \psi - \frac{\psi}{r^2 \sin^2\theta} =
+      \left(\dv[2]{f}{r} + \frac{2}{r} \dv{f}{r} - \frac{2f}{r^2}\right) \sin{\theta} = g(r) \sin{\theta}\\
+      0 &= \grad^2\omega - \frac{\omega}{r^2\sin^2 \theta} = \left(\dv[2]{g}{r} + \frac{2}{r} \dv{g}{r} - \frac{2g}{r^2}\right) \sin\theta \\
+      &= \left(\dv[2]{r} + \frac{2}{r} \dv{r} -\frac{2}{r^2}\right)\left(\dv[2]{r} + \frac{2}{r} \dv{r} -\frac{2}{r^2}\right)f
+    \end{align}
+    Cette équation est linéaire avec solution de la forme $r^p$. On a alors
+    \begin{equation}
+      \psi = U_\infty a \left(c_1 + c_2 \frac{r}{a} + c_3\left(\frac{a}{r}\right)^2 + c_4 \left(\frac{r}{a}\right)^3\right)
+    \end{equation}
+    Les conditions à l'infini et à la paroi permettent alors de dire
+    \begin{equation}
+      \begin{aligned}
+        \psi &= U_\infty a \left(\recip{2}\frac{r}{a} - \frac{3}{4} + \recip{4}\left(\frac{a}{r}\right)^2\right)\sin \theta\\
+        u_r &= U_\infty \left(1 - \frac{3}{2}\frac{a}{r} + \recip{2}\left(\frac{a}{r}\right)^3\right) \cos \theta \\
+        u_\theta &= -U_\infty \left(1 - \frac{3}{4} \frac{a}{r} - \recip{4}\left(\frac{a}{r}\right)^3\right) \sin \theta \\
+        \omega &= - \frac{U_\infty}{a} \frac{3}{2} \left(\frac{a}{r}\right)^2 \sin \theta
+      \end{aligned}
+    \end{equation}
+    Notons ici que l'écoulement de Stokes ne dépend pas de la viscosité. La contrainte de cisaillement en revanche
+    \begin{equation}
+      \tau_{r\theta} = 2 \mu \left(r \pdv{r} \left(\frac{u_\theta}{r}\right) + \recip{r}\pdv{u_r}{\theta}\right) = - \mu \frac{U_\infty}{a} \recip{3}{2} \left(\frac{a}{r}\right)^4 \sin \theta
+    \end{equation}
+    La pression est obtenue par intégration
+    \begin{equation}
+      p-p_\infty = -\mu \frac{U_\infty}{a} \frac{3}{2} \left(\frac{a}{r}\right)^2 \cos \theta \quad \textrm{avec } p_\infty \textrm{ la pression à l'infini}
+    \end{equation}
+    Par intégration de la composante en $x$ de $\tau_{r\theta}$ sur la surface de la sphère, on obtient la trainée de frottement $\mathcal{D}_\tau$. On a $dS = r\sin\theta d\phi$ avec $\phi$ l'angle azimutal.
+    \begin{equation}
+      \begin{aligned}
+        \mathcal{D}_\tau &= - \int_{\phi=0}^{2\pi} \int_{\theta=0}^\pi \left(\tau_{r\theta}\eval_{r=a} \sin \theta \right) (a \sin\theta d\phi) (a d\theta)\\
+        &= \mu \frac{U_\infty}{a} \frac{3}{2} 2\pi a^2 \int_0^\pi \sin^3 \theta d\theta = 4\pi \mu U_\infty a
+      \end{aligned}
+    \end{equation}
+    De même, par intégration cette composante pour la pression, on a la traînée de pression $\mathcal{D}_p$
+    \begin{equation}
+      \begin{aligned}
+        \mathcal{D}_p &= -\int_{\phi=0}^{2\pi} \int_{\theta=0}^\pi \left((p-p_\infty)\eval_{r=a} \cos\theta\right) (a \sin\theta d\phi)(a d\theta)\\
+        &= \mu \frac{U_\infty}{a}\frac{3}{2} 2\pi a^2 \int_0^\pi \cos^2 \theta \sin\theta d\theta = 2\pi \mu U_\infty a
+      \end{aligned}
+    \end{equation}
+    Ceci nous donne la formule de Stokes de la traînée de la sphère pour $Re_D \ll 1$\footnote{Même si suffisamment proche des expérimentations jusqu'à des valeurs proches de l'unité}
+    \begin{equation}
+      \mathcal{D} = \mathcal{D}_\tau + \mathcal{D}_p = 6\pi\mu U_\infty a
+    \end{equation}
+
+  \section{Thérorie de la lubrification}
+    La théorie de la lubrification fait partie des écoulements rampants. Nous considérons ici le cas du palier plat et plan. Dans le repère choisi, le bloc supérieur (\textit{i.e.}, le palier) est fixe et légèrement incliné par rapport à la plaque inférieur, mobile avec une vitesse constante $U$.
+
+    L'important pour créer de la portaince et ainsi assurer le rôle porteur et lubrificateur du palier est que l'écart entre les surfaces solides ne soit pas constant d'où l'angle $\alpha$ entre les surfaces. Dans ce cas-ci, on a
+    \begin{equation}
+      h(x) = h_0 - (h_0 - h_L) \frac{x}{L} = h_0 - \tan \alpha
+    \end{equation}
+    À noter que $\alpha \approx \tan \alpha \ll 1$ et $h(x) \ll L$, celà permet de vérifier que les termes d'inertie sont négligeables $\rho u \pdv{u}{x} \ll \mu \pdv[2]{u}{y}$. En utilisant les ordres de grandeurs
+    \begin{equation}
+      \begin{aligned}
+        \rho U \frac{U}{L} &\ll \frac{U}{h^2_0}\\
+        \frac{\rho U L}{\mu} \left(\frac{h_0}{L}\right)^2 = Re_L \left(\frac{h_0}{L}\right)^2 &\ll 1
+      \end{aligned}
+    \end{equation}
+    À noter que $Re_L$ peut être grand si $h_0$ est suffisamment petit ce qui rend la theorie de la lubrification dans beaucoup de cas.
+
+    Comme $\alpha$ est faible, on peut obtenir une bonne approximation de l'écoulement en disant que celui-ci est ``presque établi''. On a en fait $\pdv{u}{x} \ll \pdv{u}{y}$ donnant essentiellement un écoulement de Poiseuille-Couette avec gradient de pression. Dans ce cas-ci, avec $u(0) = U$ et $u(h) = 0$
+    \begin{equation}
+      u = -\dv{p}{x} \frac{h^2}{2\mu} \frac{y}{h} \left(1 - \frac{y}{h}\right) + U \left(1-\frac{y}{h}\right)
+    \end{equation}
+    À cet écoulement correspond un gradient de pression fonction de $x$. La pression est par ailleurs identique en $x = 0$ et $x=L$  ($p(0) = p(L) = p_0$) avec un maximum entre les deux.
+
+    Le débit est uniforme
+    \begin{equation}
+      Q = \int_0^h u dy = - \dv{p}{x} \frac{h^3}{12\mu} + \frac{Uh}{2}
+    \end{equation}
+    Et donc
+    \begin{equation}
+      \begin{aligned}
+        -h^3 \dv{p}{x} &= 12 \mu \left(Q - \frac{Uh}{2}\right)\\
+        \dv{x}\left(h^3 \dv{p}{x}\right) &= 6 \mu U \dv{h}{x} \quad \textrm{(en forme différentielle)}
+      \end{aligned}
+    \end{equation}
+
+    Il s'agit de l'équation de Reynolds. Si $h(x)$ et $p_0$ sont connus, il est possible de l'intégrer numériquement voire, parfois, exactement. Ce n'est cependant pas simple
+
+    Dans le cas du palier plat, on peut cependant déterminer Q et donc le reste facilement
+    \begin{equation}
+      \begin{aligned}
+        \dv{p}{x} &= \dv{p}{h}\dv{h}{x} = -\dv{p}{h}\frac{h_0 - h_L}{L}\\
+        \dv{p}{h} &= \frac{12 \mu L}{h_0 - h_L} \left(\frac{Q}{h^3} - \frac{U}{2h^2}\right)
+      \end{aligned}
+    \end{equation}
+    Par intégration et utilisation de la condition $p(h_0) = p_0)$, on a
+    \begin{equation}
+      p(h) - p_0 = \frac{6\mu U L}{h_0 - h_L} \left(U \left(\recip{h} - \recip{h_0}\right) - Q \left(\recip{h^2} - \recip{h_0^2}\right)\right)\\
+    \end{equation}
+    En utilisant $p(h_L) = p_0$, peut déterminer Q
+    \begin{equation}
+      Q = U\frac{\recip{h_L} - \recip{h_0}}{\recip{h^2_L}- \recip{h^2_0}} = U\frac{h_0 h_L}{h_0 + h_L}
+    \end{equation}
+    En réinjectant cette donnée, on obtient le profil de pression
+    \begin{equation}
+      \begin{aligned}
+        p(h) - p_0 &= \frac{6\mu U L}{h_0^2 - h_L^2}\frac{(h_0 - h)(h-h_L)}{h^2}\\
+        p(x) - p_0 &= \frac{6\mu U L}{h_0^2 - h_L^2}\frac{1-\frac{h_L}{h_0}}{1+\frac{h_L}{h_0}}\frac{\frac{x}{L}\left(1 - \frac{x}{L}\right)}{\left(1 - \left(1 - \frac{h_L}{h_0}\right)\frac{x}{L}\right)^2}
+      \end{aligned}
+    \end{equation}
+    La pression maximale est
+    \begin{equation}
+      p_max - p_0 = \frac{3}{2} \frac{\mu U L}{h_0 h_L} \frac{h_0 - h_L}{h_0 + h_L} = \frac{3}{2} \frac{\mu U L}{h^2_0} \frac{1}{\frac{h_L}{h_0}} \frac{1 - \frac{h_L}{h_0}}{1+ \frac{h_L}{h_0}}
+    \end{equation}
+    On défini la charge utile (par unité de profondeur) comme
+    \begin{equation}
+      \begin{aligned}
+        P &= \int_0^L(p(x)-p_0)dx = \int_{h_0}^{h_L} (p(h) - p_0)\dv{x}{h} dh = -\frac{L}{h_0-h_L} \int^{h_L}_{h_0} (p(h)-p_0)dh\\
+        &= -\frac{6\mu U L^2}{h^0} \left(\frac{1}{\left(1-\frac{h_L}{h_0}\right)^2} \log\frac{h_L}{h_0} + \frac{2}{1- \left(\frac{h_L}{h_0}\right)^2}\right)
+      \end{aligned}
+    \end{equation}
+    Ce résultat est intéressant car il signifie que si $h_L/h_0$ diminue, la charge utile augmente. Un autre aspect du problème est la force de cisaillement totale $F$ (force par unité de profondeur). On a la contrainte
+    \begin{equation}
+      \begin{aligned}
+        \tau = \mu \pdv{u}{y} &= -\dv{p}{x} \frac{h}{2} \left(1 - 2\frac{y}{h}\right) -\mu \frac{U}{h}\\
+        &= \mu U \left(\frac{6}{h^2}\left(\frac{h_0 h_L}{h_0 + h_L} - \frac{h_2}{2}\right)}\left(1- 2\frac{y}{h}\right) - \recip{h}\right)
+      \end{aligned}
+    \end{equation}
+
+    La partie mobile est en $y=0$. On a alors
+    \begin{equation}
+      \tau_w (x, 0) = \mu U\left(\frac{6}{h^2} \frac{h_0 h_L}{h_0 + h_L} - \frac{4}{h})
+    \end{equation}
+    La force de cisaillement totale (par unité de profondeur) sur la partie mobile est alors, par intégration
+    \begin{equation}
+      \begin{aligned}
+          F &= -\int_0^L \tau_w (x, 0) dx = \frac{L}{h_0 - h_L} \int_{h_0}^{h_L} \tau_w(x, 0) dh\\
+          &= - \frac{\mu U L}{h_0} \left(\frac{6}{1+h_L/h_0} + \frac{4}{1-h_L/h_0}\log\frac{h_L}{h_0}\right)
+      \end{aligned}
+    \end{equation}
+    Il s'agit de la seule force à effectuer un travail, étant donné qu'il s'agit de la seule causer un déplacement. La puissance nécessaire est alors obtenue par
+    \begin{equation}
+      F U = -\frac{\mu U^2L}{h_0} \left(\frac{6}{1+h_L/h_0} + \frac{4}{1-h_L/h_0}\log\frac{h_L}{h_0}\right)
+    \end{equation}
+    Cette puissance fournie est dissipée en chaleur au sein du lubrifiant.
