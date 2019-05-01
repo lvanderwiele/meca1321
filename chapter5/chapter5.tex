@@ -2,7 +2,7 @@
 
 \chapter{Couches limites laminaires}
   \section{Introduction}
-    Malgré son utilité, le modèle du fluide parfait en écoulement incompressible et irrotationnel est limité aux écoulements avec glissement de fluides le long des parois, ce qui n'est pas le comportement des fluides réels qui y adhèrent. Cette adhérence génère du tourbillon le long de la paroi. Le fluide n'y est donc plus irrotationnel. La zone proche de la paroi contenant ce tourbillon est appelée "couche limite (de paroi)".
+    Malgré son utilité, le modèle du fluide parfait en écoulement incompressible et irrotationnel est limité aux écoulements avec glissement de fluides le long des parois, ce qui n'est pas le comportement des fluides réels qui y adhèrent. Cette adhérence génère du tourbillon le long de la paroi. Le fluide n'y est donc plus irrotationnel. La zone proche de la paroi contenant ce tourbillon est appelée ``couche limite (de paroi)''.
 
     Son épaisseur est déterminée par la compétition entre diffusion et convection du tourbillon et est généralement mince, s'amincissant avec l'augmentation du Reynolds.
 
@@ -26,6 +26,99 @@
       \end{aligned}
     \end{equation}
 
-    En aval du profil, la couche limite devient tourbillon de sillage, cas idéal de bon fonctionnement du profil. En réalité, la couchle limite à l'extrados aura tendance à quitter la paroi avant d'atteindre le bord de fuite. On parle de "séparation de la couche limite". Celle-ci mène à une baisse de performance du profil (\textit{i.e.} une baisse de portance) mais sans être catastrophique. Cependant, si on augmente l'angle d'attaque, on aura un "décrochage aérodynamique", cas de mauvais fonctionnement aérodynamique. Le tourbillon quitte alors brutalement la paroi et des tourbillons de sillages sont produits de façon intermittente, le point de séparation étant instationnaire.
+    En aval du profil, la couche limite devient tourbillon de sillage, cas idéal de bon fonctionnement du profil. En réalité, la couchle limite à l'extrados aura tendance à quitter la paroi avant d'atteindre le bord de fuite. On parle de ``séparation de la couche limite''. Celle-ci mène à une baisse de performance du profil (\textit{i.e.} une baisse de portance) mais sans être catastrophique. Cependant, si on augmente l'angle d'attaque, on aura un ``décrochage aérodynamique'', cas de mauvais fonctionnement aérodynamique. Le tourbillon quitte alors brutalement la paroi et des tourbillons de sillages sont produits de façon intermittente, le point de séparation étant instationnaire.
 
-    Ce chapitre expose la théorie de la "couche limite laminaire" pour des écoulements simples et incompressibles. On considère une couche limite le long d'une plaque plane avec vitesse hors couche limite $u_e = u_e(x)$. On obtiendra ensuite le cas avec $u_e$ constant (solution de Blasius).
+    Ce chapitre expose la théorie de la ``couche limite laminaire'' pour des écoulements simples et incompressibles. On considère une couche limite le long d'une plaque plane avec vitesse hors couche limite $u_e = u_e(x)$. On obtiendra ensuite le cas avec $u_e$ constant (solution de Blasius).
+
+  \section{Établissement des équations de la couche limite laminaire}
+    \subsection{Approche physique, non formelle}
+      Soit un écoulement laminaire bidimensionnel et stationnaire le long d'une plaque plane. La plaque et la couche limite commencent en $x=0$.
+
+      Sans couche limite, on a une vitesse d'écoulement connue\footnote{Par exemple, calculée via l'approximation du fluide parfait.}. On suppose la couche limite assez mince pour que la vitesse en dehors $u_e(x)$ soit approximable par la vitesse obtenue sans couche limite. Au sein de la couche limite, la valeur passe de $0$ à la paroi à $u_e(x)$.
+
+      Via l'introduction, l'épaisseur de la couche limite $\delta(x=X)$ est faible par rapport à $X$ ($\delta \ll X$). $\pdv{u}{y}$ est donc $\mathcal{O}(U_e/\delta)$ et $\pdv{u}{x}$ est $\mathcal{O}(U_e/X)$. On a donc
+      \begin{equation}\label{eq:diffvisq}
+        \begin{aligned}
+          \left| \pdv{u}{x} \right| = \mathcal{O}\left(\frac{U_e}{X}\right) &\ll \left|\pdv{u}{y}\right| = \mathcal{O}\left(\frac{U_e}{\delta}\right)\\
+          \left| \pdv[2]{u}{x} \right| = \mathcal{O}\left(\frac{U_e}{X^2}\right) &\ll \left|\pdv[2]{u}{y}\right| = \mathcal{O}\left(\frac{U_e}{\delta^2}\right)
+        \end{aligned}
+      \end{equation}
+
+      Soit $V$ l'ordre de grandeur de la vitesse verticale $v$ dans la couche limite $v = \mathcal{O}(V)$. Ainsi
+      \begin{equation}
+        \left|\pdv{v}{y}\right| = \mathcal{O}\left(\frac{V}{\delta}\right)
+      \end{equation}
+      L'équation de continuité $\pdv{u}{x} + \pdv{v}{y} = 0$ implique aussi
+      \begin{equation}
+        \begin{aligned}
+          \left|\pdv{v}{y}\right| &\sim \left| \pdv{u}{x} \right| = \mathcal{O} \left(\frac{U_e}{X}\right)\\
+          \left|\pdv{v}{y}\right| &= \mathcal{O} \left(\frac{V}{\delta}\right) = \mathcal{O} \left(\frac{U_e}{X}\right)\\
+          V &= \frac{\delta}{X} U_e
+        \end{aligned}
+      \end{equation}
+
+      L'équation de quantité de mouveemnt dans la direction horizontale $x$ est alors
+      \begin{equation}
+        u\pdv{u}{x} + v\pdv{u}{y} = -\recip{\rho} \pdv{p}{x} + \nu \left(\pdv[2]{u}{x} + \pdv[2]{u}{y}\right)
+      \end{equation}
+      Les ordres de grandeurs des termes d'inertie sont
+      \begin{equation}
+        \left|u \pdv{u}{x} \right| = \mathcal{O}\left(\frac{U_e^2}{X}\right), \quad \left|v\pdv{u}{y}\right| \mathcal{O}\left(\frac{\delta}{X} U_e \frac{U_e}{\delta}\right) = \mathcal{O}\left(\frac{U_e^2}{X}\right)
+      \end{equation}
+      Les termes de diffusion visqueuse sont tels qu'ils sont négligeables en $x$ par rapport à $y$, par \ref{eq:diffvisq}. On considère donc
+      \begin{equation}
+        \left|\nu \pdv[2]{u}{y}\right| = \mathcal{O}\left(\nu \frac{U_e}{\delta^2}\right)
+      \end{equation}
+
+      La couche limite étant la zone où les effets de viscosités sont aussi importants que les effets d'inertie, on a
+      \begin{equation}
+        \begin{aligned}
+          \left|u\pdv{u}{x}\right| \sim \left|v \pdv{u}{y} \right| \sim \left|\nu \pdv[2]{u}{y} \right| = \mathcal{O}\left(\frac{U_e^2}{X}\right)\\
+          \delta^2 = \frac{\nu X}{U_e} \quad \Rightarrow \quad \frac{\delta}{X} = \left(\frac{U_e X}{\nu}\right)^{-\frac{1}{2}}
+        \end{aligned}
+      \end{equation}
+      qui est le résultat de l'introduction.
+
+      Comme le terme $\recip{\rho} \left|\pdv{p}{x}\right|$ est un dest termes de l'équation de mouvement, il est soit négligeable soit $\mathcal{O}(U_e^2/X)$. Au delà de $\delta$, l'écoulement est irrotationnel: Bernoulli est satisfait
+      \begin{equation}
+        \begin{aligned}
+          \frac{p_e(x)}{\rho} + \frac{u_e^2(x)}{2} = B_0\\
+          -\recip{rho} \pdv{p_e}{x}(x) = u_e(x) \pdv{u_e}{x}(x)
+        \end{aligned}
+      \end{equation}
+
+      Considérons désormais l'équation dans la direction verticale $y$
+      \begin{equation}
+        u\pdv{v}{x} + v \pdv{v}{y} = -\recip{\rho}\pdv{p}{y} + \nu \left(\pdv[2]{v}{x} + \pdv[2]{v}{y}\right)
+      \end{equation}
+      Les termes d'inerties sont d'ordre de grandeur
+      \begin{equation}
+        \left|u \pdv{v}{x} \right| \sim \left|v\pdv{v}{y}\right| \sim \mathcal{O}\left(U_e \frac{V}{X} \right) =
+        \mathcal{O}\left(\frac{V^2}{\delta}\right) = \mathcal{O}\left(\frac{\delta}{X}\frac{U_e^2}{X}\right)\\
+      \end{equation}
+      La diffusion est négligeable en $x$ par rapport à $y$
+      \begin{equation}
+        \left| \nu \pdv[2]{v}{y} \right| = \mathcal{O}\left(\nu \frac{V}{\delta}\right) = \mathcal{O}\left(\nu \frac{\delta}{X}\frac{U_e}{\delta^2}\right)
+      \end{equation}
+      Le terme de pression est donc aussi, au plus, de cet ordre de grandeur. Par série de Taylor, la pression est donc
+      \begin{equation}
+        p(x, y) = p_e(x) + (y-\delta) \pdv{p}{y}\eval_{y_\delta} + ...
+      \end{equation}
+      ce qui donne
+      \begin{equation}
+        \begin{aligned}
+          \frac{p(x,y)}{\rho} = \frac{p_e(x)}{\rho} + \mathcal{O}\left(\delta \frac{\delta}{X}\frac{U_e^2}{X}\right) &= \frac{p_e(x)}{\rho} + \mathcal{O}\left(\left(\frac{\delta}{X}\right)^2 U_e^2\right)\\
+          &= B_0 - \left(1 - \mathcal{O}\left(\left(\frac{\delta}{X}\right)^2\right)\right) \frac{u_e^2(x)}{2}
+        \end{aligned}
+      \end{equation}
+      Le terme de correction étant en $(\delta/X)^2$, on peut le négliger et considérer la pression constante au travers de la couche limite. On a donc $p(x, y) = p_e(x)$, soit
+      \begin{equation}
+        -\recip{\rho} \pdv{p}{x} = -\recip{\rho}\dv{p_e}{x}(x) = u_e(x) \dv{u_e}{x}(x)
+      \end{equation}
+      Les équations régissant le développement de la couche limite, dites ``de Prandtl'' sont donc
+      \begin{equation}
+        \begin{aligned}
+          \pdv{u}{x} + \pdv{v}{y} &= 0\\
+          u \pdv{u}{x} + v \pdv{u}{y} &= u_e \dv{u_e}{x} + \nu \pdv[2]{u}{y}
+        \end{aligned}
+      \end{equation}
