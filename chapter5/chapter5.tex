@@ -1,0 +1,31 @@
+% !TEX root = ../meca1321-synthesis.tex
+
+\chapter{Couches limites laminaires}
+  \section{Introduction}
+    Malgré son utilité, le modèle du fluide parfait en écoulement incompressible et irrotationnel est limité aux écoulements avec glissement de fluides le long des parois, ce qui n'est pas le comportement des fluides réels qui y adhèrent. Cette adhérence génère du tourbillon le long de la paroi. Le fluide n'y est donc plus irrotationnel. La zone proche de la paroi contenant ce tourbillon est appelée "couche limite (de paroi)".
+
+    Son épaisseur est déterminée par la compétition entre diffusion et convection du tourbillon et est généralement mince, s'amincissant avec l'augmentation du Reynolds.
+
+    Soit un écoulement laminaire autour d'un profil de type aérodynamique à faible angle d'attaque. La vitesse caractéristique est la vitesse en amont $U_\infty$ et la dimension caractéristique globale est la corde du profil $c$. Le Reynolds est donc $Re_c = U_\infty c / \nu$ et le temps caractéristique global de convection est $T \propto c/U_\infty$\footnote{Il s'agit du temps requis pour qu'une particule aille du bord d'attaque du profil jusqu'au bord de fuite.}. Au sein de la couche limite, les effets de la viscosité sont du même ordre de grandeur que les effets d'inertie\footnote{Il s'agit aussi d'une définition alternative de la couche limite}. Dans ce cas ici considéré, le temps $T$ est aussi le temps caractéristique global de diffusion du tourbillon dans de la couche limite. Durant ce temps, la diffusion va avoir couvert une épaisseur globale $\delta \propto \sqrt{\nu T}$. Ainsi
+    \begin{equation}
+      T \propto \frac{\delta^2}{\nu} \quad \textrm{et} \quad T \propto \frac{c}{U_\infty}
+    \end{equation}
+    ce qui conduit à
+    \begin{equation}
+      \begin{aligned}
+        \delta^2 &\propto \nu T \propto \frac{\nu c}{U_\infty} = \frac{c^2}{\frac{U_\infty c}{\nu}}\\
+        \frac{\delta}{c} &\propto \recip{\sqrt{\frac{U_\infty c}{\nu}}} = \recip{\sqrt{Re_c}}
+      \end{aligned}
+    \end{equation}
+
+    Dans les expressions ci-dessus, $\delta$ désigne l'épaisseur de la couche limite au bord au bord de fuite du profil (\textit{i.e.} en $x=c$). À une distance $x < c$ le long du profil, on obtient alors
+    \begin{equation}
+      \begin{aligned}
+        \delta^2(x) &\propto \frac{\nu c}{U_\infty} f\left(\frac{x}{c}\right) = \frac{c^2}{\frac{U_\infty c}{\nu}}f\left(\frac{x}{c}\right)\\
+        \frac{\delta(x)}{c} &\propto \recip{\sqrt{Re_c}} \sqrt{f\left(\frac{x}{c}\right)}
+      \end{aligned}
+    \end{equation}
+
+    En aval du profil, la couche limite devient tourbillon de sillage, cas idéal de bon fonctionnement du profil. En réalité, la couchle limite à l'extrados aura tendance à quitter la paroi avant d'atteindre le bord de fuite. On parle de "séparation de la couche limite". Celle-ci mène à une baisse de performance du profil (\textit{i.e.} une baisse de portance) mais sans être catastrophique. Cependant, si on augmente l'angle d'attaque, on aura un "décrochage aérodynamique", cas de mauvais fonctionnement aérodynamique. Le tourbillon quitte alors brutalement la paroi et des tourbillons de sillages sont produits de façon intermittente, le point de séparation étant instationnaire.
+
+    Ce chapitre expose la théorie de la "couche limite laminaire" pour des écoulements simples et incompressibles. On considère une couche limite le long d'une plaque plane avec vitesse hors couche limite $u_e = u_e(x)$. On obtiendra ensuite le cas avec $u_e$ constant (solution de Blasius).
