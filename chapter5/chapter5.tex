@@ -79,7 +79,7 @@
       \end{equation}
       qui est le résultat de l'introduction.
 
-      Comme le terme $\recip{\rho} \left|\pdv{p}{x}\right|$ est un dest termes de l'équation de mouvement, il est soit négligeable soit $\mathcal{O}(U_e^2/X)$. Au delà de $\delta$, l'écoulement est irrotationnel: Bernoulli est satisfait
+      Comme le terme $\recip{\rho} \left|\pdv{p}{x}\right|$ est un des termes de l'équation de mouvement, il est soit négligeable soit $\mathcal{O}(U_e^2/X)$. Au delà de $\delta$, l'écoulement est irrotationnel: Bernoulli est satisfait
       \begin{equation}
         \begin{aligned}
           \frac{p_e(x)}{\rho} + \frac{u_e^2(x)}{2} = B_0\\
@@ -122,3 +122,164 @@
           u \pdv{u}{x} + v \pdv{u}{y} &= u_e \dv{u_e}{x} + \nu \pdv[2]{u}{y}
         \end{aligned}
       \end{equation}
+
+    \subsection{Approche formelle mathématique}
+      La couche se développe sur une plaque plane commençant en $x=0$. On évalue la couche limite autour de $X$ avec une vitesse extérieure $U_e = u_e(X)$. Il y a donc deux ``grandeurs caractéristiques'' constantes. Le nombre de Reynolds est donc $Re = U_eX/\nu$. Pour voir comment l'écoulement se comporte pour $Re$ grand, on adimensionnalise les équations en $X$ et $U_e$ et on prend $Re \rightarrow \infty$.
+
+      Soit une famille d'écoulements fictifs, paramétrés par $Re$ qu'on fait tendre vers l'infini (similitude dynamique). L'écoulement asymptotique obtenu par passage à la limite est une bonne approximation de l'écoulement réel, correspondant à une valeur précise de $Re$. La comparaison de ces écoulements n'est possible qu'en adimensionnalisant les équations.
+
+      La première adimensionnalisation fait apparaître les équations d'Euler pour $Re \rightarrow \infty$ . Il s'agit de l'écoulement ``externe'' du fluide parfait ne respectant pas les conditions sur la plaque. Une seconde adimensionnalisation fait apparaître la couche limite et les équations de Prandtl.
+
+      Soit $\delta = Re^{-1/2} X$, l'ordre de grandeur de l'épaisseur de la couche limite en $X$. Soit la mise sous forme adimensionnelle en utilisant les variables ``prime'' adimensionnelles suivantes
+      \begin{equation}
+        x = x'X, \quad u=y' \delta, \quad u = u'U_e, \quad v = v' V, \quad \textrm{et} \quad p = p' \rho U_e^2
+      \end{equation}
+      où $V$ est à déterminer. L'équation de continuité devient alors
+      \begin{equation}
+        \begin{aligned}
+          \frac{U_e}{X} \pdv{u'}{x'} + \frac{V}{\delta} \pdv{v'}{y'} &= 0\\
+          \pdv{u'}{x'} = -\frac{V}{U_e} \frac{X}{\delta}\pdv{v'}{y'} = -\frac{V}{U_e}Re^{\frac{1}{2}}\pdv{v'}{y'}
+        \end{aligned}
+      \end{equation}
+      Pour que l'équation ne dégénère pas en $Re \rightarrow \infty$ (principe de dégénérescence), on doit prendre
+      \begin{equation}
+        V  = \frac{U_e}{Re^{\frac{1}{2}}}
+      \end{equation}
+      et donc
+      \begin{equation}
+        \pdv{u'}{x'} + \pdv{v'}{y'} = 0
+      \end{equation}
+      L'équation de la quantité de mouvement en $x$ donne
+      \begin{equation}
+        \begin{aligned}
+          \frac{U_e^2}{X} \left(u' \pdv{u'}{x'} + v' \pdv{u}{y'}\right) &= - \frac{U_e^2}{X}\pdv{p'}{x'} + \frac{\nu U_e}{X^2}\prpdv{u}{x} + \frac{\nu U_e}{\delta^2} \prpdv{u}{y}\\
+          &= - \frac{U_e}{X}\pdv{p'}{x'} + \frac{\nu U_e}{\delta^2} \left(\left(\frac{\delta}{X}\right)^2 \prpdv{u}{x} + \prpdv{u}{y}\right)\\
+          &= - \frac{U_e^2}{X}\pdv{p'}{x'} + \frac{U_e^2}{X} \left(\recip{Re}\prpdv{u}{x} + \pdv{u}{y}\right)
+        \end{aligned}
+      \end{equation}
+      Par conséquent,
+      \begin{equation}
+        u'\pdv{u'}{x'} + v'\pdv{u'}{y'} = -\pdv{p'}{x'} + \left(\recip{Re} \prpdv{u}{x} + \prpdv{u}{y}\right)
+      \end{equation}
+      et, en $Re \rightarrow \infty$
+      \begin{equation}
+        u'\pdv{u'}{x'} + v'\pdv{u'}{y'} = -\pdv{p'}{x'} + \prpdv{u}{y}
+      \end{equation}
+
+      En $y$, on obtient
+      \begin{equation}
+        \begin{aligned}
+          \frac{U_e V}{X} \left(u' \pdv{v'}{x'} + v' \pdv{v'}{y'}\right) &= - \frac{U_e^2}{\delta}\pdv{p'}{y'} + \nu \frac{V}{\delta^2} \left(\left(\frac{\delta}{X}\right)^2 \prpdv{v}{x} + \prpdv{v}{y} \right)\\
+          \recip{Re} \left(u' \pdv{u'}{x'} + v'\pdv{v'}{y'}\right) &= -\pdv{p'}{y'} + \recip{Re} \left(\recip{Re}\prpdv{v}{x} + \prpdv{v}{y}\right)\\
+          \pdv{p'}{y'} &= 0 \quad \quad \textrm{en } Re \rightarrow \infty
+        \end{aligned}
+      \end{equation}
+      La pression ne varie donc pas dans la couche limite. Les conditions à la paroi sont $u = v = 0$ tandis que les conditions à distance de la paroi sont le raccord entre les écoulements de Prandtl et d'Euler. Soit $\zeta = Re^{-1/4} X$. Comme $Re \gg 1$, on a
+      \begin{equation}
+        \frac{\delta}{\zeta} = \recip{Re^{1/4}} \ll 1 \quad \textrm{et} \quad \frac{\zeta}{X} = \recip{Re^{1/4}} \ll 1 \quad \Rightarrow \quad \delta \ll \zeta \ll X
+      \end{equation}
+      On considère que le raccordement Prandtl-Euler se fait à hauteur $\mathcal{O}(\zeta)$. Pour les valeurs de $Re$ grandes, la solution adimmensionnelle a une valeur unique au raccordement. Cependant, l'ordonnée adimensionnelle de raccordement est $\hat{y} = \zeta/X \ll 1$ pour la zone externe et $\tilde{y} = \zeta/\delta \ll 1$ pour la zone interne. En faisant tendre $Re$ vers l'infini, on a une ordonnée tendant vers $0$ pour la couche externe  et vers l'infini pour la zone interne.
+
+      On a donc comme conditions asymptotique de raccordement
+      \begin{equation}
+        \begin{aligned}
+          \lim_{y/\delta \gg 1} u(X, y) &= \lim_{y/X \ll 1} u_e(X, y) = u_e(X, 0) = U_e\\
+          \lim_{y/\delta \gg 1} p(X, y) &= \lim_{y/X \ll 1} p_e(X, y) = p_e(X, U)
+        \end{aligned}
+      \end{equation}
+      \begin{multicols}{2}
+        \begin{equation*}
+          \begin{aligned}
+            \pdv{u}{x} + \pdv{v}{y} &= 0\\
+            u \pdv{u}{x} + v\pdv{u}{y} &= \underbrace{-\recip{\rho}{\pdv{p_e}{x}}(x, 0)}_{=u_e(x, 0){\pdv{u_e}{x}}(x,0)} + \nu\pdv[2]{u}{y}
+          \end{aligned}
+        \end{equation*}
+
+        \begin{equation}
+          \begin{aligned}
+            u(x, 0) &= v(x, 0) = 0\\
+            \lim_{y/\delta \gg 1} u(x, y) &= u_e(x, 0)
+          \end{aligned}
+        \end{equation}
+      \end{multicols}
+
+  \section{Solution pour le cas avec $u_e$ constant (Blasius)}
+    \begin{equation}
+      \begin{aligned}
+        \pdv{u}{x} + \pdv{u}{y} &= 0\\
+        u\pdv{u}{x} + v \pdv{u}{y} &= \nu \pdv[2]{u}{y}
+      \end{aligned}
+    \end{equation}
+    Le champ de vitesse de l'écoulement incompressible est une fonction de courant $\psi : u = \pdv*{\psi}{y}$ et $v = - \pdv*{\psi}{x}$. La similitude de la solution requiert que
+    \begin{equation}
+      \frac{u}{u_e} = g\left(\frac{y}{\delta(x)}\right) = g(\eta)
+    \end{equation}
+    où $\eta = u/\delta(x)$ est la variable de similitude où\footnote{Le facteur $2^{1/2}$ n'est pas nécessaire mais permet d'éviter un facteur 2 plus loin}
+    \begin{equation}
+      \delta(x) = \frac{x}{\left(\frac{u_e x}{2\nu}^{1/2}\right)} = \frac{2^{1/2}x}{Re^{1/2}} = \left(\frac{2\nu x}{u_e}\right)^{\frac{1}{2}}
+    \end{equation}
+    On a alors
+    \begin{equation}
+      \begin{aligned}
+        \pdv{\eta}{x} &= -\frac{y}{\delta^2(x)} \delta'(x) = -\eta \frac{\delta'(x)}{\delta(x)}\\
+        \pdv{\eta}{y} &= -\recip{\delta(x)}
+      \end{aligned}
+    \end{equation}
+    Le facteur de courant est donc de la forme $\psi=u_c\delta(x)f(\eta)$, soit
+    \begin{equation}
+      \begin{aligned}
+        u &= \pdv{\psi}{y} = u_e \delta(x) f'(\eta) \recip{\delta(x)} = u_e f'(\eta)\\
+        v &= -\pdv{\psi}{x} = -\left(u_e\delta'(x)f(\eta) - u_e \delta(x) f'(\eta)\eta\frac{\delta'(x)}{\delta(x)}\right)
+        = u_e \delta'(x) (\eta f'(\eta) - f(\eta))
+      \end{aligned}
+    \end{equation}
+    On obtient les termes de l'équation
+    \begin{equation}
+      \begin{aligned}
+        u\pdv{u}{x} &= -u_e^2 f'(\eta) f''(\eta) \eta\frac{\delta'(x)}{\delta(x)}\\
+        v\pdv{u}{y} &= u_e^2 f''(\eta)(\eta f'(\eta) - f(\eta))\frac{\delta'(x)}{\delta(x)}\\
+        \nu\pdv[2]{u}{y} &= \nu u_e f'''(\eta) \recip{\delta^2(x)}
+      \end{aligned}
+    \end{equation}
+
+    Ceci permet d'obtenir l'équation de quantité de mouvement en $x$
+    \begin{equation}
+      \begin{aligned}
+        -u_e^2 \frac{\delta^2(x)}{\delta(x)} f(\eta) f''(\eta) &= \nu u_e \recip{\delta^2} f'''(\eta)\\
+        f'''(\eta) + \frac{u_e}{\nu}\delta(x)\delta'(x) f(\eta) f''(\eta) &= 0
+      \end{aligned}
+    \end{equation}
+    Il s'agit d'une équation linéaire du 3e ordre de type $f'''(\eta) + f(\eta)f''(\eta) = 0$\footnote{$\delta'(x)\delta(x) = x/Re$ se simplifie avec $u_e/\nu$}. L'EDO a 3 conditions limites: $u(x, 0) = 0 \Rightarrow f'(0) = 0$ et $v(x, 0) = 0 \Rightarrow f(0) = 0$ ce qui implique que $\psi = 0$ à la paroi. Par ailleurs, le raccordement implique $\lim_{\eta \gg 1} f'(\eta) = 1$.
+
+    Cette équation n'a pas de solution analytique et requiert une intégration numérique (via Runge-Kutta 4) ce qui donne $f''(0) = 0.46960$.
+
+    Le profil de contrainte de cisaillement est
+    \begin{equation}
+      \tau = \mu \pdv{u}{y} = \mu\frac{u_e}{\delta}f''(\eta)
+    \end{equation}
+    La vitesse $v$ est
+    \begin{equation}
+      \lim_{\eta \gg 1} (\eta f'(\eta) - f(\eta)) = 1.22
+    \end{equation}
+    À cause du produit par $\delta'(x) \ll 1$, la vitesse $v$ à la frontière de la couche est effectivement faible, même si non-nulle.
+
+    La contrainte de cisaillement à la paroi $\tau_w(x)$ est
+    \begin{equation}
+      \frac{\tau_w}{\rho} = \nu \pdv{u}{y}\eval_{y=0} = f''(0) \nu \frac{u_e}{\delta} = 0.4696\nu\frac{u_e}{\delta} = 0.4696\frac{u_e^2}{2} \left(\frac{u_e}{2\nu}\right)^{-\recip{2}}
+    \end{equation}
+    Le coefficient adimensionnel de frottement local est par conséquent
+    \begin{equation}
+      C_f = \frac{\tau_w}{\rho u_e^2 /2} = 0.664 \left(\frac{u_e x}{\nu}\right)^{-\recip{2}} = \frac{0.664}{Re^{1/2}}
+    \end{equation}
+    La force $D$ (pour \textit{Drag}) par unité de largeur exercée par l'écoulement sur la plaque entre $x=0$ et $x=L$ est obtenue par intégration
+    \begin{equation}
+      D(L) = \int_0^L \tau(x) dx = \frac{\rho u_e^2}{2} f''(0) \int_0^L \left(\frac{u_e x}{2\nu}\right)^{-1/2} dx = 0.4696 \frac{u_e^2}{2} 2 L \left(\frac{u_e L}{2\nu}\right)^{-1/2}
+    \end{equation}
+    Le coefficient de frottement moyen correspondant à cette longueur est donc
+    \begin{equation}
+      \begin{aligned}
+        C_{f,m}(L) &= \frac{D(L)}{L \rho u_e^2/2} = \frac{1.328}{Re^{1/2}}\\
+        &= C_{f,m}(L) = \frac{1}{L} \int_0^L C_f(x) dx
+      \end{aligned}
+    \end{equation}
+    On note aussi que dans le cas de Blasius, $C_{f,m}(L) = 2C_f(L)$.
