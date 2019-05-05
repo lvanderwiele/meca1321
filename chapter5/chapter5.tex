@@ -284,56 +284,138 @@
     \end{equation}
     On note aussi que dans le cas de Blasius, $C_{f,m}(L) = 2C_f(L)$.
 
-    \section{Épaisseur de la couche limite}
-      Il est difficile de définir l'épaisseur de la couche limite car celle-ci car le profil de vitesse tend asymptotiquement vers $u_e$. On parle donc souvent d'épaisseur à $99\%$: la distance à la paroi telle que $u=0.99u_e$. Elle correspond à $\eta_{0.99} = 3.4719$. On peut cependant aussi la considérer à $95\%$ et avoir $\eta_{0.95} = 2.7705$. On a donc
-      \begin{multicols}{2}
-        \begin{equation}
-          \frac{\delta}{x} = \frac{\eta_{0.99}}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{4.91}{Re^{1/2}}
-        \end{equation}
-
-        \begin{equation}
-          \frac{\delta_{0.95}}{x} = \frac{\eta_{0.95}}{\left(\frac{u_e x}{2\nu}\right)^1/2} = \frac{3.92}{Re^{1/2}}
-        \end{equation}
-      \end{multicols}
-      On peut cependant établir le concept d'épaisseur de déplacement $\delta^*$, soit la distance à la paroi telle que le débit du profil de vitesse incluant la couche limite soit le même que le débit sans couche limite pour une paroi déplacée de l'épaisseur $\delta^*$. Ainsi, pour tout $\zeta \gg \delta$
+  \section{Épaisseur de la couche limite}
+    Il est difficile de définir l'épaisseur de la couche limite car celle-ci car le profil de vitesse tend asymptotiquement vers $u_e$. On parle donc souvent d'épaisseur à $99\%$: la distance à la paroi telle que $u=0.99u_e$. Elle correspond à $\eta_{0.99} = 3.4719$. On peut cependant aussi la considérer à $95\%$ et avoir $\eta_{0.95} = 2.7705$. On a donc
+    \begin{multicols}{2}
       \begin{equation}
-        \int_0^\zeta u dy = (\zeta-\delta^*)u_e = u_e \int_0^\zeta dy - u_e \delta^* \quad \Rightarrow \quad \delta^* = \int_0^\zeta \left(1 - \frac{u}{u_e}\right)dy
+        \frac{\delta}{x} = \frac{\eta_{0.99}}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{4.91}{Re^{1/2}}
       \end{equation}
-      Avec $u_e$ constant, on obtient
+
+      \begin{equation}
+        \frac{\delta_{0.95}}{x} = \frac{\eta_{0.95}}{\left(\frac{u_e x}{2\nu}\right)^1/2} = \frac{3.92}{Re^{1/2}}
+      \end{equation}
+    \end{multicols}
+    On peut cependant établir le concept d'épaisseur de déplacement $\delta^*$, soit la distance à la paroi telle que le débit du profil de vitesse incluant la couche limite soit le même que le débit sans couche limite pour une paroi déplacée de l'épaisseur $\delta^*$. Ainsi, pour tout $\zeta \gg \delta$
+    \begin{equation}
+      \int_0^\zeta u dy = (\zeta-\delta^*)u_e = u_e \int_0^\zeta dy - u_e \delta^* \quad \Rightarrow \quad \delta^* = \int_0^\zeta \left(1 - \frac{u}{u_e}\right)dy
+    \end{equation}
+    Avec $u_e$ constant, on obtient
+    \begin{equation}
+      \begin{aligned}
+        \frac{\delta^*}{\delta} &= \int_0^\zeta \left(1 - \frac{u}{u_e}\right) \frac{dy}{\delta} = \int_0^{\eta \gg 1} (1 - f'(\eta))d\eta = 1.217 \\
+        \frac{\delta^*}{x} &= \frac{1.217}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{1.721}{Re^{1/2}}
+      \end{aligned}
+    \end{equation}
+
+    On définit aussi l'épaisseur de quantité de mouvement $\theta$
+    \begin{equation}
+      \theta = \int_0^\zeta \frac{u}{u_e} \left(1-\frac{u}{u_e}\right) dy
+    \end{equation}
+    Avec $u_e$ constant,
+    \begin{equation}
+      \begin{aligned}
+        \frac{\theta}{\delta} &= \int_0^zeta \frac{u}{u_e}\left(1 - \frac{u}{u_e}\right) \frac{dy}{\delta} = \int_0^{\eta \gg 1} f'(\eta) (1-f'(\eta)) d\eta = 0.470\\
+        \frac{\theta}{x} &= \frac{0.470}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{0.664}{Re^{1/2}}
+      \end{aligned}
+    \end{equation}
+
+    Pour la couche limite avec $u_e$ constant, on a
+    \begin{equation}
+      \frac{\theta(L)}{L} = \frac{C_{f,m}(L)}{2}
+    \end{equation}
+    C'est la signification physique de l'épaisseur de quantité de mouvement dans le cas $u_e$ constant:
+    \begin{equation}
+      C_{f,m}(L) = \frac{D(L)}{L \rho u_e^2/2} = 2\frac{\theta(L)}{L} \quad \Rightarrow \quad D(L) = \rho u_e^2 \theta(L)
+    \end{equation}
+    Il s'agit donc de la force de taînée normalisée exercée par la plaque sur le fluide entre $x=0$ et $x=L$. De même, $\Delta\theta_{x_1 \rightarrow x_2}$ correspond à cette force entre tout $x=x_1$ et $x=x_2$. Il s'agit aussi du déficit de quantité de mouvement entre ces deux $x$ correspondant à la force exercée par le milieu sur le système (le fluide).
+
+    On note aussi que le cas de la couche limite simple de Blasius est conforme au cas général de l'introduction
+    \begin{equation}
+      \frac{\delta(x)}{x} = \frac{2^{1/2}}{\left(\frac{u_e x}{\nu}\right)^{1/2}} = \frac{2^{1/2}{Re^{1/2}}} \quad \Rightarrow \quad \frac{\delta(x)}{L} = \frac{2^{1/2}}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}
+    \end{equation}
+    Pour les épaisseurs
+    \begin{equation}
+      \frac{\delta_{0.99}(x)}{L} = \frac{4.91}{Re^{1/2}}\left(\frac{x}{L}\right)^{1/2}, \quad \frac{\delta^*}{L} = \frac{1.721}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}, \quad \frac{\theta(x)}{L} = \frac{0.664}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}
+    \end{equation}
+
+  \section{Approche intégrale pour le cas général}
+    Pour les couches limites laminaires, il y a peu de solutions exactes. En fait, il y a la solution de Blasius et celle de Falkner-Skan pour le cas $u_e = C x^\alpha$ dont la solution de Blasius est un cas particulier. Il est donc nécessaire de développer une approche simplifiée permettant d'obtenir $\delta^*$, $\theta$, $C_f$ et $C_{f, m}$.
+
+    L'approche intégrale de von Karman en est une. Elle s'obtient soit par intégration des équations de la couche limite en $y$, soit à partir de la conservation de la masse et de la quantité de mouvement appliquée à un volume de contrôle différentiel. Considérons la seconde approche dans lcas général des écoulement incompressibles ou compressibles.
+
+    La conservation de la masse demande un débit entrant égal au débit sortant
+    \begin{equation}
+      Q_{CD} + Q_{BD} - Q_{AB} = 0
+    \end{equation}
+    On a
+    \begin{equation}
+      \begin{aligned}
+        Q_{AB} &= \int_0^\zeta \rho u dy \eval_{x}\\
+        Q_{CD} &= \int_0^\zeta \rho u dy \eval_{x + dx} = \int_{0}^{\zeta} \rho u dy \eval_x + dx \dv{x}\left( \int_{0}^{\zeta} \rho u dy\right)\eval_{x}
+      \end{aligned}
+    \end{equation}
+    Similairement, la quantité de mouvement demand que la différence entre le flux sortant et entrant soit égale à somme des forces subies par le fluide, on a, en $x$,
+    \begin{equation}
+      M_{CD} + M_{BD} - M_{AB} = F_{AB} - F_{CD} + F_{BD} - F_{AC}
+    \end{equation}
+    On a ainsi
+    \begin{multicols}{2}
+      \begin{equation*}
+        \begin{aligned}
+          M_{AB} &= \int_0^\zeta \rho u^2 dy \eval_x\\
+          M_{CD} &= \int_0^\zeta \rho u^2 dy \eval_{x+dx}\\
+                 &= \int_0^\zeta \rho u^2 dy \eval_{x} + dx\dv{x}\left(\int_0^\zeta \rho u^2 dy\right)\eval_x\\
+          M_{BD} &= u_e Q_{BD} = -u_e dx \dv{x}\left(\int_0^\zeta \rho u dy \right) \eval_x
+        \end{aligned}
+      \end{equation*}
+
       \begin{equation}
         \begin{aligned}
-          \frac{\delta^*}{\delta} &= \int_0^\zeta \left(1 - \frac{u}{u_e}\right) \frac{dy}{\delta} = \int_0^{\eta \gg 1} (1 - f'(\eta))d\eta = 1.217 \\
-          \frac{\delta^*}{x} &= \frac{1.217}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{1.721}{Re^{1/2}}
+          F_{AB} &= (p_e \zeta)\eval_x\\
+          F_{CD} &= (p_e \zeta)\eval_{x+dx} = (p_e \zeta)\eval_{x} + dx \pv{x}(p_e \zeta)\eval_x\\
+          F_{BD} &= (p_e d\zeta)\eval_x = pe_e dx\dv{\zeta}{x}\eval_x\\
+          F_{AC} &= dx \tau_w \eval_x
         \end{aligned}
       \end{equation}
+    \end{multicols}
+    On obtient donc
+    \begin{equation}
+      \begin{aligned}
+        dx \dv{x}\left(\int_0^\zeta \rho u^2 dy\right) \eval_x -u_e dx \dv{x}\left(\int_0^\zeta \rho dy\right)\eval_x &=
+        -dx\dv{x}(p_e\zeta)\eval_x + p_e dx\dv{\zeta}{x}\eval_x - dx \tau_w \eval_x\\
+        \dv{x}\left(\int_0^\zeta \rho u^2 dy\right) &= u_e \dv{x}\left(\int_0^\zeta \rho u dy\right) - \zeta \dv{p_e}{x} - \tau_w
+      \end{aligned}
+    \end{equation}
 
-      On définit aussi l'épaisseur de quantité de mouvement $\theta$
-      \begin{equation}
-        \theta = \int_0^\zeta \frac{u}{u_e} \left(1-\frac{u}{u_e}\right) dy
-      \end{equation}
-      Avec $u_e$ constant,
-      \begin{equation}
-        \begin{aligned}
-          \frac{\theta}{\delta} &= \int_0^zeta \frac{u}{u_e}\left(1 - \frac{u}{u_e}\right) \frac{dy}{\delta} = \int_0^{\eta \gg 1} f'(\eta) (1-f'(\eta)) d\eta = 0.470\\
-          \frac{\theta}{x} &= \frac{0.470}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{0.664}{Re^{1/2}}
-        \end{aligned}
-      \end{equation}
+    Dans le cas général, l'épaisseur de déplacement est
+    \begin{equation}
+      \begin{aligned}
+        \int_0^\zeta \rho u dy &= \rho_e u_e (\zeta - \delta^*)\\
+        \delta^* &= \int_0^\zeta \left(1 - \frac{\rho u}{\rho_e}{u_e}\right)dy
+      \end{aligned}
+    \end{equation}
+    Et l'équation de quantité de mouvement est, dans le cas général,
+    \begin{equation}
+      \theta = \int_0^\zeta \frac{\rho u}{\rho_e u_e} \left(1 - \frac{u}{u_e}\right) dy
+    \end{equation}
 
-      Pour la couche limite avec $u_e$ constant, on a
-      \begin{equation}
-        \frac{\theta(L)}{L} = \frac{C_{f,m}(L)}{2}
-      \end{equation}
-      C'est la signification physique de l'épaisseur de quantité de mouvement dans le cas $u_e$ constant:
-      \begin{equation}
-        C_{f,m}(L) = \frac{D(L)}{L \rho u_e^2/2} = 2\frac{\theta(L)}{L} \quad \Rightarrow \quad D(L) = \rho u_e^2 \theta(L)
-      \end{equation}
-      Il s'agit donc de la force de taînée normalisée exercée par la plaque sur le fluide entre $x=0$ et $x=L$. De même, $\Delta\theta_{x_1 \rightarrow x_2}$ correspond à cette force entre tout $x=x_1$ et $x=x_2$. Il s'agit aussi du déficit de quantité de mouvement entre ces deux $x$ correspondant à la force exercée par le milieu sur le système (le fluide).
+    L'équation de von Karman est finalement obtenue comme
+    \begin{equation}
+      \dv{x}(\rho_e u_e^2 \theta) + \rho_e u_e \dv{u_e}{x} \delta^* = \tau_w
+    \end{equation}
+    Le coefficient de frottement étant défini par $C_f = \frac{\tau_w}{\rho_e u_e^2/2}$, la forme adimmensionnelle s'écrit
+    \begin{equation}
+      \dv{\theta}{x} + \recip{\rho_e}{u_e^2} \dv{x}(\rho_e u_e^2) \theta + \recip{u_e}\dv{u_e}{x} \delta^* = \frac{C_f}{2}
+    \end{equation}
 
-      On note aussi que le cas de la couche limite simple de Blasius est conforme au cas général de l'introduction
-      \begin{equation}
-        \frac{\delta(x)}{x} = \frac{2^{1/2}}{\left(\frac{u_e x}{\nu}\right)^{1/2}} = \frac{2^{1/2}{Re^{1/2}}} \quad \Rightarrow \quad \frac{\delta(x)}{L} = \frac{2^{1/2}}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}
-      \end{equation}
-      Pour les épaisseurs
-      \begin{equation}
-        \frac{\delta_{0.99}(x)}{L} = \frac{4.91}{Re^{1/2}}\left(\frac{x}{L}\right)^{1/2}, \quad \frac{\delta^*}{L} = \frac{1.721}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}, \quad \frac{\theta(x)}{L} = \frac{0.664}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}
-      \end{equation}
+    Le rapport $H \overset{\triangle}{=} \delta^*/\theta$ est le facteur de forme de la couche limite
+    \begin{equation}
+      \dv{\theta}{x} + \left(\recip{\rho_e}\pdv{\rho_e}{x} + (2+H) \recip{u_e}\pdv{u_e}{x}\right)\theta = \frac{C_f}{2}
+    \end{equation}
+
+    Le cas des écoulements incompressible est le cas $\rho_e = \rho$ donnant
+    \begin{equation}
+      \dv{\theta}{x} + \recip{u_e}\dv{u_e}{x}(2\theta + \delta^*) = \dv{\theta}{x} + (2+H) \recip{u_e}\dv{u_e}{x} \theta = \frac{C_f}{2}
+    \end{equation}
+
+    Le cas avec $u_e$ constant donne simplement $\dv{\theta}{x} = \frac{C_f}{2}$, l'augmentation de l'épaisseur de quantité de mouvement étant alors directement proportionnel au frottement. On a alors aussi $\frac{\theta(L)}{L} = \frac{C_{f,m}}{2}$.
