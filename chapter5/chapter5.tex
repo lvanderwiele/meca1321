@@ -419,3 +419,90 @@
     \end{equation}
 
     Le cas avec $u_e$ constant donne simplement $\dv{\theta}{x} = \frac{C_f}{2}$, l'augmentation de l'épaisseur de quantité de mouvement étant alors directement proportionnel au frottement. On a alors aussi $\frac{\theta(L)}{L} = \frac{C_{f,m}}{2}$.
+
+  \section{Couches limites thermiques}
+    Dans le cas général incompressible, l'équation de l'énergie s'exprime alors en terme d'énergie interne, $U$, avec $dU = c(T)dT$:
+    \begin{equation}\label{eq:énergie}
+      \begin{aligned}
+        \rho \dvm{U}{t} &= \tau_{ji}d_{ij} - \pdv{q_j}{x_j}\\
+        &= 2 \mu d_{ji}d_{ij} + \pdv{x_j}\left(k \pdv{T}{x_j}\right)
+      \end{aligned}
+    \end{equation}
+    Au sein de la couche limite cette équation se réduit à
+    \begin{equation}
+      \rho \left(u\pdv{U}{x} + v\pdv{U}{y}\right) = \mu \left(\pdv{u}{y}\right)^2 + \pdv{y}\left(k\pdv{T}{y}\right)
+    \end{equation}
+    Généralement, $\mu$, $k$ et $c$ sont fonctions de $T$. Si on multiplie l'équation de quantité de mouvement par $u$, on obtient
+    \begin{equation}\label{eq:mouvementU}
+      \rho \left(u\pdv{x}\left(\frac{u^2}{y}\right) + v\pdv{y}\left(\frac{u^2}{2}\right)\right) = -u \dv{p_e}{x} + u \pdv{y}\left(\mu \pdv{u}{y}\right)
+    \end{equation}
+
+    L'équation de l'énergie interne totale $U_0 = U + u^2/2$ est obtenue en additionnant les équations \ref{eq:mouvementU} et \ref{eq:énergie}
+    \begin{equation}
+      \begin{aligned}
+        \rho \left(u\frac{U_0}{x} + v\frac{U_0}{y}\right) &= -u \dv{p_e}{x} + u \pdv{y}\left(\mu \pdv{u}{y}\right) + \mu \left(\pdv{u}{y}\right)^2 + \pdv{y} \left(k \pdv{T}{y}\right)\\
+        &= -u \dv{p_e}{x} + \pdv{y} \left(\mu \left(\pdv{y}\left(\frac{u^2}{2}\right) + \frac{k}{\mu c} \pdv{U}{y}\right)\right)
+      \end{aligned}
+    \end{equation}
+
+    Le coefficient de diffusivité thermique $\alpha = \frac{k}{\rho c} = \frac{\nu}{Pr}$. On note que, malgré que $\mu$, $k$ et $c$ soient fonctions de T, $Pr$ l'est relativement peu car $c$ varie peu tandis que $\mu$ et $k$ varie significativeemnt mais presque en proportion. En revanche, pour les liquides, Prantl varie rapidement avec la température. Pour les gaz, on approxime $Pr(T)=Pr$.
+
+    Pour la suite, on considère $u_e$ constant
+    \begin{equation}
+      \rho \left(u\frac{U_0}{x} + v\frac{U_0}{y}\right) = \pdv{y}\left(\mu \left(\pdv{y} \left(\frac{u^2}{2}\right) + \recip{Pr} \pdv{U}{y}\right)\right)
+    \end{equation}
+
+    \subsection{Cas $Pr = 1$  et $u_e$ constant}
+      On a alors
+      \begin{equation}
+        \rho \left(u\frac{U_0}{x} + v\frac{U_0}{y}\right) = \pdv{y}\left(\mu \pdv{U_0}{y}\right)
+      \end{equation}
+      On peut constater que les grandeurs $u$ et $U_0$ satisfont la même équation. Il y a donc une relation linéaire entre elles, c'est la relation de Crocco
+      \begin{equation}
+        U_0 = A u + B
+      \end{equation}
+      En utilisant la condition à la paroi dans une couche limite à température constante, on peut établir que $B = U_w$. Par ailleurs, le raccordement avec l'écoulement hors couche limite impose $A = \frac{U_{0e} - U_w}{u_e} = \frac{U_e - U_w + u_e^2/2}{u_e}$.
+      La relation est donc
+      \begin{equation}
+        \begin{aligned}
+          U_0 - U_w &= (U_{0e} - U_w)\frac{u}{u_e}\\
+          (U - U_w) + \frac{u^2}{2} &= \left((U_e - U_w) + \frac{u_e^2}{2}\right)
+        \end{aligned}
+      \end{equation}
+      La signification physique de $A$ est obtenue par
+      \begin{equation}
+        \begin{aligned}
+          \pdv{U}{y} + u \pdv{u}{y} &= c \pdv{T}{y} + u \pdv{u}{y} = A\pdv{u}{y}\\
+          c \pdv{T}{y}\eval_{y=0} &= A\pdv{u}{y}\eval_{y=0}\\
+          k \pdv{T}{y}\eval_{y=0} &= A\mu\pdv{u}{y}\eval_{y=0}\\
+          -q_w &= A\tau_w
+        \end{aligned}
+      \end{equation}
+      $A$ est donc le rapport entre le flux de chaleur et la contrainte de cisaillement à la paroi. Si les propriétés du fluides sont constantes, l'écoulement est obtenu par Blasius, $u/u_e = f'(\eta)$. Dans ce cas, $dU = cdT$ et
+      \begin{equation}
+        c(T-T_w) + \frac{u^2}{2} = \left(c(T_e + T_w) + \frac{u_e^2}{2}\right)\frac{u}{u_e}
+      \end{equation}
+      En divisant par $u_e^2/2$, on obtient le profil de température via
+      \begin{equation}
+        \begin{aligned}
+          \frac{c(T-T_w)}{u_e^2/2} + \left(\frac{u}{u_e}\right)^2 &= \left(\frac{c(T-T_w)}{u_e^2/2} + 1\right) \frac{u}{u_e}\\
+          \frac{c(T-T_w)}{u_e^2/2} &= \left(\frac{c(T-T_w)}{u_e^2/2} + 1\right) f'(\eta) - f'(\eta)^2
+        \end{aligned}
+      \end{equation}
+
+      Dans le cas adiabatique, on a $q_w = 0$ et donc $A=0$. Par conséquent, $U_0$ est constant et l'énergie interne est constante au sein de la couche limite.
+      \begin{equation}
+        \begin{aligned}
+          U + \frac{u^2}{2} &= U_e + \frac{u_e^2}{2} \\
+          U - U_e &= \frac{u_e^2}{2} \left(1 - \left(\frac{u}{u_e}\right)^2\right)
+        \end{aligned}
+      \end{equation}
+
+      Dans lel cas $c$ constant, le profil de tmpérature est
+      \begin{equation}
+        \frac{c(T-T_e)}{u_e^2/2} = 1 - f'(\eta)^2
+      \end{equation}
+      Et la température de paroi est donnée par
+      \begin{equation}
+        \frac{c(T_w - T_e)}{u_e^2/2} = 1
+      \end{equation}
