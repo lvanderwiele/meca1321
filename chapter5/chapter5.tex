@@ -283,3 +283,57 @@
       \end{aligned}
     \end{equation}
     On note aussi que dans le cas de Blasius, $C_{f,m}(L) = 2C_f(L)$.
+
+    \section{Épaisseur de la couche limite}
+      Il est difficile de définir l'épaisseur de la couche limite car celle-ci car le profil de vitesse tend asymptotiquement vers $u_e$. On parle donc souvent d'épaisseur à $99\%$: la distance à la paroi telle que $u=0.99u_e$. Elle correspond à $\eta_{0.99} = 3.4719$. On peut cependant aussi la considérer à $95\%$ et avoir $\eta_{0.95} = 2.7705$. On a donc
+      \begin{multicols}{2}
+        \begin{equation}
+          \frac{\delta}{x} = \frac{\eta_{0.99}}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{4.91}{Re^{1/2}}
+        \end{equation}
+
+        \begin{equation}
+          \frac{\delta_{0.95}}{x} = \frac{\eta_{0.95}}{\left(\frac{u_e x}{2\nu}\right)^1/2} = \frac{3.92}{Re^{1/2}}
+        \end{equation}
+      \end{multicols}
+      On peut cependant établir le concept d'épaisseur de déplacement $\delta^*$, soit la distance à la paroi telle que le débit du profil de vitesse incluant la couche limite soit le même que le débit sans couche limite pour une paroi déplacée de l'épaisseur $\delta^*$. Ainsi, pour tout $\zeta \gg \delta$
+      \begin{equation}
+        \int_0^\zeta u dy = (\zeta-\delta^*)u_e = u_e \int_0^\zeta dy - u_e \delta^* \quad \Rightarrow \quad \delta^* = \int_0^\zeta \left(1 - \frac{u}{u_e}\right)dy
+      \end{equation}
+      Avec $u_e$ constant, on obtient
+      \begin{equation}
+        \begin{aligned}
+          \frac{\delta^*}{\delta} &= \int_0^\zeta \left(1 - \frac{u}{u_e}\right) \frac{dy}{\delta} = \int_0^{\eta \gg 1} (1 - f'(\eta))d\eta = 1.217 \\
+          \frac{\delta^*}{x} &= \frac{1.217}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{1.721}{Re^{1/2}}
+        \end{aligned}
+      \end{equation}
+
+      On définit aussi l'épaisseur de quantité de mouvement $\theta$
+      \begin{equation}
+        \theta = \int_0^\zeta \frac{u}{u_e} \left(1-\frac{u}{u_e}\right) dy
+      \end{equation}
+      Avec $u_e$ constant,
+      \begin{equation}
+        \begin{aligned}
+          \frac{\theta}{\delta} &= \int_0^zeta \frac{u}{u_e}\left(1 - \frac{u}{u_e}\right) \frac{dy}{\delta} = \int_0^{\eta \gg 1} f'(\eta) (1-f'(\eta)) d\eta = 0.470\\
+          \frac{\theta}{x} &= \frac{0.470}{\left(\frac{u_e x}{2\nu}\right)^{1/2}} = \frac{0.664}{Re^{1/2}}
+        \end{aligned}
+      \end{equation}
+
+      Pour la couche limite avec $u_e$ constant, on a
+      \begin{equation}
+        \frac{\theta(L)}{L} = \frac{C_{f,m}(L)}{2}
+      \end{equation}
+      C'est la signification physique de l'épaisseur de quantité de mouvement dans le cas $u_e$ constant:
+      \begin{equation}
+        C_{f,m}(L) = \frac{D(L)}{L \rho u_e^2/2} = 2\frac{\theta(L)}{L} \quad \Rightarrow \quad D(L) = \rho u_e^2 \theta(L)
+      \end{equation}
+      Il s'agit donc de la force de taînée normalisée exercée par la plaque sur le fluide entre $x=0$ et $x=L$. De même, $\Delta\theta_{x_1 \rightarrow x_2}$ correspond à cette force entre tout $x=x_1$ et $x=x_2$. Il s'agit aussi du déficit de quantité de mouvement entre ces deux $x$ correspondant à la force exercée par le milieu sur le système (le fluide).
+
+      On note aussi que le cas de la couche limite simple de Blasius est conforme au cas général de l'introduction
+      \begin{equation}
+        \frac{\delta(x)}{x} = \frac{2^{1/2}}{\left(\frac{u_e x}{\nu}\right)^{1/2}} = \frac{2^{1/2}{Re^{1/2}}} \quad \Rightarrow \quad \frac{\delta(x)}{L} = \frac{2^{1/2}}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}
+      \end{equation}
+      Pour les épaisseurs
+      \begin{equation}
+        \frac{\delta_{0.99}(x)}{L} = \frac{4.91}{Re^{1/2}}\left(\frac{x}{L}\right)^{1/2}, \quad \frac{\delta^*}{L} = \frac{1.721}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}, \quad \frac{\theta(x)}{L} = \frac{0.664}{Re^{1/2}_L} \left(\frac{x}{L}\right)^{1/2}
+      \end{equation}
