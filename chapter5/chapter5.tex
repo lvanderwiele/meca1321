@@ -612,4 +612,69 @@
         St \simeq \frac{0.3887 Pr^{-2/3}}{\left(1 + \left(\frac{0.0468}{Pr}\right)^{2/3}\right)^{1/4}} Re^{-1/2} = \frac{1.02}Pr^{-2/3}{\left(1+\left(\frac{0.0468}{Pr}\right)^{2/3}\right)^{1/4}} \frac{C_f}{2}
       \end{equation}
 
-      On peut vérifier à posteriori l'estimation $\frac{\delta}{\delta_T} \simeq Pr^{1/2}$ découlant de la relation $\frac{\delta}{\delta_T} = Pr^a$. On remarque cependant que la valeur $a = 1/2$ n'est valable qu'avec $Pr$ très petit, ou si $\delta \ll \delta_T$. On peut cependant, ajouter un paramètre $C$ tel que $\delta/\delta_T = C~Pr$ afin d'ajouter un degré de liberté et de corriger l'équation. 
+      On peut vérifier à posteriori l'estimation $\frac{\delta}{\delta_T} \simeq Pr^{1/2}$ découlant de la relation $\frac{\delta}{\delta_T} = Pr^a$. On remarque cependant que la valeur $a = 1/2$ n'est valable qu'avec $Pr$ très petit, ou si $\delta \ll \delta_T$. On peut cependant, ajouter un paramètre $C$ tel que $\delta/\delta_T = C~Pr$ afin d'ajouter un degré de liberté et de corriger l'équation. Les valeurs de $a$ et $C$ pour différents Prandtl peuvent être trouvés page $131$ du syllabus.
+
+  \section{Couches limites en écoulement compressible}
+    Les équations dans le cas compressible sont obtenues en étendant les développeemnts précédents. En plus de la loi de constitution $p = \rho R T$, de la conservation de masse et de la quantité de mouvement,
+    \begin{equation}
+      \begin{aligned}
+        \dvm{\rho}{t} + \rho d_{mm} &= 0,\\
+        \rho \dvm{u_i}{t} &= - \pdv{p}{x_i} + \pdv{\tau_{ji}}{x_j}
+      \end{aligned}
+    \end{equation}
+    on considère aussi l'énergie, exprimée en enthalpie $H$ avec $dH = c_p dT$
+    \begin{equation}
+      \rho \dvm{H}{t} = \dvm{p}{t} + \tau_{ji} d_{ij} + \pdv{x_j} \left(k \pdv{T}{x_j}\right)
+    \end{equation}
+
+    Au sein de la couche limite ces équations deviennent
+    \begin{equation}
+      \begin{aligned}
+        \pdv{x}(\rho u) + \pdv{y} (\rho v) &= 0,\\
+        \rho \left(u \pdv{u}{x} + v\pdv{u}{y}\right) &= -\dv{p_e}{x} + \pdv{y}\left(\mu \pdv{u}{y}\right),\\
+        \rho \left(u \pdv{H}{x} + v\pdv{H}{y}\right) &= u \dv{p_e}{x} + \mu \left(\pdv{u}{y}\right)^2 + \pdv{y} \left(k \pdv{T}{y}\right)
+      \end{aligned}
+    \end{equation}
+    En multipliant la deuxième équation par $u$ et en l'additionnant à l'équation de l'enthalpie, on a l'équation de l'enthalpie totale $H_0 = H + u^2/2$
+    \begin{equation}\label{eq:enthalpieTot}
+      \begin{aligned}
+        \rho \left(u \pdv{H_0}{x} + v \pdv{H_0}{y}\right) &= u \pdv{y}\left(\mu \pdv{u}{y}\right) + \mu \left(\pdv{u}{y}\right)^2 + \pdv{y} \left(k \pdv{T}{y}\right)\\
+        &= \pdv{y} \left(\mu \left(\pdv{y}\left(\frac{u^2}{2}\right) + \recip{Pr} \pdv{H}{y}\right)\right) \quad \textrm{ avec } Pr = \frac{\mu c_p}{k}
+      \end{aligned}
+    \end{equation}
+
+    \subsection{Cas $Pr = 1$ et $u_e$ constant}
+      L'équation \ref{eq:enthalpieTot} en
+      \begin{equation}
+        \rho \left(u\pdv{H_0}{x} + v \pdv{H_0}{y}\right) = \pdv{y} \left(\mu \pdv{H_0}{y}\right)
+      \end{equation}
+      qui donne une relation linéaire entre ces deux grandeurs $H_0 = Au+B$ qui est la relation de Crocco pour les couches limites compressibles.
+
+      Dans le cas de température de température de paroi constante $T\eval_{y=0} = T_w$ on a
+      \begin{equation}
+        \begin{aligned}
+          H_0 - H_w &= (H_{0e} - H_w)\frac{u}{u_e},\\
+          (H - H_w) + \frac{u^2}{2} &= \left((H_e - H_w) + \frac{u_e^2}{2}\right) \frac{u}{u_e}
+        \end{aligned}
+      \end{equation}
+      Dans le cas d'un fluide calorifique parfait\footnote{$c_p$ indépendant de $T$}, on a
+      \begin{equation}
+        c_p (T-T_w) + \frac{u^2}{2} = \left(c_p (T_e - T_w) + \frac{u_e^2}{2}\right)\frac{u}{u_e}
+      \end{equation}
+      et le profil de température est donc
+      \begin{equation}
+        \frac{u_c (T-T_w)}{u_e^2/2} = \left(\frac{cp (T_e - T_w)}{u_e^2/2} + 1\right) \frac{u}{u_e} - \left(\frac{u}{u_e}\right)^2
+      \end{equation}
+
+      Dans le cas adiabatique ($q_w = 0$), l'enthalpie totale est constante
+      \begin{equation}
+        H + \frac{u^2}{2} = H_e + \frac{u_e^2}{2}
+      \end{equation}
+      Pour pour un fluide calorifique parfait, ça devient
+      \begin{equation}
+        \frac{c_p(T-T_e)}{u_e^2/2} = 1 - \left(\frac{u}{u_e}\right)^2
+      \end{equation}
+      Et $T_w$ est donnée par
+      \begin{equation}
+        \frac{c_p(T_w - T_e)}{u_e^2 /2} = 1
+      \end{equation}
