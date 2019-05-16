@@ -268,7 +268,7 @@
       \frac{\tau_w}{\rho} = \nu \pdv{u}{y}\eval_{y=0} = f''(0) \nu \frac{u_e}{\delta} = 0.4696\nu\frac{u_e}{\delta} = 0.4696\frac{u_e^2}{2} \left(\frac{u_e}{2\nu}\right)^{-\recip{2}}
     \end{equation}
     Le coefficient adimensionnel de frottement local est par conséquent
-    \begin{equation}
+    \begin{equation}\label{eq:frottement}
       C_f = \frac{\tau_w}{\rho u_e^2 /2} = 0.664 \left(\frac{u_e x}{\nu}\right)^{-\recip{2}} = \frac{0.664}{Re^{1/2}}
     \end{equation}
     La force $D$ (pour \textit{Drag}) par unité de largeur exercée par l'écoulement sur la plaque entre $x=0$ et $x=L$ est obtenue par intégration
@@ -506,3 +506,110 @@
       \begin{equation}
         \frac{c(T_w - T_e)}{u_e^2/2} = 1
       \end{equation}
+
+    \subsection{Cas $Pr$ général, dissipation négligeable, $u_e$ et $T_w$ constants}
+      Soit $Pr \neq 1$, la relation de Crocco n'est pas valable. Cependant, si on considère les écoulements où la disspition visqueuse au sein de la couche limite est négligeable par rapport à la condition de chaleur, on peut encore avoir des solutions exactes. L'ordre de grandeur des termes de dissipation visqueuse et de conduction de chaleur est
+      \begin{equation}
+        \mu \left(\frac{u_e}{\delta}\right)^2 \quad \textrm{et} \quad k\frac{|T_e - T_w|}{\delta_T^2}
+      \end{equation}
+      où $\delta_T$ l'épaisseur caractéristique de la couche limite thermique. Pour négliger la dissipation visqueuse par rapport à la conduction de chaleur, il faut que
+      \begin{equation}
+        \mu \left(\frac{u_e}{\delta}\right)^2) \ll k\frac{|T_e - T_w|}{\delta_T^2}
+      \end{equation}
+      ou encore
+      \begin{equation}
+        \frac{\mu u_e^2}{k |T_e - T_w|} \left(\frac{\delta_T}{\delta}\right)^2 = \frac{\mu_c}{k} \frac{u_c^2}{c |T_e - T_w|} \left(\frac{\delta_T}{\delta}\right)^2 = Pr~Ec \left(\frac{\delta_T}{\delta}\right)^2 \ll 1
+      \end{equation}
+      avec $Ec$ le nombre d'Eckert. On a déjà par comparaison des ordres de grandeur que $\delta(x)$ varie comme $x(u_e x/\nu)^{-1/2}$. De la même manière, $\delta_T$ varie comme $x(u_e x/\alpha)^{-1/2}$. On obtient alors
+      \begin{equation}
+        \frac{\delta_T}{\delta} \simeq \left(\frac{\alpha}{\nu}\right)^\frac{1}{2}
+      \end{equation}
+      La condition adimmensionnelle pour que la dissipation visqueuse soit négligeable par rapport à la conduction devient $Ec \ll 1$.
+
+      L'équation de l'énergie dans le cas avec dissipation visqueuse se réduit à
+      \begin{equation}
+        \rho \left(u \pdv{U}{x} + v \pdv{U}{y}\right) = \pdv{y} \left(k \pdv{T}{y}\right)
+      \end{equation}
+      et à propriétés physiques constantes
+      \begin{equation}
+        u\pdv{T}{x} + v \pdv{T}{y} = \frac{k}{\rho c} \pdv[2]{T}{y} = \frac{\nu}{Pr} \pdv[2]{T}{y}
+      \end{equation}
+      Soit $T_w$ constante, on a alors $\frac{T - T_w}{T_e - T_w} = \Theta(\eta)$ ce qui donne une l'EDO $\Theta'' (\eta) + Pr~f(\eta) \Theta'(\eta) = 0$ où $f(\eta)$ est connue (Blasius). En posant $G(\eta) = \Theta'(\eta)$, on peut obtenir
+      \begin{equation}
+        G(\eta) = G(0) \exp\left(-Pr \int_0^\eta f(\zeta) d\zeta\right)
+      \end{equation}
+      Et par conséquent
+      \begin{equation}
+        \Theta(\eta) = G(0) \int_0^\eta \exp \left(-Pr \int_0^\xi f(\zeta) d\zeta\right) d\xi + D
+      \end{equation}
+
+      Le profil de température est donc
+      \begin{equation}
+        \frac{T-T_w}{T_e - T_w} = \Theta(\eta) = \frac{\int_0^\eta \exp\left(-Pr \int_0^\xi f(\zeta) d\zeta\right) d\xi}{\int_0^\infty \exp\left(-Pr \int_0^\xi f(\zeta) d\zeta\right) d\xi}
+      \end{equation}
+      Les paramètres de l'intégration numérique se trouvent page 125 du syllabus.
+
+      Grâce à cette équation, on peut déterminer que plus Prandtl est grand, plus l'épaisseur $\delta_T$ est petite par rapport à $\delta$.
+
+      Le flux de chaleur à la paroi est
+      \begin{equation}
+        q_w = -k \pdv{T}{y} \eval_{y=0} = -k(T_e - T_w) \Theta'(0) \recip{\delta(x)} = -k (T_e - T_w) \Theta'(0) \left(\frac{u_e}{2\nu x}\right)^{1/2}
+      \end{equation}
+      Le nombre de Nusselt adimensionnel est
+      \begin{equation}
+        Nu = \frac{q_w x}{k (T_w - T_e)} = \Theta'(0) \frac{x}{\delta(x)} = \frac{\Theta'(0)}{\sqrt{2}} Re^{1/2}
+      \end{equation}
+
+      Pour les cas où $Pr \geq 0.5$, une approximation classique
+      \begin{equation}
+        \frac{Theta'(0)}{\sqrt{2}} \simeq 0.332 Pr^{1/3} \quad \rightarrow \quad Nu \simeq 0.332 Pr^{1/3} Re^{1/2}
+      \end{equation}
+      Pour $Pr \geq 10$, il vaut cependant mieux utiliser
+      \begin{equation}
+        \frac{\Theta'(0)}{\sqrt{2}} \simeq 0.3387 Pr^{1/3} \quad \rightarrow \quad Nu \simeq 0.3387 Pr^{1/3} Re^{1/2}
+      \end{equation}
+      Enfin, pour $Pr \leq 0.01$, on peut aussi dire
+      \begin{equation}
+        \frac{\Theta'(0)}{\sqrt{2}} \simeq 0.564 Pr^{1/2} \quad \rightarrow \quad Nu \simeq 0.564 Pr^{1/2} Re^{1/2}
+      \end{equation}
+
+      Par ailleurs, on défini la ``Corrélation de Churchill et Ozoe'' valable pour tous les $Pr$
+      \begin{equation}
+        Nu \simeq \frac{0.3387 Pr^{1/3}}{\left(1 + \left(\frac{0.0468}{Pr}\right)^{2/3}\right)^{1/4}} Re^{1/2}
+      \end{equation}
+
+      On peut aussi mentionner le nombre de Stanton souvent utilisé à la place du nombre de Nusselt
+      \begin{equation}
+        \begin{aligned}
+          St &= \frac{q_w}{\rho u_e c (T_w - T_e)}\\
+             &= \frac{q_w x}{k (T_w - T_e)} \frac{\mu}{\rho u_e x} \frac{k}{\mu c} = \frac{Nu}{Pr Re} = \frac{Nu}{Pe}
+        \end{aligned}
+      \end{equation}
+      L'approximation pour $Pr \leq 0.5$ donne
+      \begin{equation}
+        St \simeq 0.332 Pr{-2/3} Re^{-1/2}
+      \end{equation}
+      En comparant ça avec le résultat obtenu à l'équation \ref{eq:frottement} pour le frottement, on a ``l'analogie de Reynolds''
+      \begin{equation}
+        St \simeq Pr^{-2/3} \frac{C_f}{2}
+      \end{equation}
+      Pour les couches limites avec $u_e$ et $T_w$, dissipation négligeable et $Pr \geq 0.5$, le coefficient de transfert de chaleur exprimé en Stanton et le $C_f$ sont dans un rapport déterminé dépendant du Prandtl. Ceci permet notamment de calculer le transfert de quantité de mouvement à la paroi\footnote{\textit{i.e.} frottement} grâce à une mesure du transfert de chaleur (et inversément). Elle s'utilise aussi dans les cas où $u_e$ ne varie que modérément.
+
+      On notera aussi que pour $Pr\geq 10$, l'analogie devient
+      \begin{equation}
+        St \simeq 0.3387 Pr^{-2/3} Re^{-1/2} = \left(\frac{0.3387}{0.332}\right) Pr^{-2/3} \frac{C_f}{2} \simeq 1.020 Pr^{-2/3} \frac{C_f}{2}
+      \end{equation}
+      Et dans le cas $Pr \leq 0.01$,
+      \begin{equation}
+        \begin{aligned}
+          St &\simeq 0.564 Pr^{-1/2} Re^{-1/2}\\
+          &\simeq \left(\frac{0.564}{0.332}\right) Pr^{-1/2} \frac{C_f}{2} \simeq 1.7 Pr^{-1/2} \frac{C_f}{2}
+        \end{aligned}
+      \end{equation}
+
+      Finalement, dans le cas général avec Churchill-Ozoe, on obtient
+      \begin{equation}
+        St \simeq \frac{0.3887 Pr^{-2/3}}{\left(1 + \left(\frac{0.0468}{Pr}\right)^{2/3}\right)^{1/4}} Re^{-1/2} = \frac{1.02}Pr^{-2/3}{\left(1+\left(\frac{0.0468}{Pr}\right)^{2/3}\right)^{1/4}} \frac{C_f}{2}
+      \end{equation}
+
+      On peut vérifier à posteriori l'estimation $\frac{\delta}{\delta_T} \simeq Pr^{1/2}$ découlant de la relation $\frac{\delta}{\delta_T} = Pr^a$. On remarque cependant que la valeur $a = 1/2$ n'est valable qu'avec $Pr$ très petit, ou si $\delta \ll \delta_T$. On peut cependant, ajouter un paramètre $C$ tel que $\delta/\delta_T = C~Pr$ afin d'ajouter un degré de liberté et de corriger l'équation. 
