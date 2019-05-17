@@ -678,3 +678,68 @@
       \begin{equation}
         \frac{c_p(T_w - T_e)}{u_e^2 /2} = 1
       \end{equation}
+
+  \section{Approche intégrale pour le transfert de chaleur}
+    L'approche intégrale de von Karman s'applique aussi au transfert de chaleur. Elle peut s'obtenir par intégration des équations de la couche limite en $y$, soit à partir des conservations de masse et d'énergie appliquées à un volume de contrôle présenté à la Figure \ref{fig:vonKarman}. La seconde est utilisée.
+
+    \begin{figure}[!h]
+      \centering
+      \input{chapter5/vonKarman.tex}
+      \caption{Approche intégrale de von Karman pour le transfert de chaleur: volume de contrôle différentiel}
+      \label{fig:vonKarman}
+    \end{figure}
+
+    La conservation de l'énergie dit que
+    \begin{equation}
+      E_{CD} + E_{BD} - E_{AB} = E_{AC}
+    \end{equation}
+
+    Sous écoulements compressibles, en enthalpie totale, on a
+    \begin{equation}
+      \begin{aligned}
+        E_{AB} &= \left(\int_0^\zeta \rho u H_0 dy\right)\eval_x,\\
+        E_{CD} &= \left(\int_0^\zeta \rho u H_0 dy\right)\eval_{x+dx},\\
+        &= \left(\int_0^\zeta \rho u H_0 dy\right)\eval_x + dx \dv{x}\left(\int_0^\zeta \rho u H_0 dy\right)\eval_x,\\
+        E_{BD} &= H_0 Q_{BD} = -H_{0e} dx \dv{x}\left(\int_0^\zeta \rho u dy \right)\eval_x
+      \end{aligned}
+    \end{equation}
+    L'apport reçu par le fluide provient de l'échange de chaleur à la paroi
+    \begin{equation}
+      E_{AC} = dx q_w \eval_x
+    \end{equation}
+
+    Finalement, on obtient l'équation
+    \begin{equation}
+      dx\dv{x} \left(\int_0^\zeta \rho u H_0 dy\right) \eval_x - H_{0e} dx \dv{x}\left(\int_0^\zeta \rho u dy \right) \eval_x = dx q_w \eval_x
+    \end{equation}
+    Pour tout $x$, on peut établir\footnote{$H_{0e}$ est conservé en dehors de la couche limite: $\dv{H_{0e}}{x} = 0$}
+    \begin{equation}
+      \dv{x}\left(\int_0^\zeta \rho u (H_0 - H_{0e})\right) = q_w
+    \end{equation}
+
+    L'épaisseur d'enthalpie totale $\theta_{H_0}$ est définie par
+    \begin{equation}
+      \begin{aligned}
+        \theta_{H_0} = \int_0^\zeta \frac{\rho u}{\rho_e u_e} \left(1 - \frac{H_0 - H_w}{H_{0e} - H_w} \right) dy &= \int_0^\zeta \frac{\rho u}{\rho_e u_e} \frac{H_{0e} - H_0}{H_{0e} - H_w} ~dy\\
+        &= \int_0^\zeta \frac{\rho u}{\rho_e u_e} \frac{H_0 - H_{0e}}{H_w - H_{0e}} ~dy
+      \end{aligned}
+    \end{equation}
+
+    L'équation intégrale de l'énergie est donc
+    \begin{equation}
+      \dv{x} (\rho_e u_e (H_w - H_{0e}) \theta_{H_0}) = q_w
+    \end{equation}
+    ou, en forme adimensionnelle
+    \begin{equation}
+      \dv{\theta_{H_0}}{x} + \left(\recip{\rho_e} \dv{\rho_e}{x} + \recip{u_e} \dv{u_e}{x} + \recip{H_w - H_{0e}} \dv{H_w}{x}\right) \theta_{H_0} = \frac{q_w}{\rho_e u_e (H_w - H_{0e}}) = St
+    \end{equation}
+
+    Dans le cas incompressible, on a $\rho = \rho_e$ invariable et on utilise l'énergie totale $U_0 = U + u^2/2$ à la place de l'enthalpie. On a alors
+    \begin{equation}
+      \theta_{U_0} = \int_0^\zeta \frac{u}{u_e}\left(1 - \frac{U_0 - U_w}{U_{0e} - U_w}\right) dy = \int_0^\zeta \frac{u}{u_e} \frac{U_0 - U_{0e}}{U_w ) U_{0e}} ~dy
+    \end{equation}
+    On obtient donc les équations intégrale et intégrale adimensionnelle
+    \begin{align}
+      \rho \dv{x} (u_e (U_w - U_{0e})\theta_{H_0}) &= q_w,\\
+      \dv{\theta_{H_0}}{x} + \left(\recip{u_e} \dv{u_e}{x} + \recip{U_w - U_{0e}}\dv{U_w}{x}\right) \theta_{U_0} &= \frac{q_w}{\rho u_e (U_w - U_{0e})} = St
+    \end{align}
