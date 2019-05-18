@@ -100,3 +100,68 @@
     \end{equation}
 
     Remarquons cependant que nous avons ici $\sqrt{Gr_Y} = Re_Y$. Par ailleurs, dan les deux cas, nous avons $\delta_T/\delta = Pr^{-1/2}$.
+
+  \section{Une solution approchée pour le problème de la convection naturelle}
+    Il n'est pas tout à fait exact de supposer $\delta$ et $\delta_T$ semblable mais ça simplifie grandement la solution et c'est acceptable pour Prandtl proche de l'unité.
+
+    On cherche une solution pour les conditions suivantes
+    \begin{equation}
+      \begin{aligned}
+        v(0,y) = 0 \quad v(\delta,y) = 0 \quad \pdv{v}{x}(\delta, y) &= 0 \quad \mu\pdv[2]{v}{x}(0,y) = -\rho \beta g(T_w-T_0)\\
+        T(0,y) = T_wT(\delta,y) &= T_0 \pdv{T}{x}(\delta,y) = 0
+      \end{aligned}
+    \end{equation}
+
+    Sur base d'une ``intuition phénoménologique'', nous  allons proposer les profils suivants
+    \begin{equation}
+      \begin{aligned}
+        v(x,y) &= v_0(y) \frac{x}{\delta(y)} \left(1-\frac{x}{\delta(y)}\right)^2\\
+        \frac{T(x,y) - T_0}{T_w - T_0} &= \left(1-\frac{x}{\delta(y)}\right)^2
+      \end{aligned}
+    \end{equation}
+    Ces équations traduisent la croissance monotone non linéaire du champ température et la décroissance monotone de $\delta$ précédée par une forte croissance du champ de vitesse près de la paroi. Elles sont toutes deux fonctions de $v_0(y)$, la vitesse maximale et de $\delta$. Soit
+    \begin{equation}
+      \int_0^\delta u \pdv{u}{x} dx = \beta g \int_0^\delta (T(x,y) - T_0) dx + \nu \int_0^\delta \pdv[2]{v}{x}dx
+    \end{equation}
+    En intégrant par partie le terme de gauche donne
+    \begin{equation}
+      [uv]_0^\delta - \int_0^\delta v\pdv{u}{x} dx + \int_0^\delta v\pdv{v}{y} = \beta g \int_0^\delta (T(x,y)-T_0)dx + \nu \pdv[2]{v}{x}dx
+    \end{equation}
+    où on a tiré profit de l'incompressibilité $\pdv{u}{x} = -\pdv{v}{y}$.
+
+    En utilisant la condition de raccord, pour le terme de droite, on a
+    \begin{equation}
+      \dv{y}\int_0^\delta v^2(x,y)dx = \beta g \int_0^\delta (T(x,y) - T_0) dx - \nu \pdv{v}{x}\eval_{x=0}
+    \end{equation}
+
+    Pour l'équation de l'énergie avec $u(0,y) = u(y,\delta)=0$ nécessaire dans ce cas
+    \begin{equation}
+      \begin{aligned}
+        \int_0^\delta u \pdv{T}{x} + v \pdv{T}{y} &= \alpha \int_0^\delta \pdv[2]{T}{x} dx\\
+        [uT]_0^\delta - \int_0^\delta T\pdv{u}{x} dx + \int_0^\delta v\pdv{T}{y} dx &= \alpha \int_0^\delta \pdv[2]{T}{x}dx\\
+        \dv{y} \int_0^{\delta} v(x,y) T(x,y) dx &= -\alpha \pdv{T}{x}\eval_{x=0}
+      \end{aligned}
+    \end{equation}
+
+    En couplant les expressions de $v(x,y)$ et $T(x,y)$, on a
+    \begin{equation}
+      \left\{
+        \begin{aligned}
+          \recip{105} \dv{y}\left(v^2_0 (y)\delta(y)\right) &= \frac{\beta g \Delta T \delta(y)}{3} + \nu \frac{v_0(y)}{\delta(y)}\\
+          \recip{30} \dv{y}\left() v_0(y) \delta(y)\right) &= \frac{2\alpha}{\delta(y)}
+        \end{aligned}
+      \right.
+      \qquad \Rightarrow \qquad
+      \left\{
+        \begin{aligned}
+          v_0(y) &= Vy^m\\
+          \delta(y) &= D y^m
+        \end{aligned}
+      \right.
+    \end{equation}
+    avec $ m = 1/2$ et $n = 1/4$.
+
+    Les valeurs de $V$ et $D$ peuvent alors être retrouvée pour obtenir
+    \begin{equation}
+      \frac{\delta_T}{y} = 3.936 Pr^{-1/2} Gr(y)^{-1/4} \left(\frac{20}{21} + Pr\right)^{1/4}
+    \end{equation}
