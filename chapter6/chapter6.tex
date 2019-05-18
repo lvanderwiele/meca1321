@@ -60,3 +60,43 @@
     \begin{equation}
       \frac{\delta_T}{Y} = (Pr Re_Y)^{-1/2} \quad \textrm{et donc} \quad \frac{\delta_T}{\delta} = Pr^{-1/2}
     \end{equation}
+
+  \section{Nombre de Grashof}
+    Prenons le problème précédent mais avec une force de volume (gravité) à la place du déplacement imposé. Celle-ci se traduit, par Boussinesq, par un gradient $-\dv{p}{y} = \beta g(T-T_0)$. On ne dispose plus de la vitesse caractéristique verticale, $V$.
+
+    Deux approches permette d'obtenir son ordre de grandeur. La première dit que la flottabilité\footnote{poussée d'Archmède} est compensée par la friction. Dans la couche limite ($\delta$ petit) où le terme visqueux est non négligeable contrairement à l'inertie, on a
+    \begin{equation}
+      \begin{aligned}
+        \underbrace{u\pdv{v}{x} + v\pdv{v}{y}}_{\ll V/\delta^2} &= \beta g (T-T_0) + \nu \pdv[2]{v}{x}\\
+        V &= \frac{\beta g \Delta T \delta_T^2}{\nu}
+      \end{aligned}
+    \end{equation}
+
+    L'épaisseur $\delta_T$ est obtenue par égalisation de la convection et de la convection dans l'équation de l'énergie.
+    \begin{equation}
+      \begin{aligned}
+        \frac{\delta_T}{Y} = \sqrt{\frac{\alpha}{VY}} = \left(\frac{\nu \alpha}{\beta g \Delta T Y \delta_T^2}\right)^{1/2} &= Gr^{-1/4} Pr^{-1/4}\\
+        \frac{\delta}{Y} &= Gr^{-1/4}Pr^{1/4}
+      \end{aligned}
+    \end{equation}
+    où $Gr$ est le nombre de Grashof caractérisant une convection libre. Il s'agi du produit des forces d'inertie par la force d'Archimède divisé par le carré des forces visqueuses
+    \begin{equation}
+      Gr = \frac{\beta \Delta T g L^3}{\nu^2}
+    \end{equation}
+
+    La seconde approche dit que la flottabilité est compensée par l'inertie du fluide, \textit{i.e.} s'exerce là où la viscosité est négligeable (hors couche avec $\delta$ grand). On a
+    \begin{equation}
+      \begin{aligned}
+        u\pdv{v}{x} + v\pdv{v}{y} &= \beta g (T-T_0) + \underbrace{\nu \pdv[2]{v}{x}}_{\ll V^2/Y}\\
+        V &= \sqrt{\beta g \Delta T Y}
+      \end{aligned}
+    \end{equation}
+    On otbient alors un $V$ différent et un $\delta_T/Y$ également différent
+    \begin{equation}
+      \begin{aligned}
+        \frac{\delta_T}{Y} = \sqrt{\frac{\alpha}{VY}} = \left(\frac{\alpha^2}{\beta g\Delta T Y^3}\right)^{1/4} &= Gr^{-1/4} Pr^{-1/2}\\
+        \frac{\delta}{Y} &= Gr^{-1/4}
+      \end{aligned}
+    \end{equation}
+
+    Remarquons cependant que nous avons ici $\sqrt{Gr_Y} = Re_Y$. Par ailleurs, dan les deux cas, nous avons $\delta_T/\delta = Pr^{-1/2}$.
