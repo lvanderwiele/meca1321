@@ -1,0 +1,62 @@
+% !TEX root = ../meca1321-synthesis.tex
+
+\chapter{Convection naturelle}
+  L'étude de la convection le long d'une plaque chaude suspendue verticalement dans l'air met en jeu la théroie de couche limite pour un écoulement laminaire permanent. L'élévation de l'air le long des parois d'un radiateur est un exemple de convection naturelle sous l'effet de la poussée d'Archimède s'opposant à la gravité.
+
+  On suppose la pression est globalement hydrostatique en tout point de la plaque
+  \begin{equation}
+    \pdv{p}{y} (x,y) = -\rho_0 g \quad \textrm{ ou } \quad p(x,y) = -\rho_0 g y
+  \end{equation}
+
+  Il s'agit d'une hypothèse découlant de l'approximation de Boussinesq qui revient à ne considérer les variations de densité du fluide que lorsqu'elles multiplient la gravité. En effet, la variation de masse volumique est la cause du phénomène de convection observé.
+
+  Suite à un développement en série de Taylor de $\rho(p,T)^{-1} \rho_0$, la conservation de la quantité de mouvement le long de la plaque verticale est donnée par
+  \begin{equation}
+    \begin{aligned}
+      \rho_0 (1 - \underbrace{\beta (T-T_0)}_{\ll1}) \left(u\pdv{v}{x} + v\pdv{v}{y}\right) &= \underbrace{-\pdv{p}{y}}_{\rho_0 g} + \mu \left(\pdv[2]{v}{x} + \pdv[2]{v}{y}\right) - \rho_0 (1 - \beta(T-T_0))g \\
+      \rho_0 \left(u\pdv{v}{x} + v\pdv{v}{y}\right) &= \mu \left(\pdv[2]{v}{x} + \pdv[2]{v}{y}\right) + \rho_0 \beta (T-T_0) g
+    \end{aligned}
+  \end{equation}
+
+  Le champ de pression est donc fixé par un champ de pression hydrostatique.
+
+  \section{La convection forcée}
+    En convection forcée, il est possible de découpler l'écoulement du problème thermique. Alors qu'à une grande distance de l aparoi, on suppose les effets visqueux négligeables\footnote{Écoulement irrotationnel}, ce n'est pas le cas à proximité où on a un tourbillon.
+
+    On définit ici la frontière de la couche limite de vitesse comme le lieu pour lequel les ordres de grandeur des effets d'inertie et des effets visqueux sont identiques. L'épaisseur caractéristique dont l'ordre de grandeur est supposé constant dans une zone éloignée du bord d'attaque ($y=0$) et des turbulences est largement inférieur à la longueur caractéristique verticale ($\delta \ll Y$).
+
+    L'épaisseur augmente de manière monotone (et non linéaire) dans la direction verticale d'où l'analyse dans la zone locale (le frottement visqueux contribue au ralentissement de l'écoulement). Ce frottement augmente avec la portie de la paroi, augmentant ainsi le $\delta$.
+
+    En égalisant les ordres de grandeur inertiels et visqueux, on voit que l'hypthoèse est vérifiée si $Re_Y$ est grand. On impose
+    \begin{equation}
+      \rho \frac{V^2}{Y} = \mu \frac{V}{\delta^2} \quad \Leftrightarrow \quad \frac{\delta^2}{Y^2} = \frac{\mu}{\rho V Y} \quad \Leftrightarrow \quad \frac{\delta}{Y} = Re_Y^{-1/2}
+    \end{equation}
+
+    Notons par ailleurs que $Re_Y$ doit être suffisamment grand pour avoir $\delta/y$ petit mais pas trop pour éviter un écoulement turbulent. La valeur pour l'épaisseur n'est qu'une (assez bonne) approximation via ordres de grandeurs. Par ailleurs, dans la couche limite, l'un des termes visqueux de conservation de quantité de mouvement est négligeable par rapport à l'autre: $\mathcal{O}(\mu V/\delta^2) \gg \mathcal{O}(\mu V/Y^2)$.
+
+    Avec l'hypothèse de couche limite, on valide l'approximation de Boussinesq
+    \begin{equation}
+      p(x,y) - p_0 = \underbrace{p(\delta, y)}_{\mathcal{O}(\rho V^2)} - p_0 + \underbrace{(x-\delta) \pdv{p}{x}\eval_{x=\delta}}_{\mathcal{O}\left(\rho\frac{V^2\delta^2}{Y^2}\right) \ll \mathcal{O}(p(\delta,y))}
+    \end{equation}
+
+    La variation de pression en $y$ doit être d'un ordre de grandeur identique aux termes d'inertie pour ne pas être négligée. Cependant, la variation horizontale est négligeable par rapport à la pression hors de la couche.
+
+    Les équations de Prantl sont applicables au sein de la couche avec gradient de pression nu si l'écoulement externe est uniforme. À l'extérieur, les équations d'Euler sont d'application.
+
+    Étant donné que les grandeurs de référence des deux modèles ($\delta/Y$ et $x/Y$) sont fort différentes, on utilise une astuce mathématique pour les raccorder. La variable $\zeta$ est introduite:
+    \begin{equation}
+      \frac{\delta}{\zeta} = \frac{\zeta}{Y} = \recip{Re^\alpha} \quad \textrm{avec } 0 < \alpha < 0.5,\textrm{ typiquement } 0.25
+    \end{equation}
+
+    Cette variable est d'un ordre de grandeur entre les distances verticales et horizontales et permet d'obtenir des conditions limites identiques au lieu de raccord
+    \begin{equation}
+      \begin{aligned}
+        \lim_{x/\delta\rightarrow \infty} v\left(\frac{x}{\delta},y\right) &= \lim_{x/Y \rightarrow 0} v_e\left(\frac{x}{Y}, y\right) = v_e (0, y),\\
+        \lim_{x/\delta \rightarrow \infty} p\left(\frac{x}{\delta},y\right) &= \lim_{x/Y \rightarrow 0} p_e\left(\frac{x}{Y},y\right) = p_e (0, y)
+      \end{aligned}
+    \end{equation}
+
+    La démarche est similaire pour le problème thermique où la conduction est négligeable face à la convection. On définit $\delta_T$ comme le lieu où conduction et convection ont le même ordre de grandeur. Par un raisonnement semblable à celui effectué antérieurement mais utilisant la conservation de l'énergie, on a
+    \begin{equation}
+      \frac{\delta_T}{Y} = (Pr Re_Y)^{-1/2} \quad \textrm{et donc} \quad \frac{\delta_T}{\delta} = Pr^{-1/2}
+    \end{equation}
